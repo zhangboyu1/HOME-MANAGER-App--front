@@ -4,16 +4,15 @@ import './App.css';
 import './Clock.js';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTwitter，
-         faAlignJustify，
-         faPlay，
-         faCloudRain，
-         faSun，
-         faPooStorm 
-         faCloudSun
-         faBars} from '@fortawesome/free-brands-svg-icons';
+import { faTwitter} from '@fortawesome/free-brands-svg-icons';
+import { faAlignJustify } from '@fortawesome/free-solid-svg-icons'
+import { faPlay } from '@fortawesome/free-solid-svg-icons'
+import { faCloudRain } from '@fortawesome/free-solid-svg-icons'
+import { faSun } from '@fortawesome/free-solid-svg-icons'
+import { faPooStorm } from '@fortawesome/free-solid-svg-icons'
+import { faCloudSun} from '@fortawesome/free-solid-svg-icons'
 
-import Clock from './Clock.js';
+//import Clock from './Clock.js';
 
 
 function App() {
@@ -22,17 +21,15 @@ function App() {
 
         <div className="container">
             <header>
-                <FontAwesomeIcon icon={faBars} />
+               
                 <button class="btn"> 123 </button> 
             </header>
-                 
-        <Clock/>
-
-        <main>
-             <div className="cardbody">
-                <line1 className="line1">
                 
-                    <div className="line1_left">
+
+             <div className="cardbody">
+                <div className="currentWeather">
+                
+                    <div className="currentWeather-info">
                         <div className="line1_left_top">
                             <h1>12</h1>
                             <span className="degreeOperator">∘</span>
@@ -51,30 +48,34 @@ function App() {
 
                     <div className="line1_right"></div>
 
-                </line1>
+                </div>
               
-                <line2 className="line2">
+                <div className="details">
            
-                    <div className="line2_left">
+                    <div className="currentNews">
                 
-                        <div className="line2_left_top">
+                        <div className="currentWeather_title">
 
                             <FontAwesomeIcon className = "twitter_icon" icon={faTwitter} style={{color: `blue`, fontSize:15, marginLeft:10}} />
                             <h1> twitter feed <small>#france</small></h1>
                         </div> 
 
-                        <div className="line2_left_mid"> 
+                        <div className="currentWeather_post"> 
                             <h1>*</h1>
                             <p>  Donot forget your sunscreen tomorrow! </p>
                         </div> 
 
-                        <div className="line2_left_bottom">
+                        <div className="currentWeather_post">
                             <h1>*</h1>
                             <p>  Amazing weather in Paris! </p>
+                            <button className="currentWeather_next">
+                                <span className = "next_icon">N E X T &nbsp;</span>
+                                <FontAwesomeIcon className = "triangle" icon={faPlay} />
+                             </button>
                         </div> 
                 </div> 
 
-                    <table className="line2_right_content">
+                    <table className="forcastWeather">
 
                         <tr className="weekDays" style={{fontSize:15}}>
                             <th className="td">MON</th>
@@ -129,18 +130,10 @@ function App() {
                             </td> 
                         </tr>
                 </table>
-            </line2> 
-            <line3 className="line3">
-
-                <button className="line3_nextButton">
-            
-                <span className = "next_icon">N E X T &nbsp;</span>
-                <FontAwesomeIcon className = "triangle" icon={faPlay} />
-                </button>
-
-            </line3> 
+            </div> 
         </div>
-    </main>
+    </div>
+   
 );
 }
 export default App;

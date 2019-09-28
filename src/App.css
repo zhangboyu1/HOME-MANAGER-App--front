@@ -40,7 +40,7 @@
   border-radius: 4%;
 }
 
-.line1{
+.currentWeather{
   background-image:linear-gradient(to bottom, rgba(240, 238, 241, 0.5), rgba(221, 133, 248, 0.5)),url("https://www.timeanddate.com/scripts/cityog.php?title=Past%20Weather%20in&tint=0x007b7a&city=Paris&state=%C3%8Ele-de-France&country=France&image=paris1");
   background-size: cover;
   flex-grow: 7;
@@ -49,7 +49,7 @@
   color: silver;
 }
 
-.line2{
+.details{
   background-color: white;
   flex-grow: 7;
   display:flex;
@@ -63,7 +63,7 @@
 
 }
 
-.line1_left{
+.currentNews{
   /* background-color:rgb(243, 108, 108); */
   flex-grow: 3;
   display: flex;
@@ -74,7 +74,7 @@
   
 }
 
-.line1_right{
+.forcastWeather{
   /* background-color:white; */
   flex-grow: 5;
   flex-basis:0%;
@@ -98,7 +98,7 @@
   /* font-size: 30px; */
 }
 
-.line1_left_top{
+.currentWeather_title{
   /* background-color: rgb(15, 13, 11); */
   flex-grow:5;
   flex-basis:0%;
@@ -112,7 +112,7 @@
   height:20px;
   flex-basis:0%;
 }
-.line1_left_top-temperature{
+.currentWeather_title-temperature{
   display: inline-block;
   width: max-content;
   /* padding-top: 15px; */
@@ -153,7 +153,7 @@
 }
 
 
-.line2_left{
+.currentNews{
   background-color:white;
   flex-grow: 3;
   display:flex;
@@ -163,16 +163,16 @@
   font-size: 12px;
 }
 
-.line2_right{
+.forcastWeather{
   background-color:white;
   flex-grow: 5;
   flex-basis:0%;
 }
 
-/* line2 element */
+/* details element */
 
 
-.line2_left .line2_left_top{
+.currentNews .currentWeather_title{
   flex-grow: 1;
   background-color: white;
   flex-basis:0%;
@@ -180,7 +180,7 @@
 
 }
 
-.line2_left_mid{
+.currentWeather_post{
   flex-grow: 1;
   background-color: white;
   flex-basis:0%;
@@ -196,7 +196,7 @@
   flex-basis: 20%;
 }
 
-.line2_left .line2_left_bottom{
+.currentNews .currentWeather_post{
   flex-grow: 1;
   background-color: white;
   flex-basis:0%;
@@ -215,7 +215,7 @@
   
 }
 
-.line2_right_content{
+.forcastWeather{
   /* width: 200px; */
   text-align: center;
   /* padding:80px; */
