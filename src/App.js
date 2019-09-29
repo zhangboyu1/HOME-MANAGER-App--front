@@ -1,18 +1,15 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import './Clock.js';
+import './App.scss';
+
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTwitter} from '@fortawesome/free-brands-svg-icons';
-import { faAlignJustify } from '@fortawesome/free-solid-svg-icons'
-import { faPlay } from '@fortawesome/free-solid-svg-icons'
-import { faCloudRain } from '@fortawesome/free-solid-svg-icons'
-import { faSun } from '@fortawesome/free-solid-svg-icons'
-import { faPooStorm } from '@fortawesome/free-solid-svg-icons'
-import { faCloudSun} from '@fortawesome/free-solid-svg-icons'
+import { faTwitter,faAlignJustify} from '@fortawesome/free-brands-svg-icons';
+import { faPlay, 
+        faCloudRain,
+        faSun,
+        faPooStorm,
+        faCloudSun} from '@fortawesome/free-solid-svg-icons'
 
-//import Clock from './Clock.js';
 
 
 function App() {
@@ -24,135 +21,107 @@ function App() {
                
                 <button class="btn"> 123 </button> 
             </header>
-                
 
-             <div className="cardbody">
-                <div className="currentWeather">
-                
-                    <div className="currentWeather-info">
-                        <div className="currentWeather_info——celsius">
+            <main>
 
-                            <h1>12</h1>
-                            <span className="degreeOperator">∘</span>
+                <div className="card">
+                    <div className="card_currentWeather">
+                    
+                        <div className="card_currentWeather_info">
+                                <h1>12</h1>
+                                <p className="celsius"></p> 
+                                <p>Cloud</p>
 
-                        </div>
-                   
-                        <div className="currentWeather_info-pattern">Cloud</div>
+                                <ul>
+                                    <li>
+                                        <h1>humidity</h1>
+                                        <p>64%</p>
+                                    </li>
+                                    <li>
+                                        <h1>wind</h1>
+                                        <p>12 k/m</p>
+                                    </li>
+                                
+                                </ul>
 
-                        <div className="currentWeather_info-feature">
-                            <ul>
-                                <li>
-                                    <h1>humidity</h1>
-                                    <p>64%</p>
-                                </li>
-                                <li>
-                                    <h1>wind</h1>
-                                    <p>12 k/m</p>
-                                </li>
-                            </ul>
                         </div> 
+                
+                    <div className="card_currentWeather_country"> 
+                        <h1>Franch</h1> 
                     </div>
-
-
-                    <div className="currentWeather-country"></div>
 
                 </div>
               
-                <div className="details">
-           
-                    <div className="currentNews">
-                
-                        <div className="currentWeather_title">
-                            <FontAwesomeIcon className = "twitter_icon" icon={faTwitter} style={{color: `blue`, fontSize:15, marginLeft:10}} />
-                            <h1> twitter feed <small>#france</small></h1>
-                        </div> 
-
-                        <div className="currentWeather_post"> 
-                            <h1>*</h1>
-                            <p>  Donot forget your sunscreen tomorrow! </p>
-                        </div> 
-
-                        <div className="currentWeather_post">
-                            <h1>*</h1>
-                            <p>  Amazing weather in Paris! </p>
-                            <button className="currentWeather_next">
-                                <span className = "next_icon">N E X T &nbsp;</span>
-                                <FontAwesomeIcon className = "triangle" icon={faPlay} />
-                             </button>
-                        </div> 
-
-                    </div> 
-
-                    <table className="forcastWeather">
-                        <tr className="weekDays" style={{fontSize:15}}>
-                            <th className="td">MON</th>
-                            <th className="td">TUE</th>
-                            <th className="td">WED</th>
-                            <th className="td">THU</th>
-                            <th className="td">FRI</th>
-                        </tr>
-
-                        <tr className="weatherPattern" >
-
-                            <td className="td td2">
-                                <FontAwesomeIcon className = "weather_icon faCloudRain" icon={faCloudRain} />
-                            </td>
-
-                            <td className="td td2">
-                                <FontAwesomeIcon className = "weather_icon faSun" icon={faSun} />
-                            </td>
-
-                            <td className="td td2">
-                                <FontAwesomeIcon className = "weather_icon faCloudSun" icon={faCloudSun} />
-                            </td> 
-
-                            <td className="td td2">
-                                <FontAwesomeIcon className = "weather_icon faPooStorm" icon={faPooStorm} />
-                            </td>
-
-                            <td className="td td2">
-                                <FontAwesomeIcon className = "weather_icon faSun" icon={faSun} />
-                            </td> 
-
-                        </tr>
-
-                        <tr className="degree">
-
-                            <td className="td"> 
-                                <p className="degreeNum_m degreeNum">9</p>
-                                <p>sunny</p>
-                            </td>
-
-                            <td className="td">
-                                <p className="degreeNum_t degreeNum">15</p>
-                                <p>sunny</p>
-                            </td>
-
-                            <td className="td">
-                                <p className="degreeNum_w degreeNum">11</p>
-                                <p>sunny</p>
-                            </td> 
-
-                            <td className="td">
-                                <p className="degreeNum_th degreeNum">7</p>
-                                <p>sunny</p>
-                            </td>
+                    <div className="card_details">
+            
+                        <ul className="card_details_currentNews">
+                    
+                                <li className="card_details_currentNews_title">
+                                    <FontAwesomeIcon className = "twitter_icon" icon={faTwitter} style={{color: `blue`, fontSize:35, marginLeft:10}} />
+                                    <h1>&nbsp; twitter feed &nbsp;<small>#france</small></h1>
+                                </li>
                             
-                            <td className="td">
-                                <p className="degreeNum_f degreeNum">7</p>
-                                <p>sunny</p>
-                            </td> 
 
-                        </tr>
+                            <li className="card_details_currentNews_post"> 
+                                <h2></h2>
+                                <p1></p1>
+                                <p2>  Donot forget your sunscreen tomorrow! </p2>
+                                
+                            </li> 
 
-                </table>
+                            <li className="card_details_currentNews_post">
+                                <h2></h2>
+                                <p1></p1>
+                                <p2>  Amazing weather in Paris! </p2>
+                                
+                            </li> 
+                            <button className="card_currentWeather_next">
+                                    <span className = "next_icon">N E X T &nbsp;</span>
+                                    <FontAwesomeIcon className = "triangle" icon={faPlay} />
+                                </button>
+                        </ul> 
 
-            </div> 
+                        <div className="card_details_forcastWeather">
+                        <ul>
+                        <li>
+                            <h1>mon</h1>
+                            <p><FontAwesomeIcon icon={faCloudRain} /></p>
+                            <h1 className="degree">9°</h1>
+                            <p><small>raininig</small></p>
+                        </li>
+                        <li>
+                            <h1>tue</h1>
+                            <p><FontAwesomeIcon icon={faSun} /></p>
+                            <h1 className="degree">15°</h1>
+                            <p><small>sunny</small></p>
+                        </li>
+                        <li>
+                            <h1>wed</h1>
+                            <p><FontAwesomeIcon icon={faCloudSun} /></p>
+                            <h1 className="degree">11°</h1>
+                            <p><small>cloudy</small></p>
+                        </li>
+                        <li>
+                            <h1>thu</h1>
+                            <p><FontAwesomeIcon icon={faPooStorm} /></p>
+                            <h1 className="degree">7°</h1>
+                            <p><small>storm</small></p>
+                        </li>
+                        <li>
+                            <h1>fri</h1>
+                            <p><FontAwesomeIcon icon={faSun} /></p>
+                            <h1 className="degree">18°</h1>
+                            <p><small>sunny</small></p>
+                        </li>
+                    </ul>
+                    </div>
 
-        </div>
-        
-    </div>
-   
+                </div> 
+            </div>
+        </main>
+    </div> 
+ 
+
 );
 }
 export default App;

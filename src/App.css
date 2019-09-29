@@ -1,24 +1,16 @@
 .App {
   /* text-align: center; */
-  overflow:auto;
 }
 
-.wrapper{
+.container{
   width: 1024px;
   height:700px;
   border: 1px solid red;
-  /* background-color: #cccccc; */
-}
-
-.header{
-   display: flex;
-   /* justify-content: space-around; */
-}
-
-.header_left{
-  /* flex-grow:1; */
-  background-color: blanchedalmond;
-  /* height: 50px; */
+  background-image: url("http://www.seekgif.com/uploads/amazing-purple-background-1.jpeg");
+  margin: auto;
+  background-size: cover;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
 }
 
 .btn{
@@ -28,42 +20,60 @@
 }
 
 .cardbody{
-  width: 600px;
+  width: 650px;
   height: 400px;
-  /* background-color: aquamarine; */
-  margin-left:  180px;
+  margin: auto;
+  margin-top: 100px;
   display: flex;
   flex-direction: column;
   /* align-items: center; */
-  overflow:auto;
-  border: 2px solid grey;
+  border: 3px solid grey;
   border-radius: 4%;
+
 }
 
-.currentWeather{
+.card_currentWeather{
   background-image:linear-gradient(to bottom, rgba(240, 238, 241, 0.5), rgba(221, 133, 248, 0.5)),url("https://www.timeanddate.com/scripts/cityog.php?title=Past%20Weather%20in&tint=0x007b7a&city=Paris&state=%C3%8Ele-de-France&country=France&image=paris1");
   background-size: cover;
-  flex-grow: 7;
+  flex-basis: 50%;
   display: flex;
-  flex-basis:0%;
   color: silver;
+  overflow: auto;
+  flex-direction: column;
+  
 }
 
-.details{
+.card_currentWeather_info{
+
+  flex-basis: 30%;
+}
+.card_currentWeather_country{
+
+  flex-basis: 50%;
+}
+
+.card_currentWeather_info—celsius{
+
+}
+.card_currentWeather_info-pattern{
+  /* background-color:black; */
+  
+  
+}
+
+.card_currentWeather_info-feature {
+  
+}
+
+.card_details{
+  flex-grow: 1;
+  flex-basis: 50%;
   background-color: white;
-  flex-grow: 7;
   display:flex;
-  overflow:auto;
-  flex-basis:0%;
+  overflow: auto;
 }
 
-.line3{
-  background-color: white;
-  flex-basis: 8%;
-
-}
-
-.currentNews{
+.card_details_currentNews{
   /* background-color:rgb(243, 108, 108); */
   flex-grow: 3;
   display: flex;
@@ -74,193 +84,26 @@
   
 }
 
-.forcastWeather{
+.card_details_forcastWeather{
   /* background-color:white; */
   flex-grow: 5;
   flex-basis:0%;
 }
 
-/* 为什么currentWeather_info-celsius不能写在第一个？ */
-.currentWeather_info-pattern{
+.card_currentWeather_info—celsius{
+
+font-size: 10px;
+
+}
+.card_currentWeather_info-pattern{
   /* background-color:black; */
-  flex-grow:1;
-  flex-basis:0%;
-  text-align: center;
-  font-size: 20px;
-  line-height: 17px;
   
-}
-.currentWeather_info-feature{
-  /* background-color: cyan; */
-  flex-grow:3;
-  display:flex;
-  flex-basis:0%;
-  /* font-size: 30px; */
-}
-
-.currentWeather_title{
-  /* background-color: rgb(15, 13, 11); */
-  flex-grow:5;
-  flex-basis:0%;
-  display:flex;
-  justify-content: center; 
-  font-size: 60px; 
-} 
-
-.line1_left_blank{
-  width: 20px;
-  height:20px;
-  flex-basis:0%;
-}
-.currentWeather_title-temperature{
-  display: inline-block;
-  width: max-content;
-  /* padding-top: 15px; */
-}
-.number{
-
-  display: inline-block;
-  font-size: 100px; 
-
-}
-
-.degreeOperator{
-  display: inline-block;
-  vertical-align:top;
-  width:max-content;
-  height:40px;
-  overflow: auto;
-  font-size: 80px; 
-  line-height: 10%;
-  /* margin:auto; */
-  /* text-align: center; */
-}
-
-/* border出不来。。为啥呢？？ */
-.currentWeather_info-feature-humi{
-  /* background-color: cadetblue; */
-  flex-grow:1;
-  flex-basis:0%;
-  border-right: 3px solid silver;
-  text-align: center;
-}
-.currentWeather_info-feature-wind{
-  /* background-color:red; */
-  flex-grow:1;
-  flex-basis:0%;
-  /* border-left-style: solid ; */
-  text-align: center;
-}
-
-
-.currentNews{
-  background-color:white;
-  flex-grow: 3;
-  display:flex;
-  flex-direction: column;
-  flex-basis:0%;
-  /* border-right: 4px solid silver; */
-  font-size: 12px;
-}
-
-.forcastWeather{
-  background-color:white;
-  flex-grow: 5;
-  flex-basis:0%;
-}
-
-/* details element */
-
-
-.currentNews .currentWeather_title{
-  flex-grow: 1;
-  background-color: white;
-  flex-basis:0%;
-  border-right: 2px solid silver;
-
-}
-
-.currentWeather_post{
-  flex-grow: 1;
-  background-color: white;
-  flex-basis:0%;
-  border-right: 2px solid silver;
-  font-size: 12px;
-  color: grey;
-
-  display: flex;
-  /* flex-direction: column; */
-}
-.blue_circle{
-  text-align: center;
-  flex-basis: 20%;
-}
-
-.currentNews .currentWeather_post{
-  flex-grow: 1;
-  background-color: white;
-  flex-basis:0%;
-  border-right: 2px solid silver;
-  font-size: 12px;
-  color: grey;
-  display: flex;
-}
-
-.blue_circle{
-  text-align: center;
-  flex-basis: 15%;
-}
-
-.wenzi{
   
 }
 
-.forcastWeather{
-  /* width: 200px; */
-  text-align: center;
-  /* padding:80px; */
-  /* height: 140px; */
-  margin-left:5px;
-  /* border-left-style: 4px solid white; */
-  background-color: white;
-  overflow: auto;
-  padding: 5px;
-  font-size: 12px;
-}
-
-.td{
-  width:70px;
-  overflow:auto;
-  margin:0;
-}
-
-.weatherPattern, .weekDays, .degree{
-  height: 55px;
-  background-color: white;
-}
-
-.degreeNum{
-  margin:0;
-}
-
-.line3{
-
-  height: max-content;
-}
-
-.weather_icon{
-
-  font-size: 50px;
-}
-
-.degreeNum{
-
-  font-size: 15px;
+.card_currentWeather_info-feature {
   
 }
-.line3_nextButton{
 
-  font-size: 12px;
-  margin-left: 70px;
 
-}
+/* 下一行。。。。。 */
