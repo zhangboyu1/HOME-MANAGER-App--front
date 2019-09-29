@@ -80,8 +80,8 @@
   flex-basis:0%;
 }
 
-/* 为什么line1_left_top不能写在第一个？ */
-.line1_left_mid{
+/* 为什么currentWeather_info-celsius不能写在第一个？ */
+.currentWeather_info-pattern{
   /* background-color:black; */
   flex-grow:1;
   flex-basis:0%;
@@ -90,7 +90,7 @@
   line-height: 17px;
   
 }
-.line1_left_bottom{
+.currentWeather_info-feature{
   /* background-color: cyan; */
   flex-grow:3;
   display:flex;
@@ -137,14 +137,14 @@
 }
 
 /* border出不来。。为啥呢？？ */
-.line1_left_bottom-humi{
+.currentWeather_info-feature-humi{
   /* background-color: cadetblue; */
   flex-grow:1;
   flex-basis:0%;
   border-right: 3px solid silver;
   text-align: center;
 }
-.line1_left_bottom-wind{
+.currentWeather_info-feature-wind{
   /* background-color:red; */
   flex-grow:1;
   flex-basis:0%;

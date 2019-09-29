@@ -30,23 +30,31 @@ function App() {
                 <div className="currentWeather">
                 
                     <div className="currentWeather-info">
-                        <div className="line1_left_top">
+                        <div className="currentWeather_info——celsius">
+
                             <h1>12</h1>
                             <span className="degreeOperator">∘</span>
+
                         </div>
                    
-                        <div className="line1_left_mid">Cloud</div>
+                        <div className="currentWeather_info-pattern">Cloud</div>
 
-                        <div className="line1_left_bottom">
-                            <h1 className="humi"> HUMIDITY</h1>
-                            <p className="Number"> 50% </p>
-                            <h1 className="humi">WIND </h1>
-                            <p className="Number">12 K/M </p>
+                        <div className="currentWeather_info-feature">
+                            <ul>
+                                <li>
+                                    <h1>humidity</h1>
+                                    <p>64%</p>
+                                </li>
+                                <li>
+                                    <h1>wind</h1>
+                                    <p>12 k/m</p>
+                                </li>
+                            </ul>
                         </div> 
-
                     </div>
 
-                    <div className="line1_right"></div>
+
+                    <div className="currentWeather-country"></div>
 
                 </div>
               
@@ -55,7 +63,6 @@ function App() {
                     <div className="currentNews">
                 
                         <div className="currentWeather_title">
-
                             <FontAwesomeIcon className = "twitter_icon" icon={faTwitter} style={{color: `blue`, fontSize:15, marginLeft:10}} />
                             <h1> twitter feed <small>#france</small></h1>
                         </div> 
@@ -73,10 +80,10 @@ function App() {
                                 <FontAwesomeIcon className = "triangle" icon={faPlay} />
                              </button>
                         </div> 
-                </div> 
+
+                    </div> 
 
                     <table className="forcastWeather">
-
                         <tr className="weekDays" style={{fontSize:15}}>
                             <th className="td">MON</th>
                             <th className="td">TUE</th>
@@ -86,29 +93,36 @@ function App() {
                         </tr>
 
                         <tr className="weatherPattern" >
+
                             <td className="td td2">
                                 <FontAwesomeIcon className = "weather_icon faCloudRain" icon={faCloudRain} />
                             </td>
+
                             <td className="td td2">
                                 <FontAwesomeIcon className = "weather_icon faSun" icon={faSun} />
                             </td>
+
                             <td className="td td2">
                                 <FontAwesomeIcon className = "weather_icon faCloudSun" icon={faCloudSun} />
                             </td> 
+
                             <td className="td td2">
                                 <FontAwesomeIcon className = "weather_icon faPooStorm" icon={faPooStorm} />
                             </td>
+
                             <td className="td td2">
                                 <FontAwesomeIcon className = "weather_icon faSun" icon={faSun} />
                             </td> 
+
                         </tr>
 
                         <tr className="degree">
+
                             <td className="td"> 
                                 <p className="degreeNum_m degreeNum">9</p>
                                 <p>sunny</p>
-                                
                             </td>
+
                             <td className="td">
                                 <p className="degreeNum_t degreeNum">15</p>
                                 <p>sunny</p>
@@ -128,10 +142,15 @@ function App() {
                                 <p className="degreeNum_f degreeNum">7</p>
                                 <p>sunny</p>
                             </td> 
+
                         </tr>
+
                 </table>
+
             </div> 
+
         </div>
+        
     </div>
    
 );
