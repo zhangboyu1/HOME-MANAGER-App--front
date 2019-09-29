@@ -65,7 +65,7 @@
   
 }
 
-.card_details{
+.details{
   flex-grow: 1;
   flex-basis: 50%;
   background-color: white;
@@ -73,7 +73,7 @@
   overflow: auto;
 }
 
-.card_details_currentNews{
+.details_currentNews{
   /* background-color:rgb(243, 108, 108); */
   flex-grow: 3;
   display: flex;
@@ -84,7 +84,7 @@
   
 }
 
-.card_details_forcastWeather{
+.details_forcastWeather{
   /* background-color:white; */
   flex-grow: 5;
   flex-basis:0%;
