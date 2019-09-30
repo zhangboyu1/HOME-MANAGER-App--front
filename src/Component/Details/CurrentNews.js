@@ -18,7 +18,7 @@ class CurrentNews extends React.Component{
                     
                                 <li className="card_details_currentNews_title">
                                     <FontAwesomeIcon className = "twitter_icon" icon={faTwitter} style={{color: `blue`, fontSize:35, marginLeft:10}} />
-                                    <h1>&nbsp; twitter feed &nbsp;<small>#france</small></h1>
+                                    <h1>&nbsp; &nbsp;&nbsp;twitter feed &nbsp;<small>#france</small></h1>
                                 </li>
                             
 
@@ -31,7 +31,7 @@ class CurrentNews extends React.Component{
                             </li> 
 
                             <li className="card_details_currentNews_post">
-                                <h2></h2>
+                                <h3></h3>
                                 <p1></p1>
                                 <p2>  Amazing weather in Paris! </p2>
                                 

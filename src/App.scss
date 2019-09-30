@@ -137,14 +137,20 @@ body {
                     display: flex;
                     font-size: 0.8rem;
                     flex-grow:1;
-                    vertical-align: middle;
-                    line-height:100px;
+                  
+                    svg{
+                    align-self: center;
+                    margin-left: 100px;
+                    }
 
                     h1{
                         margin-bottom: 0;
                         line-height:50px;
                         font-size: 0.9rem;
-                        vertical-align:middle;
+                        // vertical-align: middle;
+                        align-self: center
+                        
+                        
                     }
                 }
 
@@ -159,11 +165,22 @@ body {
                         height:30px;
                         border-radius: 50%;
                         background-color: rgb(151, 199, 241);
-                        // flex-basis:30%;
+                       
                         position:absolute;
                         left: 1.4rem;
-                        // bottom: 40px;
+                        top: 435px;
+
+                    }
+
+                    h3{
+                        width: 30px;
+                        height:30px;
+                        border-radius: 50%;
+                        background-color: rgb(151, 199, 241);
                        
+                        position:absolute;
+                        left: 1.4rem;
+                        top: 518px;
                     }
                     p1{
                         flex-basis:25%;
@@ -172,6 +189,7 @@ body {
                     p2{
                         flex-basis:75%;
                         font-size: 0.8rem;
+                        align-self: center
                     }
 
 
