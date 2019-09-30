@@ -137,6 +137,7 @@ body {
                     display: flex;
                     font-size: 0.8rem;
                     flex-grow:1;
+                    flex-basis:0;
                   
                     svg{
                     align-self: center;
@@ -159,6 +160,7 @@ body {
                     display: flex;
                     align-content: space between;
                     // position:relative;
+                    flex-basis:0;
                         
                     h2{ 
                         width: 30px;
@@ -191,8 +193,6 @@ body {
                         font-size: 0.8rem;
                         align-self: center
                     }
-
-
                 }
 
             }
