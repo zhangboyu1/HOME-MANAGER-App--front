@@ -3,7 +3,7 @@ import './App.scss';
 
 import WeatherCard from './Component/WeatherCard';
 import NextPage from './Component/NextPage';
-
+import Forms from './Component/Forms';
 
 function App() {
     
@@ -14,6 +14,8 @@ function App() {
             <NextPage />
 
             <WeatherCard />
+
+            <Forms />
 
         </div> 
  
