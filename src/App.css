@@ -1,109 +1,79 @@
-.App {
+/* .App {
   /* text-align: center; */
-}
 
-.container{
-  width: 1024px;
-  height:700px;
-  border: 1px solid red;
-  background-image: url("http://www.seekgif.com/uploads/amazing-purple-background-1.jpeg");
-  margin: auto;
-  background-size: cover;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 12px;
-}
-
-.btn{
-
-  background-color: blueviolet;
-  margin-left: 40px;
-}
-
-.cardbody{
-  width: 650px;
-  height: 400px;
-  margin: auto;
-  margin-top: 100px;
-  display: flex;
-  flex-direction: column;
-  /* align-items: center; */
-  border: 3px solid grey;
-  border-radius: 4%;
 
 }
-
-.card_currentWeather{
-  background-image:linear-gradient(to bottom, rgba(240, 238, 241, 0.5), rgba(221, 133, 248, 0.5)),url("https://www.timeanddate.com/scripts/cityog.php?title=Past%20Weather%20in&tint=0x007b7a&city=Paris&state=%C3%8Ele-de-France&country=France&image=paris1");
-  background-size: cover;
-  flex-basis: 50%;
-  display: flex;
-  color: silver;
-  overflow: auto;
-  flex-direction: column;
-  
+.container {
+    width: 1024px;
+    height: 700px;
+    border: 1px solid red;
+    background-image: url("http://www.seekgif.com/uploads/amazing-purple-background-1.jpeg");
+    margin: auto;
+    background-size: cover;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
 }
-
-.card_currentWeather_info{
-
-  flex-basis: 30%;
+.btn {
+    background-color: blueviolet;
+    margin-left: 40px;
 }
-.card_currentWeather_country{
-
-  flex-basis: 50%;
+.cardbody {
+    width: 650px;
+    height: 400px;
+    margin: auto;
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    
+    border: 3px solid grey;
+    border-radius: 4%;
 }
-
-.card_currentWeather_info—celsius{
-
+.card_currentWeather {
+    background-image: linear-gradient(to bottom, rgba(240, 238, 241, 0.5), rgba(221, 133, 248, 0.5)), url("https://www.timeanddate.com/scripts/cityog.php?title=Past%20Weather%20in&tint=0x007b7a&city=Paris&state=%C3%8Ele-de-France&country=France&image=paris1");
+    background-size: cover;
+    flex-basis: 50%;
+    display: flex;
+    color: silver;
+    overflow: auto;
+    flex-direction: column;
 }
-.card_currentWeather_info-pattern{
-  /* background-color:black; */
-  
-  
+.card_currentWeather_info {
+    flex-basis: 30%;
 }
-
-.card_currentWeather_info-feature {
-  
+.card_currentWeather_country {
+    flex-basis: 50%;
 }
-
-.details{
-  flex-grow: 1;
-  flex-basis: 50%;
-  background-color: white;
-  display:flex;
-  overflow: auto;
+.card_currentWeather_info—celsius {}
+.card_currentWeather_info-pattern {
+    /* background-color:black; */
 }
-
-.details_currentNews{
-  /* background-color:rgb(243, 108, 108); */
-  flex-grow: 3;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  flex-basis:0%;
-  font-family: Arial, Helvetica, sans-serif;
-  
+.card_currentWeather_info-feature {}
+.details {
+    flex-grow: 1;
+    flex-basis: 50%;
+    background-color: white;
+    display: flex;
+    overflow: auto;
 }
-
-.details_forcastWeather{
-  /* background-color:white; */
-  flex-grow: 5;
-  flex-basis:0%;
+.details_currentNews {
+    /* background-color:rgb(243, 108, 108); */
+    
+    flex-grow: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-basis: 0%;
+    font-family: Arial, Helvetica, sans-serif;
 }
-
-.card_currentWeather_info—celsius{
-
-font-size: 10px;
-
+.details_forcastWeather {
+    /* background-color:white; */
+    
+    flex-grow: 5;
+    flex-basis: 0%;
 }
-.card_currentWeather_info-pattern{
-  /* background-color:black; */
-  
-  
+.card_currentWeather_info—celsius {
+    font-size: 10px;
 }
-
-.card_currentWeather_info-feature {
-  
-}
-
-
+*/
 /* 下一行。。。。。 */
