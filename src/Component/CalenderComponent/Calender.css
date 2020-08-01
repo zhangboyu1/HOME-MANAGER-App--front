@@ -1,0 +1,43 @@
+.cardFrame {
+    width: 100%;
+    background-color: transparent;
+    height: 800px;
+    position: absolute;
+}
+
+.card_calender {
+    width: 800px;
+    height: 600px;
+    position: relative;
+    margin: 0;
+    top: calc(50% - 300px);
+    left: calc(50% - 400px);
+    background-color: blue;
+}
+
+.div1,
+.div2 {
+    width: 100%;
+    height: 300px;
+}
+
+
+/* .fade-enter {
+    opacity: 0;
+}
+
+.fade-enter.fade-enter-active {
+    opacity: 1;
+    transform: translateX(-20px);
+    transition: all 2000ms ease-in;
+}
+
+.fade-exit {
+    opacity: 1;
+}
+
+.fade-exit.fade-exit-active {
+    opacity: 0;
+    transform: translateX(20px);
+    transition: all 2000ms ease-in;
+} */

@@ -4,6 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTwitter, faAlignJustify, faBluetooth, faFacebookSquare } from '@fortawesome/free-brands-svg-icons';
 import { faPlay, } from '@fortawesome/free-solid-svg-icons'
 
+import './Details.css'
+
 export default class CurrentNews extends React.Component {
     constructor() {
         super()
@@ -56,12 +58,12 @@ export default class CurrentNews extends React.Component {
         const { mediaInfo } = this.state
         console.log(mediaInfo)
         return (
-            <ul className="card_details_currentNews">
+            <ul className="card_weather_details_currentNews">
                 {
                     this.state.mediaInfo.map((element, index) => <LiNews key={index} element={element} />)
                 }
 
-                <button className="card_currentWeather_next" onClick={this.searchTweets} >
+                <button className="card_weather_currentWeather_next" onClick={this.searchTweets} >
                     <span className="next_icon">N E X T &nbsp;</span>
                     <FontAwesomeIcon className="triangle" icon={faPlay} />
                 </button>

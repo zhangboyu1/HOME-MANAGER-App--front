@@ -1,24 +1,29 @@
 import React from 'react';
-import Card from './Component/Card/Card'
-import 
-import Calender from './Component/CalenderComponent/Calender';
+import WeatherCard from './Component/WeatherCard/WeatherCard'
+// import WeatherCard from './Component/WeatherCardComponent/WeatherCard'
+import CalenderCard from './Component/CalenderComponent/Calender';
+import Navigator from './Component/Navigator/Navigator'
 
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+} from "react-router-dom";
 
-class App extends React.Component {
+import AnimatedSwitch from './Component/AnimatedSwitch/AnimatedSwitch';
 
+export default class App extends React.Component {
 
-    //React:https://reactjs.org/docs/fragments.html
     render() {
         return (
             <React.Fragment>
                 <Router>
-                    <Navigation />
-                    <Switch>
-                        <Route path="/" exact component={Card} />
-                        <Route path="/Card" exact component={Card} />
-                        <Route path="/Card/WeatherCard" exact component={WeatherCard} />
-                        <Route path="/Card/calender" exact component={Calender} />
-                    </Switch>
+                    <Navigator />
+                    <AnimatedSwitch>
+                        <Route exact path="/calender" component={CalenderCard} />
+                        <Route exact path="/weather" component={WeatherCard} />
+                    </AnimatedSwitch>
                 </Router>
             </React.Fragment>
         );

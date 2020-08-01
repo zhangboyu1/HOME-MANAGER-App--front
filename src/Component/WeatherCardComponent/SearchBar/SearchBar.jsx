@@ -1,8 +1,7 @@
 import React from 'react';
-
-import axios from "axios/index";
-
+import axios from "axios";
 import Geocode from "react-geocode";
+// import '../../App.scss';
 
 export default class SearchBar extends React.Component {
 
