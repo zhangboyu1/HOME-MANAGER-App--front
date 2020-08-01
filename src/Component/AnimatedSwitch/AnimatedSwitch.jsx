@@ -9,7 +9,7 @@ const AnimatedSwitch = props => {
     return (
         <Route
             render={({ location }) => (
-                <TransitionGroup className="route">
+                <TransitionGroup>
                     <CSSTransition
                         timeout={3000}
                         classNames={'fade'}

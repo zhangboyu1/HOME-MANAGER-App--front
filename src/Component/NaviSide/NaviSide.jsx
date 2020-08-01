@@ -1,37 +1,27 @@
 import React from 'react';
+import './NaviSide.css';
 
-
-export default class NavBar extends React.Component {
+export default class NaviSide extends React.Component {
     constructor(props) {
         super(props)
-        this.state = {
-            display: "block"
-        }
-    }
 
+    }
 
     //needs to be modified with hover effect in CSS.....
 
-    slideBarOver = () => {
-        this.setState({
-            display: "block"
-        })
-    }
 
-    slideBarOut = () => {
-        this.setState({ display: "none" });
-    }
+
 
     render() {
-        const { display } = this.state
-        console.log(display)
+
         return (
-            <>
-                <button class="SlideIcon" onMouseOver={this.slideBarOver} > >
-                    <i class="fa fa-caret-down"></i>
-                </button>
-                <div className="NavBarContainer" style={{ display: display }}>
-                    <div className="SlideBar" onMouseLeave={this.slideBarOut} style={{ display: display }}>
+            <div className="NaviSide">
+                <div className='navExposed-outer'>
+                    <div className='navExposed-inner'>
+                    </div>
+                </div>
+                <div className="NavBarContainer">
+                    <div className="SlideBar" >
                         <section class="NavHeader">
                             <h2 class="greetingText">Welcome Back</h2>
                             <h5>Weather App</h5>
@@ -45,10 +35,9 @@ export default class NavBar extends React.Component {
                             </div>
                         </section>
                     </div>
-                    <div className="NavBackground" style={{ display: display }}></div>
                 </div>
-
-            </>
+                <div className="NavBackground" ></div>
+            </div>
         )
     }
 }

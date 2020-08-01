@@ -13,16 +13,10 @@ import CurrentWeather from '../WeatherCardComponent/CurrentWeatherInfo/CurrentWe
 import Details from '../WeatherCardComponent/Details/Details';
 import SearchBar from '../WeatherCardComponent/SearchBar/SearchBar'
 
-// import Clock from '../Clock/Clock'
-// import Login from '../Login/Login'
-// import NavBar from '../NavBAR/NavBar'
+import Clock from '../Clock/Clock'
 import axios from "axios";
-// import WeatherCard from '../WeatherAppComponent/WeatherCard';
-// import CalenderCard from '../CalenderComponent/Calender'
-
 import './WeatherCard.css'
 
-// import '../../App.scss';
 
 export default class Card extends React.Component {
     constructor() {
@@ -81,27 +75,23 @@ export default class Card extends React.Component {
         searchWeather()
     }
 
+    searchTweets = () => {
 
-    searchTweets = async () => {
+
+        // Request 得重新找一个API。。。。才行。。。。
+
+        const proxy = 'https://cors-anywhere.herokuapp.com/';
         const ApiTweetsLink = 'https://api.twitter.com/1.1/search/tweets.json?q=from%3Atwitterdev&result_type=mixed&count=2'
-        const axios = require('axios').default;
-        try {
-            const response1 = await axios.get(ApiTweetsLink);
-            console.log(response1)
-        }
-        catch (error) {
-            console.error(error);
-            this.setState({
-                tweetsErrorMsg: `Weather data cannot be loaded...`
-            })
-        }
+
+        axios({
+            method: 'get',
+            url: proxy + ApiTweetsLink,
+            headers: { 'X-Requested-With': 'XMLHttpRequest' },
+        }).then((response) => {
+            console.log(response)
+        })
     }
 
-
-    findCityWeather = (city) => {
-        // how to find the city coordinates
-
-    }
 
     checkLogIn = (loginResult) => {
         let { checkLogin } = this.state;
@@ -130,9 +120,6 @@ export default class Card extends React.Component {
         const { firsLoading, weatherErrorMsg, currently, daily, checkLogin } = this.state
         const { timeZone } = this.state
 
-        console.log(this.props)
-
-
         // if (!checkLogin) {
         //     return (
         //         <>
@@ -153,10 +140,7 @@ export default class Card extends React.Component {
         // // Has already logined  then the next step is to verify the data is whether loaded or not?
         // if (currently.length != 0) {
         return (
-
-            <React.Fragment>
-                {/* <Clock timeZone={timeZone} /> */}
-                {/* <NavBar /> */}
+            <>
 
                 <div className="cardFrame">
                     <div className="card_weather">
@@ -171,8 +155,7 @@ export default class Card extends React.Component {
                         <SearchBar searchWeather={this.searchW} />
                     </div>
                 </div>
-
-            </React.Fragment>
+            </>
 
         )
         // }

@@ -58,7 +58,6 @@ class CurrentWeather extends React.Component {
 
                 <div className="card_weather_currentWeather_country">
                     <h1>{this.findCity()}</h1>
-                    <button class="btn_nextPage"> <strong> > </strong> </button>
                 </div>
 
             </div>

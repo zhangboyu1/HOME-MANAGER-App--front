@@ -1,25 +1,25 @@
 html {
-    perspective: 3000px;
+    perspective: 600px;
 }
 
 .fade-exit {
     opacity: 1;
-    transform: translateX(0px);
+    transform: translateZ(-350px) translateX(0px) rotateY(0deg);
 }
 
 .fade-exit.fade-exit-active {
     opacity: 0;
-    transform: translateX(-450px) rotateY(-90deg);
+    transform: translateZ(-350px) translateX(-850px) rotateY(-90deg);
     transition: all 1000ms ease-in;
 }
 
 .fade-enter {
     opacity: 0;
-    transform: translateX(450px) rotateY(90deg);
+    transform: translateZ(-650px) translateX(850px) rotateY(90deg);
 }
 
 .fade-enter.fade-enter-active {
     opacity: 1;
-    transform: translateX(0px) rotateY(0deg);
+    transform: translateZ(0px) translateX(0px) rotateY(0deg);
     transition: all 1000ms ease-in 1s;
 }

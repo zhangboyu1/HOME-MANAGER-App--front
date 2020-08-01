@@ -5,7 +5,7 @@
     display: flex;
     background-color: whitesmoke;
     /* background-color: lightgray; */
-    border-radius: 10px;
+    border-radius: 0px 0px 10px 10px;
 }
 
 .card_weather_details:before {
