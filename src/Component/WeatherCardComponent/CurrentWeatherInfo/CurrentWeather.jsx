@@ -1,5 +1,6 @@
 import React from 'react';
 import Li from './Li.jsx';
+import './currentWeather.css'
 
 
 class CurrentWeather extends React.Component {
@@ -34,19 +35,18 @@ class CurrentWeather extends React.Component {
 
     render() {
 
-        const { temperature, summary } = this.props.currently[0]
+        // const { temperature, summary } = this.props.currently[0]
 
-        console.log(temperature)
 
         return (
 
-            <div className="card_currentWeather">
+            <div className="card_weather_currentWeather">
 
-                <div className="card_currentWeather_info">
+                <div className="card_weather_currentWeather_info">
 
-                    <h1>{parseInt((temperature - 32) * 5 / 9)}</h1>
+                    {this.props.currently[0] != undefined ? <h1>{parseInt((this.props.currently[0].temperature - 32) * 5 / 9)}</h1> : ''}
                     <p className="celsius"></p>
-                    <span>{summary}</span>
+                    {this.props.currently[0] != undefined ? <span>{this.props.currently[0].summary}</span> : ''}
 
                     <ul>
                         {this.props.currently.map((element, index) =>
@@ -56,9 +56,8 @@ class CurrentWeather extends React.Component {
                     </ul>
                 </div>
 
-                <div className="card_currentWeather_country">
+                <div className="card_weather_currentWeather_country">
                     <h1>{this.findCity()}</h1>
-                    <button class="btn_nextPage"> <strong> > </strong> </button>
                 </div>
 
             </div>

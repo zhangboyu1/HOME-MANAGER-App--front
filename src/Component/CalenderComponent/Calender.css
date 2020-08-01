@@ -1,0 +1,66 @@
+.cardFrame {
+    width: 100%;
+    background-color: transparent;
+    height: 700px;
+    position: absolute;
+    z-index: 1001;
+}
+
+.card_calender {
+    width: 800px;
+    height: 600px;
+    position: relative;
+    margin: 0;
+    top: calc(50% - 250px);
+    left: calc(50% - 400px);
+    background-color: whitesmoke;
+}
+
+.card_calender .calendar-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 60px 20px;
+}
+
+.card_calender .calendar-body .week-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.card_calender .calendar-body .week:nth-child(6),
+.card_calender .calendar-body .week:nth-child(7) {
+    color: #e02d2d;
+}
+
+.card_calender .calendar-body .week {
+    width: 14.2%;
+    display: inline-block;
+    text-align: center;
+}
+
+.day-container {
+    height: 140px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.day-container .day {
+    width: 14.2%;
+    display: inline-block;
+    text-align: center;
+}
+
+.day-container .day:nth-child(7n-1) {
+    color: #e02d2d;
+}
+
+.day-container .day:nth-child(7n) {
+    color: #e02d2d;
+}
+
+.day-container .day.today {
+    color: green;
+}

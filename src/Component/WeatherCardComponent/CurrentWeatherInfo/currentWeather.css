@@ -1,0 +1,114 @@
+     .card_weather_currentWeather {
+         flex-grow: 1;
+         display: flex;
+         flex-basis: 0;
+         border-bottom: 2px solid #ddd;
+         /* overflow: auto; */
+         background-image: linear-gradient(to bottom, rgba(255, 255, 0, 0.5), rgba(0, 0, 255, 0.5)), url("http://hdwpro.com/wp-content/uploads/2018/07/Cool-Paris-Wallpaper.jpg");
+         background-size: cover;
+         background: linear-gradient(bottom, rgba(255, 0, 0, 0.1), rgba(255, 0, 0, 0.1));
+         border-radius: 10px 10px 0px 0px;
+     }
+     
+     .card_weather_currentWeather:before {
+         content: "";
+         position: absolute;
+         border-right: 3px solid #ddd;
+         width: 243px;
+         height: 200px;
+         margin-top: 45px;
+     }
+     
+     .card_weather_currentWeather_info {
+         flex-basis: 30%;
+         position: relative;
+         padding: 1rem;
+         text-transform: uppercase;
+         color: whitesmoke;
+         text-align: center;
+     }
+     
+     .celsius {
+         width: 20px;
+         height: 20px;
+         border: 2px solid white;
+         border-radius: 50%;
+         position: absolute;
+         top: 2.6rem;
+         left: 9.4rem;
+     }
+     
+     .card_weather_currentWeather_info h1 {
+         text-align: center;
+         font-size: 5rem;
+         margin-top: 2.1rem;
+     }
+     
+     .card_weather_currentWeather_info span {
+         font-size: 0.8rem;
+         position: absolute;
+         left: 50%;
+         transform: translateX(-50%);
+     }
+     
+     .card_weather_currentWeather_info ul {
+         margin-top: 40px;
+         display: flex;
+         flex-direction: row;
+         padding-left: 0;
+     }
+     
+     .card_weather_currentWeather_info ul:before {
+         content: "";
+         position: absolute;
+         border-right: 2px solid #ddd;
+         width: 105px;
+         height: 80px;
+     }
+     
+     .card_weather_currentWeather_info ul li {
+         list-style: none;
+         font-size: 0.9rem;
+         flex-grow: 1;
+         text-align: center;
+         flex-basis: 0;
+     }
+     
+     .card_weather_currentWeather_info ul li>h1 {
+         font-size: 0.6rem;
+     }
+     
+     .card_weather_currentWeather_country {
+         flex-basis: 70%;
+         text-align: right;
+     }
+     
+     .card_weather_currentWeather_country .btn_nextPage {
+         position: absolute;
+         margin-top: 7rem;
+         margin-left: -3rem;
+         font-size: 4rem;
+         background-color: transparent;
+         border-radius: 50%;
+         border-style: none;
+         outline: none;
+         color: antiquewhite;
+         opacity: 0.4;
+     }
+     
+     .card_weather_currentWeather_country h1 {
+         color: whitesmoke;
+         height: 100px;
+         line-height: 100px;
+         padding-right: 20px;
+     }
+     
+     .card_weather_currentWeather_country h1::after {
+         content: "";
+         width: 90px;
+         height: 2px;
+         border-bottom: 4px solid antiquewhite;
+         position: absolute;
+         margin-top: 10%;
+         margin-left: -10.5%;
+     }

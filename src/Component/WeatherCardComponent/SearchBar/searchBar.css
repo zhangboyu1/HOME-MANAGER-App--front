@@ -1,0 +1,37 @@
+    .searchBar {
+        position: absolute;
+        width: 360px;
+        left: 2px;
+    }
+    
+    input[type=text] {
+        top: 0;
+        width: 150px;
+        box-sizing: border-box;
+        border-radius: 0px 4px 4px 0px;
+        border-color: gray;
+        font-size: 11px;
+        background-color: white;
+        opacity: 0.5;
+        padding: 12px 20px 12px 40px;
+        -webkit-transition: width 0.4s ease-in-out;
+        transition: width 0.4s ease-in-out;
+        border: none;
+        border-left: 3px solid gray;
+    }
+    
+    input[type=text]:focus {
+        width: 60%;
+    }
+    
+    button {
+        float: left;
+        font-size: 10px;
+        border: none;
+        cursor: pointer;
+        top: 0;
+        background-color: white;
+        opacity: 0.6;
+        padding: 12px 20px 12px 20px;
+        border: none
+    }

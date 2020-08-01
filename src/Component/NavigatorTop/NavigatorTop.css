@@ -1,0 +1,21 @@
+.navBarTop {
+    width: 100%;
+    height: 50px;
+    position: sticky;
+    z-index: 2000;
+    top: 0;
+    background-color: black;
+    opacity: 0.4;
+}
+
+.forward {
+    float: left;
+    width: 100px;
+    background-color: wheat;
+}
+
+.backward {
+    float: right;
+    width: 100px;
+    background-color: yellow;
+}

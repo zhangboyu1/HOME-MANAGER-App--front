@@ -12,6 +12,7 @@ import {
     faCloudSun
 } from '@fortawesome/free-solid-svg-icons'
 
+import './Details.css'
 class Details extends React.Component {
 
     constructor(props) {
@@ -42,10 +43,10 @@ class Details extends React.Component {
 
         return (
 
-            <div className="card_details">
+            <div className="card_weather_details">
 
                 <CurrentNews />
-                <ul className="card_details_forcastWeather" >
+                <ul className="card_weather_details_forcastWeather" >
                     {
                         this.props.daily.map((element, index) => <LiForcast element={element} index={index} />)
 

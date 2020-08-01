@@ -8,15 +8,17 @@ import {
     faCloudSun
 } from '@fortawesome/free-solid-svg-icons'
 import React from 'react';
-import Clock from '../WeatherAppComponent/Clock/Clock.jsx'
-import Login from '../Login/Login'
-import NavBar from '../WeatherAppComponent/NavBAR/NavBar.jsx'
-import axios from "axios/index";
-import SearchBar from '../WeatherAppComponent/SearchBar/SearchBar'
 
-import './WeatherApp.scss';
+import CurrentWeather from '../WeatherCardComponent/CurrentWeatherInfo/CurrentWeather';
+import Details from '../WeatherCardComponent/Details/Details';
+import SearchBar from '../WeatherCardComponent/SearchBar/SearchBar'
 
-export default class WeatherCard extends React.Component {
+import Clock from '../Clock/Clock'
+import axios from "axios";
+import './WeatherCard.css'
+
+
+export default class Card extends React.Component {
     constructor() {
         super()
         this.state = {
@@ -32,6 +34,10 @@ export default class WeatherCard extends React.Component {
         this.oldloading = 0
         this.latitude = 0
         this.longitute = 0
+
+        setTimeout(() => {
+            this.searchW()
+        }, 10000);
     }
 
     //Decide to send request on this father Component!
@@ -69,27 +75,23 @@ export default class WeatherCard extends React.Component {
         searchWeather()
     }
 
+    searchTweets = () => {
 
-    searchTweets = async () => {
+
+        // Request 得重新找一个API。。。。才行。。。。
+
+        const proxy = 'https://cors-anywhere.herokuapp.com/';
         const ApiTweetsLink = 'https://api.twitter.com/1.1/search/tweets.json?q=from%3Atwitterdev&result_type=mixed&count=2'
-        const axios = require('axios').default;
-        try {
-            const response1 = await axios.get(ApiTweetsLink);
-            console.log(response1)
-        }
-        catch (error) {
-            console.error(error);
-            this.setState({
-                tweetsErrorMsg: `Weather data cannot be loaded...`
-            })
-        }
+
+        axios({
+            method: 'get',
+            url: proxy + ApiTweetsLink,
+            headers: { 'X-Requested-With': 'XMLHttpRequest' },
+        }).then((response) => {
+            console.log(response)
+        })
     }
 
-
-    findCityWeather = (city) => {
-        // how to find the city coordinates
-
-    }
 
     checkLogIn = (loginResult) => {
         let { checkLogin } = this.state;
@@ -103,16 +105,14 @@ export default class WeatherCard extends React.Component {
     componentDidMount() {
         this.searchTweets();
         //First time
-        setTimeout(() => {
-            this.searchW()
-        }, 10000);
+
     }
 
     componentDidUpdate() {
 
         const latitude = this.latitude
         const longitute = this.longitute
-        setInterval(this.searchW(latitude, longitute), 20000)
+        // setInterval(this.searchW(latitude, longitute), 20000)
     }
 
 
@@ -120,46 +120,54 @@ export default class WeatherCard extends React.Component {
         const { firsLoading, weatherErrorMsg, currently, daily, checkLogin } = this.state
         const { timeZone } = this.state
 
+        // if (!checkLogin) {
+        //     return (
+        //         <>
+        //             <Login checkLogIn={this.checkLogIn} />
+        //         </>
+        //     )
+        // } else {
 
-        if (!checkLogin) {
-            return (
-                <>
-                    <Login checkLogIn={this.checkLogIn} />
-                </>
-            )
-        } else {
+        // if (!firsLoading) {
+        //     return (
+        //         <>
+        //             <div id="loader-wrapper">
+        //                 <div id="loader"></div>
+        //             </div>
+        //         </>
+        //     )
+        // }
+        // // Has already logined  then the next step is to verify the data is whether loaded or not?
+        // if (currently.length != 0) {
+        return (
+            <>
 
-            if (!firsLoading) {
-                return (
-                    <>
-                        <div id="loader-wrapper">
-                            <div id="loader"></div>
-                        </div>
-                    </>
-                )
-            }
-            // Has already logined  then the next step is to verify the data is whether loaded or not?
-            if (currently.length != 0) {
-                return (
-                    <>
-                        <Clock timeZone={timeZone} />
-                        <NavBar />
-                        <div className="card">
-                            <WeatherCard currently={currently} timeZone={timeZone} daily={daily} oldloading={this.oldloading} />
-                            <SearchBar searchWeather={this.searchW} />
-                        </div>
-                    </>
-                )
-            }
-            else return (
-                <>
-                    <div className="firstPageError">{weatherErrorMsg}</div>
-                </>
-            )
+                <div className="cardFrame">
+                    <div className="card_weather">
+                        <CurrentWeather currently={currently ? currently : ''} timeZone={timeZone ? timeZone : ''} />
+                        <Details daily={daily} />
+                        {
+                            firsLoading ||
+                            <div id="loader-wrapper">
+                                <div id="loader"></div>
+                            </div>
+                        }
+                        <SearchBar searchWeather={this.searchW} />
+                    </div>
+                </div>
+            </>
 
-        }
-
+        )
+        // }
+        // else return (
+        //     <>
+        //         <div className="firstPageError">{weatherErrorMsg}</div>
+        //     </>
+        // )
 
     }
+
+
 }
+// }
 
