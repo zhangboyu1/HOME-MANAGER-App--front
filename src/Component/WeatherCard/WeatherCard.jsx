@@ -22,114 +22,90 @@ export default class Card extends React.Component {
     constructor() {
         super()
         this.state = {
-            firsLoading: false,
-            keepLoading: false,
-            currently: [],
-            daily: [],
-            timeZone: ``,
-            weatherErrorMsg: ``,
-            checkLogin: 0,
-            photoUrl:''
+            photoUrl: ''
         }
-        this.keeploading = 1;
-        this.oldloading = 0
-        this.latitude = 0
-        this.longitute = 0
 
-
-        console.log('New start....................')
-        console.log('firsLoading', this.state.firsLoading )
+        console.log('New start on /Weather')
+        console.log(this.props)
+        setTimeout(() => {
+            this.searchW()
+        }, 10000);
     }
 
     //Decide to send request on this father Component!
     searchW = (latitude, longitute) => {
-        const searchWeather = () => {
-            // this.setState({ keepLoading: true })
-            this.latitude = latitude
-            this.longitute = longitute
-            console.log(`Can we start to request?`)
-            const proxy = 'https://cors-anywhere.herokuapp.com/';
-            const ApiWeatherLink = `https://api.darksky.net/forecast/d5a7dda54f011a00ba9ac7d784cc4581/${this.latitude === undefined ? 48.8587 : latitude},${this.longitute === undefined ? 2.3429 : longitute}`
-            // const axios = require('axios')
-            axios({
-                method: 'get',
-                url: proxy + ApiWeatherLink,
-                headers: { 'X-Requested-With': 'XMLHttpRequest' },
-            }).then((response) => {
-                const { temperature, summary, humidity, windSpeed } = response.data.currently
-                const { timezone } = response.data // //mO
-                this.keeploading = 1;
-                this.oldloading = this.keeploading
-                this.setState({
-                    firsLoading: true,
-                    currently: [{ temperature, summary, humidity, windSpeed }],
-                    timeZone: timezone,
-                    daily: response.data.daily.data
-                }, () => {
-                    this.keeploading = 0;
+        const { firsLoading, updateWeatherData } = this.props
+        this.latitude = latitude;
+        this.longitute = longitute;
+
+        if (!firsLoading) {
+            const searchWeather = () => {
+                // this.setState({ keepLoading: true })
+                this.latitude = latitude
+                this.longitute = longitute
+                console.log(`Can we start to request?`)
+                const proxy = 'https://cors-anywhere.herokuapp.com/';
+                const ApiWeatherLink = `https://api.darksky.net/forecast/d5a7dda54f011a00ba9ac7d784cc4581/${this.latitude === undefined ? 48.8587 : latitude},${this.longitute === undefined ? 2.3429 : longitute}`
+                axios({
+                    method: 'get',
+                    url: proxy + ApiWeatherLink,
+                    headers: { 'X-Requested-With': 'XMLHttpRequest' },
+                }).then((response) => {
+
+                    console.log(response)
+                    // Let the behavior of updating data happening in the cardCenter component:
+                    let firsLoading = true;
+                    const { currently } = response.data
+                    const { timezone } = response.data //
+                    const daily = response.data.daily.data
+                    this.keeploading = 1;
+                    updateWeatherData(firsLoading, [currently], timezone, daily)
                 })
-
-                console.log(response)
-
-            })
+            }
+            searchWeather()
         }
-        searchWeather()
+
     }
 
-    searchTweets = () => {
-        // Request 得重新找一个API。。。。才行。。。。
-        const proxy = 'https://cors-anywhere.herokuapp.com/';
-        const ApiTweetsLink = 'https://api.twitter.com/1.1/search/tweets.json?q=from%3Atwitterdev&result_type=mixed&count=2'
+    // searchTweets = () => {
+    //     // Request 得重新找一个API。。。。才行。。。。
+    //     const proxy = 'https://cors-anywhere.herokuapp.com/';
+    //     const ApiTweetsLink = 'https://api.twitter.com/1.1/search/tweets.json?q=from%3Atwitterdev&result_type=mixed&count=2'
 
-        axios({
-            method: 'get',
-            url: proxy + ApiTweetsLink,
-            headers: { 'X-Requested-With': 'XMLHttpRequest' },
-        }).then((response) => {
-            console.log(response)
-        })
-    }
+    //     axios({
+    //         method: 'get',
+    //         url: proxy + ApiTweetsLink,
+    //         headers: { 'X-Requested-With': 'XMLHttpRequest' },
+    //     }).then((response) => {
+    //         console.log(response)
+    //     })
+    // }
 
 
     checkLogIn = (loginResult) => {
-        let { checkLogin } = this.state;
+        let { checkLogin, updateUserData } = this.props;
         checkLogin = loginResult
-        this.setState({
-            checkLogin
-        })
+        updateUserData(checkLogin)
     }
 
-    getPhotoUrl = (updatedPhotoUrl)=>{
-
-
+    getPhotoUrl = (updatedPhotoUrl) => {
         console.log('now the url psssed to the Father')
-        let { photoUrl} = this.state;
+        let { photoUrl } = this.state;
         photoUrl = updatedPhotoUrl
-
-
         this.setState({
             photoUrl
         })
-        
-        // Then pass this photoUrl to another child......
-
     }
 
-
-    componentDidMount() {
-       
-        setTimeout(() => {
-            this.searchW()
-        }, 10000);
-
-    }
 
 
     render() {
-        const { firsLoading, weatherErrorMsg, currently, daily, checkLogin, photoUrl} = this.state
-        const { timeZone } = this.state
+        const { firsLoading, weatherErrorMsg, currently, daily, checkLogin, timeZone } = this.props
 
-        console.log(photoUrl)
+        console.log('daily is:', daily)
+        const { photoUrl } = this.state
+        console.log(this.props)
+        console.log(firsLoading, currently, daily)
 
         // if (!checkLogin) {
         //     return (
@@ -152,10 +128,9 @@ export default class Card extends React.Component {
         // if (currently.length != 0) {
         return (
             <>
-
                 <div className="cardFrame">
                     <div className="card_weather">
-                        <CurrentWeather currently={currently ? currently : ''} timeZone={timeZone ? timeZone : ''} photoUrl={photoUrl}/>
+                        <CurrentWeather currently={currently ? currently : ''} timeZone={timeZone ? timeZone : ''} photoUrl={photoUrl} />
                         <Details daily={daily} />
                         {
                             firsLoading ||
@@ -163,7 +138,7 @@ export default class Card extends React.Component {
                                 <div id="loader"></div>
                             </div>
                         }
-                        <SearchBar searchWeather={this.searchW} getPhotoUrl={this.getPhotoUrl}/>
+                        <SearchBar searchWeather={this.searchW} getPhotoUrl={this.getPhotoUrl} />
                     </div>
                 </div>
             </>

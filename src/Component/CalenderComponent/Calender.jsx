@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import './Calender.css'
 
-
-
-
 export default class CalenderCard extends Component {
     constructor(props) {
         super(props);
@@ -28,7 +25,7 @@ export default class CalenderCard extends Component {
         this.renderBody = this.renderBody.bind(this);
         this.preMonth = this.preMonth.bind(this);
         this.nextMonth = this.nextMonth.bind(this);
-
+        console.log(1)
     }
 
 
@@ -137,9 +134,23 @@ export default class CalenderCard extends Component {
         )
     }
 
-    render() {
-        return (
+    // shouldComponentUpdate(props) {
 
+    //     console.log(props)
+    //     if (props.history != undefined) {
+    //         console.log(props)
+    //         console.log(props)
+    //         let pathName = props.history.location.pathname
+    //         // this.props.read(pathName)
+    //         console.log(pathName)
+    //     }
+
+    // }
+
+
+    render() {
+        console.log(this.props)
+        return (
             <div className="cardFrame">
                 <div className="card_calender">
                     {this.renderHeader()}
