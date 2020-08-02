@@ -7,6 +7,7 @@
 }
 
 .card_calender {
+    color: blanchedalmond;
     width: 800px;
     height: 600px;
     position: relative;
@@ -14,12 +15,18 @@
     top: calc(50% - 250px);
     left: calc(50% - 400px);
     background-color: whitesmoke;
+    font-family: fantasy;
+    background-image: url(https://images.pexels.com/photos/956999/milky-way-starry-sky-night-sky-star-956999.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
 }
 
 .card_calender .calendar-header {
     display: flex;
     justify-content: space-between;
     padding: 60px 20px;
+}
+
+.calendar-header-title {
+    font-size: 30px;
 }
 
 .card_calender .calendar-body .week-container {
@@ -35,16 +42,19 @@
 }
 
 .card_calender .calendar-body .week {
-    width: 14.2%;
+    width: 12%;
     display: inline-block;
     text-align: center;
+    font-size: 25px;
 }
 
 .day-container {
-    height: 140px;
+    height: 120px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
+    text-align: center;
+    line-height: 50px;
 }
 
 .day-container .day {
@@ -61,6 +71,11 @@
     color: #e02d2d;
 }
 
-.day-container .day.today {
+.day-container .day.today span {
+    display: block;
+    margin: 0 auto;
+    width: 50px;
+    border-radius: 50%;
+    background-color: silver;
     color: green;
 }

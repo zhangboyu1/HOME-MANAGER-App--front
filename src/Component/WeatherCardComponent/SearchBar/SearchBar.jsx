@@ -11,7 +11,6 @@ export default class SearchBar extends React.Component {
         }
     }
 
-
     typeCountry = (e) => {
         // console.log(e.target.value) 
         const tyCountry = e.target.value
@@ -19,8 +18,6 @@ export default class SearchBar extends React.Component {
             { tyCountry }
         )
     }
-
-
 
     searchPlaceDetails = (place_id) => {
         // this.setState({ keepLoading: true })
@@ -34,11 +31,9 @@ export default class SearchBar extends React.Component {
             headers: { 'X-Requested-With': 'XMLHttpRequest' },
         }).then((response) => {
             console.log('Now the city detials can be retrived:')
-            // console.log(response)
-            // console.log(response.data.result.photos[0].photo_reference)
+
             const photo_reference = response.data.result.photos[0].photo_reference
             this.SearchCityPhot(photo_reference)
-
         })
     }
 
@@ -47,7 +42,7 @@ export default class SearchBar extends React.Component {
         console.log("Start to search the place pphotos..............")
         const proxy = 'https://cors-anywhere.herokuapp.com/';
         const ApiPlacePhotLink = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&maxHeight=300&photoreference=${photo_reference}&key=AIzaSyCgPv2IvOtVdUX9VHX-oP5LS2i8TAeIs8c`
-        // const axios = require('axios')
+
         axios({
             method: 'get',
             url: proxy + ApiPlacePhotLink,
@@ -57,8 +52,6 @@ export default class SearchBar extends React.Component {
             console.log(Object.values(response.headers)[14])
             const photoUrl = Object.values(response.headers)[14]
             this.props.getPhotoUrl(photoUrl)
-
-
         })
     }
 
@@ -75,7 +68,6 @@ export default class SearchBar extends React.Component {
                 // console.log(response.results)
                 // console.log(response.results[0].place_id) //Now we get the place ID, then next we need to get the img url from API
                 const place_id = response.results[0].place_id;
-
                 console.log(place_id)
                 this.searchPlaceDetails(place_id)
                 const { lat, lng } = response.results[0].geometry.location;
@@ -87,12 +79,9 @@ export default class SearchBar extends React.Component {
             error => {
                 console.error(error);
             }
+
         )
-
     }
-
-
-
 
     render() {
         return (

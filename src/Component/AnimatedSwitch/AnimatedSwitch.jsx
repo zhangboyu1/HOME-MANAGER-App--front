@@ -5,9 +5,6 @@ import './AnimatedSwitch.css'
 
 const AnimatedSwitch = props => {
     const { children } = props
-    console.log(props)
-
-    console.log(children)
     return (
         <Route
             render={({ location }) => (

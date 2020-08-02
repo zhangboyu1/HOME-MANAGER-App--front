@@ -1,3 +1,4 @@
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTwitter, faAlignJustify } from '@fortawesome/free-brands-svg-icons';
 import {
@@ -6,19 +7,19 @@ import {
     faSun,
     faPooStorm,
     faCloudSun
-} from '@fortawesome/free-solid-svg-icons'
-import React from 'react';
+} from '@fortawesome/free-solid-svg-icons';
 
+import React from 'react';
 import CurrentWeather from '../WeatherCardComponent/CurrentWeatherInfo/CurrentWeather';
 import Details from '../WeatherCardComponent/Details/Details';
 import SearchBar from '../WeatherCardComponent/SearchBar/SearchBar'
-
 import Clock from '../Clock/Clock'
 import axios from "axios";
 import './WeatherCard.css'
 
 
 export default class Card extends React.Component {
+
     constructor() {
         super()
         this.state = {
@@ -31,13 +32,13 @@ export default class Card extends React.Component {
         }, 10000);
     }
 
+
     //Decide to send request on this father Component!
     searchW = (latitude, longitute, ifSearching) => {
         const { firsLoading, updateWeatherData } = this.props
         this.latitude = latitude;
         this.longitute = longitute;
         this.ifSearching = ifSearching
-
         if (!firsLoading || ifSearching) {
             const searchWeather = () => {
                 this.latitude = latitude
@@ -50,8 +51,6 @@ export default class Card extends React.Component {
                     url: proxy + ApiWeatherLink,
                     headers: { 'X-Requested-With': 'XMLHttpRequest' },
                 }).then((response) => {
-
-                    console.log(response)
                     // Let the behavior of updating data happening in the cardCenter component:
                     let firsLoading = true;
                     const { currently } = response.data
@@ -64,8 +63,9 @@ export default class Card extends React.Component {
             }
             searchWeather()
         }
-
     }
+
+
 
     // searchTweets = () => {
     //     // Request 得重新找一个API。。。。才行。。。。
@@ -82,11 +82,13 @@ export default class Card extends React.Component {
     // }
 
 
+
     checkLogIn = (loginResult) => {
         let { checkLogin, updateUserData } = this.props;
         checkLogin = loginResult
         updateUserData(checkLogin)
     }
+
 
     getPhotoUrl = (updatedPhotoUrl) => {
         console.log('now the url psssed to the Father')
@@ -98,10 +100,8 @@ export default class Card extends React.Component {
     }
 
 
-
     render() {
         const { firsLoading, weatherErrorMsg, currently, daily, checkLogin, timeZone } = this.props
-
         console.log('daily is:', daily)
         const { photoUrl } = this.state
         console.log(this.props)
@@ -126,6 +126,8 @@ export default class Card extends React.Component {
         // }
         // // Has already logined  then the next step is to verify the data is whether loaded or not?
         // if (currently.length != 0) {
+
+
         return (
             <>
                 <div className="cardFrame">

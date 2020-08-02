@@ -1,8 +1,6 @@
 import React from 'react';
 import WeatherCard from '../WeatherCard/WeatherCard'
 import CalenderCard from '../CalenderComponent/Calender';
-
-
 import {
     BrowserRouter as Router,
     Route,
@@ -12,8 +10,6 @@ import Home from '../Home/Home';
 // import Home from './Component/Home/Home'
 
 export default class CardCenter extends React.Component {
-
-
     // This is a component that is used to control all the data related to the card section....
     constructor(props) {
         super()
@@ -33,7 +29,6 @@ export default class CardCenter extends React.Component {
     }
 
     updateWeatherData = (firsLoading_upD, currently_upD, timeZone_upD, daily_upD) => {
-
         let { firsLoading, currently, daily, checkLogin, timeZone } = this.state
         firsLoading = firsLoading_upD;
         currently = currently_upD;
@@ -56,7 +51,6 @@ export default class CardCenter extends React.Component {
 
     // I just want to pass the props to the CalenderCard component.....
     // How do i do this? 
-
 
     passToWeather = (props) => {
         const { firsLoading, currently, daily, checkLogin, timeZone } = this.state
@@ -89,11 +83,9 @@ export default class CardCenter extends React.Component {
 
     render() {
         console.log(this.state)
-
         return (
             <div className="CardWrapper" >
                 <AnimatedSwitch>
-
                     <Route exact path="/calender" render={this.PassToCalender} />
                     <Route exact path="/weather" render={this.passToWeather} />
                 </AnimatedSwitch>

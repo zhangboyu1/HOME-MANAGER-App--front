@@ -9,10 +9,9 @@ import {
 import Home from './Component/Home/Home'
 import Footer from './Component/Footer/Footer';
 import NaviSide from './Component/NaviSide/NaviSide';
-
 import CardCenter from './Component/CardCenter/CardCenter'
-
 import './App.css'
+
 
 export default class App extends React.Component {
 
