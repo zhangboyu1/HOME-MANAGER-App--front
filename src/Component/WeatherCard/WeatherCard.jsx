@@ -28,16 +28,17 @@ export default class Card extends React.Component {
             daily: [],
             timeZone: ``,
             weatherErrorMsg: ``,
-            checkLogin: 0
+            checkLogin: 0,
+            photoUrl:''
         }
         this.keeploading = 1;
         this.oldloading = 0
         this.latitude = 0
         this.longitute = 0
 
-        setTimeout(() => {
-            this.searchW()
-        }, 10000);
+
+        console.log('New start....................')
+        console.log('firsLoading', this.state.firsLoading )
     }
 
     //Decide to send request on this father Component!
@@ -76,10 +77,7 @@ export default class Card extends React.Component {
     }
 
     searchTweets = () => {
-
-
         // Request 得重新找一个API。。。。才行。。。。
-
         const proxy = 'https://cors-anywhere.herokuapp.com/';
         const ApiTweetsLink = 'https://api.twitter.com/1.1/search/tweets.json?q=from%3Atwitterdev&result_type=mixed&count=2'
 
@@ -101,24 +99,37 @@ export default class Card extends React.Component {
         })
     }
 
+    getPhotoUrl = (updatedPhotoUrl)=>{
 
-    componentDidMount() {
-        this.searchTweets();
-        //First time
+
+        console.log('now the url psssed to the Father')
+        let { photoUrl} = this.state;
+        photoUrl = updatedPhotoUrl
+
+
+        this.setState({
+            photoUrl
+        })
+        
+        // Then pass this photoUrl to another child......
 
     }
 
-    componentDidUpdate() {
 
-        const latitude = this.latitude
-        const longitute = this.longitute
-        // setInterval(this.searchW(latitude, longitute), 20000)
+    componentDidMount() {
+       
+        setTimeout(() => {
+            this.searchW()
+        }, 10000);
+
     }
 
 
     render() {
-        const { firsLoading, weatherErrorMsg, currently, daily, checkLogin } = this.state
+        const { firsLoading, weatherErrorMsg, currently, daily, checkLogin, photoUrl} = this.state
         const { timeZone } = this.state
+
+        console.log(photoUrl)
 
         // if (!checkLogin) {
         //     return (
@@ -144,7 +155,7 @@ export default class Card extends React.Component {
 
                 <div className="cardFrame">
                     <div className="card_weather">
-                        <CurrentWeather currently={currently ? currently : ''} timeZone={timeZone ? timeZone : ''} />
+                        <CurrentWeather currently={currently ? currently : ''} timeZone={timeZone ? timeZone : ''} photoUrl={photoUrl}/>
                         <Details daily={daily} />
                         {
                             firsLoading ||
@@ -152,7 +163,7 @@ export default class Card extends React.Component {
                                 <div id="loader"></div>
                             </div>
                         }
-                        <SearchBar searchWeather={this.searchW} />
+                        <SearchBar searchWeather={this.searchW} getPhotoUrl={this.getPhotoUrl}/>
                     </div>
                 </div>
             </>

@@ -36,11 +36,18 @@ class CurrentWeather extends React.Component {
     render() {
 
         // const { temperature, summary } = this.props.currently[0]
+        const defaultUrl = "http://hdwpro.com/wp-content/uploads/2018/07/Cool-Paris-Wallpaper.jpg";
 
+        const {photoUrl} = this.props
+
+        console.log(photoUrl)
 
         return (
+          
 
             <div className="card_weather_currentWeather">
+
+                <img className="currentWeather-photo" src={photoUrl === '' ? defaultUrl : photoUrl} alt="Girl in a jacket" width="800" height="300" />
 
                 <div className="card_weather_currentWeather_info">
 
@@ -57,7 +64,7 @@ class CurrentWeather extends React.Component {
                 </div>
 
                 <div className="card_weather_currentWeather_country">
-                    <h1>{this.findCity()}</h1>
+                    <span>{this.findCity()}</span>
                 </div>
 
             </div>

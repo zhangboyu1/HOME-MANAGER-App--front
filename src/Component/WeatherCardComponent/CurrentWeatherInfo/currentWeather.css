@@ -4,10 +4,19 @@
          flex-basis: 0;
          border-bottom: 2px solid #ddd;
          /* overflow: auto; */
-         background-image: linear-gradient(to bottom, rgba(255, 255, 0, 0.5), rgba(0, 0, 255, 0.5)), url("http://hdwpro.com/wp-content/uploads/2018/07/Cool-Paris-Wallpaper.jpg");
-         background-size: cover;
+         background-color: linear-gradient(to bottom, rgba(255, 255, 0, 0.5), rgba(0, 0, 255, 0.5));
+         /* background-size: cover; */
          background: linear-gradient(bottom, rgba(255, 0, 0, 0.1), rgba(255, 0, 0, 0.1));
+         /* background-color: transparent; */
          border-radius: 10px 10px 0px 0px;
+         z-index: 1500;
+     }
+     
+     .card_weather_currentWeather .currentWeather-photo {
+         position: absolute;
+         opacity: 0.6;
+         z-index: 0;
+         background-color: tomato;
      }
      
      .card_weather_currentWeather:before {
@@ -79,36 +88,24 @@
      }
      
      .card_weather_currentWeather_country {
+         z-index: 1;
          flex-basis: 70%;
          text-align: right;
      }
      
-     .card_weather_currentWeather_country .btn_nextPage {
-         position: absolute;
-         margin-top: 7rem;
-         margin-left: -3rem;
-         font-size: 4rem;
-         background-color: transparent;
-         border-radius: 50%;
-         border-style: none;
-         outline: none;
-         color: antiquewhite;
-         opacity: 0.4;
+     .card_weather_currentWeather_country span {
+         color: gray;
+         height: 45px;
+         font-family: fantasy;
+         font-size: 45px;
+         display: inline-block;
      }
      
-     .card_weather_currentWeather_country h1 {
-         color: whitesmoke;
-         height: 100px;
-         line-height: 100px;
-         padding-right: 20px;
-     }
-     
-     .card_weather_currentWeather_country h1::after {
+     .card_weather_currentWeather_country::after {
          content: "";
-         width: 90px;
-         height: 2px;
-         border-bottom: 4px solid antiquewhite;
+         width: 13%;
+         border-bottom: 4px solid gray;
          position: absolute;
-         margin-top: 10%;
-         margin-left: -10.5%;
+         top: 70px;
+         right: 0px;
      }
