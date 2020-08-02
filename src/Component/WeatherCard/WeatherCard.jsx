@@ -24,7 +24,6 @@ export default class Card extends React.Component {
         this.state = {
             photoUrl: ''
         }
-
         console.log('New start on /Weather')
         console.log(this.props)
         setTimeout(() => {
@@ -33,14 +32,14 @@ export default class Card extends React.Component {
     }
 
     //Decide to send request on this father Component!
-    searchW = (latitude, longitute) => {
+    searchW = (latitude, longitute, ifSearching) => {
         const { firsLoading, updateWeatherData } = this.props
         this.latitude = latitude;
         this.longitute = longitute;
+        this.ifSearching = ifSearching
 
-        if (!firsLoading) {
+        if (!firsLoading || ifSearching) {
             const searchWeather = () => {
-                // this.setState({ keepLoading: true })
                 this.latitude = latitude
                 this.longitute = longitute
                 console.log(`Can we start to request?`)
@@ -60,6 +59,7 @@ export default class Card extends React.Component {
                     const daily = response.data.daily.data
                     this.keeploading = 1;
                     updateWeatherData(firsLoading, [currently], timezone, daily)
+                    this.ifSearching = false
                 })
             }
             searchWeather()
@@ -105,7 +105,7 @@ export default class Card extends React.Component {
         console.log('daily is:', daily)
         const { photoUrl } = this.state
         console.log(this.props)
-        console.log(firsLoading, currently, daily)
+        console.log(timeZone)
 
         // if (!checkLogin) {
         //     return (
@@ -133,10 +133,10 @@ export default class Card extends React.Component {
                         <CurrentWeather currently={currently ? currently : ''} timeZone={timeZone ? timeZone : ''} photoUrl={photoUrl} />
                         <Details daily={daily} />
                         {
-                            firsLoading ||
-                            <div id="loader-wrapper">
-                                <div id="loader"></div>
-                            </div>
+                            this.ifSearching || !firsLoading ?
+                                <div id="loader-wrapper">
+                                    <div id="loader"></div>
+                                </div> : ''
                         }
                         <SearchBar searchWeather={this.searchW} getPhotoUrl={this.getPhotoUrl} />
                     </div>
@@ -144,16 +144,6 @@ export default class Card extends React.Component {
             </>
 
         )
-        // }
-        // else return (
-        //     <>
-        //         <div className="firstPageError">{weatherErrorMsg}</div>
-        //     </>
-        // )
-
     }
-
-
 }
-// }
 

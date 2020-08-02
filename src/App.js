@@ -5,6 +5,8 @@ import {
     BrowserRouter as Router,
     Route,
 } from "react-router-dom";
+
+import Home from './Component/Home/Home'
 import Footer from './Component/Footer/Footer';
 import NaviSide from './Component/NaviSide/NaviSide';
 
@@ -19,6 +21,9 @@ export default class App extends React.Component {
             <Router>
                 <NavigatorTop />
                 <NaviSide />
+                <switch>
+                    <Route exact path="/" component={Home} />
+                </switch>
                 <CardCenter />
                 <Footer />
             </Router>

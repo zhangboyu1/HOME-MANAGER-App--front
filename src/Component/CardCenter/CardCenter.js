@@ -8,6 +8,7 @@ import {
     Route,
 } from "react-router-dom";
 import AnimatedSwitch from '../AnimatedSwitch/AnimatedSwitch'
+import Home from '../Home/Home';
 // import Home from './Component/Home/Home'
 
 export default class CardCenter extends React.Component {
@@ -58,9 +59,7 @@ export default class CardCenter extends React.Component {
 
 
     passToWeather = (props) => {
-
         const { firsLoading, currently, daily, checkLogin, timeZone } = this.state
-
         console.log(this.updateWeatherData)
 
         return (
@@ -79,10 +78,9 @@ export default class CardCenter extends React.Component {
 
     // This function used to pass the props
     PassToCalender = (props) => {
-
         return (
             <CalenderCard
-                toggleSidebarOn={this.toggleSidebarOn} lala={"dsds"}
+                toggleSidebarOn={this.toggleSidebarOn}
                 {...props}
             />
         );
@@ -90,13 +88,12 @@ export default class CardCenter extends React.Component {
 
 
     render() {
-        const lala = 1;
-
         console.log(this.state)
 
         return (
             <div className="CardWrapper" >
-                <AnimatedSwitch lala={lala}>
+                <AnimatedSwitch>
+
                     <Route exact path="/calender" render={this.PassToCalender} />
                     <Route exact path="/weather" render={this.passToWeather} />
                 </AnimatedSwitch>

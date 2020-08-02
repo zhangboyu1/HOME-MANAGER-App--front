@@ -11,7 +11,7 @@ export default class SearchBar extends React.Component {
         }
     }
 
-    
+
     typeCountry = (e) => {
         // console.log(e.target.value) 
         const tyCountry = e.target.value
@@ -54,7 +54,7 @@ export default class SearchBar extends React.Component {
             headers: { 'X-Requested-With': 'XMLHttpRequest' },
         }).then((response) => {
             console.log('Now the city photo-URL can be retrived:')
-            console.log(Object.values(response.headers)[14]) 
+            console.log(Object.values(response.headers)[14])
             const photoUrl = Object.values(response.headers)[14]
             this.props.getPhotoUrl(photoUrl)
 
@@ -66,6 +66,7 @@ export default class SearchBar extends React.Component {
     handleSubmit = (event) => {
         event.preventDefault()
         let { tyCountry } = this.state
+        let ifSearching = false
         Geocode.setApiKey("AIzaSyCgPv2IvOtVdUX9VHX-oP5LS2i8TAeIs8c");
         Geocode.setLanguage("en");
         Geocode.setRegion("es");
@@ -78,7 +79,8 @@ export default class SearchBar extends React.Component {
                 console.log(place_id)
                 this.searchPlaceDetails(place_id)
                 const { lat, lng } = response.results[0].geometry.location;
-                this.props.searchWeather(lat, lng)
+                ifSearching = true
+                this.props.searchWeather(lat, lng, ifSearching)
                 //Then we try another Api GET caLL Here: 
             },
 
