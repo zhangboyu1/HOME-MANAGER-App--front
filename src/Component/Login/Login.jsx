@@ -46,7 +46,7 @@ export default class Login extends React.Component {
 
     checkValidity(value, validationRules) {
 
-        let isValid = true;
+        let isValid;
         if (!validationRules) {
             return true;
         }
@@ -64,7 +64,6 @@ export default class Login extends React.Component {
             const pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
             console.log(pattern.test(value))
             isValid = pattern.test(value) && isValid
-
             console.log(isValid)
 
         }
@@ -72,7 +71,6 @@ export default class Login extends React.Component {
             const pattern = /^\d+$/;
             isValid = pattern.test(value) && isValid
         }
-
         console.log(isValid)
         return isValid;
     }
