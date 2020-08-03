@@ -10,6 +10,7 @@ import Home from './Component/Home/Home'
 import Footer from './Component/Footer/Footer';
 import NaviSide from './Component/NaviSide/NaviSide';
 import CardCenter from './Component/CardCenter/CardCenter'
+import LogIn from './Component/LogIn/LogIn'
 import './App.css'
 
 
@@ -22,6 +23,7 @@ export default class App extends React.Component {
                 <NaviSide />
                 <switch>
                     <Route exact path="/" component={Home} />
+                    <Route exact path="/LogIn" component={LogIn} />
                 </switch>
                 <CardCenter />
                 <Footer />
