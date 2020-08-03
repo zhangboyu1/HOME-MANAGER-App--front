@@ -87,20 +87,37 @@ export default class Login extends React.Component {
     }
 
 
+    checkAuth = (user_, password_, isSignup_) => {
+        let isAuth = auth(user_, password_, isSignup_);
+        console.log(isAuth)
+        if (isAuth.type === 'AUTH_SUCCESS') {
+            this.props.history.push('/')
+        }
+    }
+
     handleSubmit = (event) => {
         event.preventDefault()
         // SHould post user info to the server side to register and checked login
         let { user, password } = this.state
+        var isSignUp = false
         console.log('Check validation:', this.isValid)
         if (this.isValid) {
             console.log('Now the user & password is successfully inputed..Now it should be passing to validated by Authorization.')
             console.log(user, password)
             //Need an Authorization function.....abbr for onAuth.....
-            let isAuth = auth(user.value, password.value, false);
-            if (isAuth.type === 'AUTH_SUCCESS') {
-                this.props.history.push('/')
+
+            console.log(this.props.location)
+
+            if (this.props.location.pathname === "/LogIn") {
+                this.checkAuth(user.value, password.value, isSignUp)
+            } if (this.props.location.pathname === '/sub-sign-up') {
+                if (this.props.location.state.type === `ADD_SUCCESS` || false) {
+                    var isSignUp = true
+                }
+                this.checkAuth(user.value, password.value, isSignUp)
             }
         }
+
     }
 
     render() {

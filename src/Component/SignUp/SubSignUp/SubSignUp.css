@@ -308,28 +308,6 @@ form {
     border-color: rgb(0, 143, 180);
 }
 
-.checkbox--unactive {
-    display: flex;
-    /* -webkit-appearance: checkbox; */
-    -webkit-box-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    justify-content: center;
-    background-color: rgb(255, 255, 255);
-    box-shadow: rgba(1, 164, 209, 0.29) 0px 0px 3px 2px;
-    cursor: pointer;
-    width: 14px;
-    height: 14px;
-    margin-right: 8px;
-    flex-shrink: 0;
-    cursor: pointer;
-    border-width: 2px;
-    border-style: solid;
-    border-radius: 3px;
-    transition: box-shadow 0.2s ease 0s;
-    border-color: rgb(0, 143, 180);
-}
-
 .checkbox--content {
     display: inline-block;
     color: rgb(41, 43, 50);
@@ -345,12 +323,6 @@ form {
     max-width: 90%;
     margin: 0px 0px 0px 5px;
     padding: 0px;
-}
-
-.checkBox {
-    margin: 16px 0px;
-    padding: 8px 4px 10px 6px;
-    max-width: 50%;
 }
 
 

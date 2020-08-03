@@ -13,7 +13,7 @@ export default class NaviSide extends React.Component {
 
 
     render() {
-
+        console.log(this.props)
         return (
             <div className="NaviSide">
                 <div className='navExposed-outer'>

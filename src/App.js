@@ -22,8 +22,8 @@ export default class App extends React.Component {
         return (
             <Router>
                 <NavigatorTop />
-                <NaviSide />
                 <switch>
+                    <NaviSide />
                     <Route exact path="/" component={Home} />
                     <Route exact path="/LogIn" component={LogIn} />
                     <Route exact path="/sign-up" component={SignUp} />

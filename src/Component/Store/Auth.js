@@ -1,3 +1,5 @@
+import { data } from './localStorage';
+
 const authSuccess = (userId) => {
     return {
         type: 'AUTH_SUCCESS',
@@ -12,31 +14,28 @@ const authFail = (error) => {
     };
 };
 
+
 export const auth = (user, password, isSignup) => {
-    const authData = {
-        user: user,
-        password: password,
-    };
+    const authData = new Object();
+    authData.user = user;
+    authData.password = password;
     // -------------------------------------------------Only front - end -----------------------------------------------------------------------
-    let userId = localStorage.getItem('userId'); // need to check if the local has this 'userId" 
+    // let userId = localStorage.getItem('userId'); // need to check if the local has this 'userId" 
     //Now we don't have back-end////so for the userId, need to be mannually added....
     //If use Express, the UserId will be automaticlly generated for each domain......
-
     if (isSignup) {
         // Then only singup intention could getinto this function....:
         console.log('this user need to sign up')
         const date = new Date();
         let userId_FAKE = date.getTime()
-        localStorage.setItem('userId', {
-            userId_FAKE: {
-                ...authData
-            }
-        });
+        var userid = userId_FAKE
+        data.set(userid, authData)
+        console.log(localStorage)
         return authSuccess(userId_FAKE)
-    } if (userId != null) {
-        if (authData.user.match(userId.userName)) {
+    } if (data.get(userid) != null) {
+        if (localStorage.hasOwnProprety(userid)) {
             console.log('auth OK!!... This user has already signed up')
-            return authSuccess(userId)
+            return authSuccess(data.get(userid))
         } else {
             console.log('auth fail... System doesnt have this user!')
             return authFail()

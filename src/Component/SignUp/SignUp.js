@@ -132,7 +132,7 @@ export default class SignUp extends React.Component {
             let isAuth = auth(user.value, password.value, true);
             if (isAuth.type === 'AUTH_SUCCESS') {
                 console.log('transfer to the next page~~!')
-                this.props.history.push('/sub-sign-up')
+                this.props.history.push('/sub-sign-up', isAuth)
             } else {
                 alert('Error massage~~~~~~~~~!')
             }
