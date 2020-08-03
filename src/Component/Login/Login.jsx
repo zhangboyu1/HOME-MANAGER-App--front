@@ -1,10 +1,8 @@
 import React from 'react';
 import axios from "axios";
 import './LogIn.css';
-
-
-import { auth } from '../Store/Auth'
-
+import { auth } from '../Store/Auth';
+import { Link } from 'react-router-dom';
 
 
 export default class Login extends React.Component {
@@ -12,9 +10,6 @@ export default class Login extends React.Component {
         super(props)
 
         this.state = {
-            // username: '',
-            // typePass: '',
-            // logInState: 0
             user: {
                 validation: {
                     required: true,
@@ -28,7 +23,6 @@ export default class Login extends React.Component {
                 value: '',
                 cssClass: '',
             },
-
             password: {
                 validation: {
                     required: true,
@@ -44,34 +38,31 @@ export default class Login extends React.Component {
     }
 
 
-    checkValidity(value, validationRules) {
+    checkValidity(value, rules) {
 
-        let isValid;
-        if (!validationRules) {
+        let isValid = true;
+        if (!rules) {
             return true;
         }
-        if (validationRules.required) {
+        if (rules.required) {
             isValid = value.trim() !== '' && isValid;
         }
-        // if (validationRules.minLength) {
-        //     isValid = value.length >= rules.minLength && isValid
-        // }
-        // if (validationRules.maxLength) {
-        //     isValid = value.length <= rules.maxLength && isValid
-        // }
-        if (validationRules.isEmail) {
-            console.log("Now the email formating validation starts:")
-            const pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
-            console.log(pattern.test(value))
-            isValid = pattern.test(value) && isValid
-            console.log(isValid)
-
+        if (rules.minLength) {
+            isValid = value.length >= rules.minLength && isValid
         }
-        if (validationRules.isNumeric) {
+        if (rules.maxLength) {
+            isValid = value.length <= rules.maxLength && isValid
+        }
+        if (rules.isEmail) {
+            const pattern = /^([A-Za-z0-9_\-\.\u4e00-\u9fa5])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,8})$/;
+            isValid = pattern.test(value) && isValid
+            // invaild pattern format cause warning, double check with it
+        }
+        if (rules.isNumeric) {
             const pattern = /^\d+$/;
             isValid = pattern.test(value) && isValid
         }
-        console.log(isValid)
+
         return isValid;
     }
 
@@ -88,6 +79,7 @@ export default class Login extends React.Component {
             updatedFormElement.cssClass = 'color--red';
             console.log('the email format is not correct!')
         } else {
+            console.log('the  format is correct!')
             updatedFormElement.cssClass = '';
         }
         updatedFormElement.value = e.target.value;
@@ -106,17 +98,9 @@ export default class Login extends React.Component {
             //Need an Authorization function.....abbr for onAuth.....
             let isAuth = auth(user.value, password.value, false);
             if (isAuth.type === 'AUTH_SUCCESS') {
-                this.props.history('/')
+                this.props.history.push('/')
             }
         }
-        // if (username == 'user' && typePass == 123) {
-        //     logInState = 1;
-        //     this.setState({ logInState },
-        //         () => {
-        //             this.props.checkLogIn(logInState)
-        //         }
-        //     )
-        // }
     }
 
     render() {
@@ -137,12 +121,14 @@ export default class Login extends React.Component {
                                 <input className="submit" type="submit" value="submit" />
                             </fieldset>
                         </form>
+                        <div className="switchToSignup">
+                            <p>Don't have an account ?</p>
+                            <Link to='/sign-up' className="switchSignup"><p>Sign Up</p></Link>
+                        </div>
                     </div>
 
                 </div>
-
             </>
-
         )
     }
 }
