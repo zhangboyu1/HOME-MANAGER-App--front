@@ -1,6 +1,16 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTwitter, faAlignJustify } from '@fortawesome/free-brands-svg-icons';
+import {
+    faPlay,
+    faCloudRain,
+    faSun,
+    faPooStorm,
+    faCloudSun
+} from '@fortawesome/free-solid-svg-icons'
+
+
 import React, { Component } from 'react';
 import './Calender.css'
-
 
 
 
@@ -22,13 +32,11 @@ export default class CalenderCard extends Component {
             ],
             dayList: []
         }
-
         this.initCalendar = this.initCalendar.bind(this);
         this.renderHeader = this.renderHeader.bind(this);
         this.renderBody = this.renderBody.bind(this);
         this.preMonth = this.preMonth.bind(this);
         this.nextMonth = this.nextMonth.bind(this);
-
     }
 
 
@@ -108,13 +116,13 @@ export default class CalenderCard extends Component {
         return (
             <div className='calendar-header'>
                 <div className='calendar-header-left'>
-                    <button onClick={this.preMonth}>上个月</button>
+                    <button onClick={this.preMonth}>LAST MONTH</button>
                 </div>
-                <div className=''>
-                    {this.state.currentYear}年{this.state.currentMonth}月
+                <div className='calendar-header-title'>
+                    {this.state.currentMonth}---{this.state.currentYear}
                 </div>
                 <div className='calendar-header-right'>
-                    <button onClick={this.nextMonth}>下个月</button>
+                    <button onClick={this.nextMonth}>NEXT MONTH</button>
                 </div>
             </div>
         )
@@ -130,16 +138,30 @@ export default class CalenderCard extends Component {
                 </div>
                 <div className='day-container'>
                     {this.state.dayList.map((dayObject, index) => {
-                        return <div key={index} className={`day ${dayObject.className}`}>{dayObject.day}</div>
+                        return <div key={index} className={`day ${dayObject.className}`}><span>{dayObject.day}</span></div>
                     })}
                 </div>
             </div>
         )
     }
 
-    render() {
-        return (
+    // shouldComponentUpdate(props) {
 
+    //     console.log(props)
+    //     if (props.history != undefined) {
+    //         console.log(props)
+    //         console.log(props)
+    //         let pathName = props.history.location.pathname
+    //         // this.props.read(pathName)
+    //         console.log(pathName)
+    //     }
+
+    // }
+
+
+    render() {
+        console.log(this.props)
+        return (
             <div className="cardFrame">
                 <div className="card_calender">
                     {this.renderHeader()}

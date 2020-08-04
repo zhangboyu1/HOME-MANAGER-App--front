@@ -1,30 +1,37 @@
 import React from 'react';
-import WeatherCard from './Component/WeatherCard/WeatherCard'
-import CalenderCard from './Component/CalenderComponent/Calender';
 import NavigatorTop from './Component/NavigatorTop/NavigatorTop'
 
 import {
     BrowserRouter as Router,
     Route,
 } from "react-router-dom";
-import AnimatedSwitch from './Component/AnimatedSwitch/AnimatedSwitch';
+
+import Home from './Component/Home/Home'
 import Footer from './Component/Footer/Footer';
-import NaviSide from './Component/NaviSide/NaviSide';
+
+import CardCenter from './Component/CardCenter/CardCenter'
+import LogIn from './Component/LogIn/LogIn'
+import SignUp from './Component/SignUp/SignUp'
+import SubSignUp from './Component/SignUp/SubSignUp/SubSIgnUp'
+import NaviSide from './Component/NaviSide/NaviSide'
 import './App.css'
 
 export default class App extends React.Component {
 
     render() {
+
+
         return (
             <Router>
                 <NavigatorTop />
                 <NaviSide />
-                <div className="CardWrapper" >
-                    <AnimatedSwitch>
-                        <Route exact path="/calender" component={CalenderCard} />
-                        <Route exact path="/weather" component={WeatherCard} />
-                    </AnimatedSwitch>
-                </div>
+                <switch>
+                    <Route exact path="/" component={Home} />
+                    <Route exact path="/Login" component={LogIn} />
+                    <Route exact path="/sign-up" component={SignUp} />
+                    <Route exact path="/sub-sign-up" component={SubSignUp} />
+                </switch>
+                <CardCenter />
                 <Footer />
             </Router>
         );
