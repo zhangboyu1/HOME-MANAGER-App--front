@@ -86,12 +86,11 @@ export default class Login extends React.Component {
         this.setState({ [e.target.name]: updatedFormElement });
     }
 
-
     checkAuth = (user_, password_, isSignup_) => {
         let isAuth = auth(user_, password_, isSignup_);
         console.log(isAuth)
         if (isAuth.type === 'AUTH_SUCCESS') {
-            this.props.history.push('/')
+            this.props.history.push('/', isAuth)
         }
     }
 
@@ -108,7 +107,8 @@ export default class Login extends React.Component {
 
             console.log(this.props.location)
 
-            if (this.props.location.pathname === "/LogIn") {
+            if (this.props.location.pathname === "/Login") {
+                console.log('123')
                 this.checkAuth(user.value, password.value, isSignUp)
             } if (this.props.location.pathname === '/sub-sign-up') {
                 if (this.props.location.state.type === `ADD_SUCCESS` || false) {

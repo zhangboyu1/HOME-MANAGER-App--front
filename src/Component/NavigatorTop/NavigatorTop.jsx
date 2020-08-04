@@ -22,6 +22,10 @@ export default class NavigatorTop extends React.Component {
                 <NavLink exact to='/calender' activeClassName='active'>
                     <div className="backward">2</div>
                 </NavLink>
+
+                <NavLink exact to='/' activeClassName='active'>
+                    <div className="home">3</div>
+                </NavLink>
             </div>
         );
     }

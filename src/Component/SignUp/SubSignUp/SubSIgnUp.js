@@ -29,8 +29,7 @@ export default class SubSignUp extends React.Component {
         let addResult = addUser(firstName, lastName, title, userid)
         console.log(addResult)
         //Only works on the front- end....
-        if (addResult.type === "AUTH_SUCCESS") {
-
+        if (addResult.type === "ADD_SUCCESS") {
             this.props.history.push('/Login', addResult)
 
         }

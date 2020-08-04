@@ -13,19 +13,21 @@ import CardCenter from './Component/CardCenter/CardCenter'
 import LogIn from './Component/LogIn/LogIn'
 import SignUp from './Component/SignUp/SignUp'
 import SubSignUp from './Component/SignUp/SubSignUp/SubSIgnUp'
+import NaviSide from './Component/NaviSide/NaviSide'
 import './App.css'
-
 
 export default class App extends React.Component {
 
     render() {
+
+
         return (
             <Router>
                 <NavigatorTop />
+                <NaviSide />
                 <switch>
-
                     <Route exact path="/" component={Home} />
-                    <Route exact path="/LogIn" component={LogIn} />
+                    <Route exact path="/Login" component={LogIn} />
                     <Route exact path="/sign-up" component={SignUp} />
                     <Route exact path="/sub-sign-up" component={SubSignUp} />
                 </switch>

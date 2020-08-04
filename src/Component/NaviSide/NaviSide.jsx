@@ -1,19 +1,16 @@
 import React from 'react';
 import './NaviSide.css';
-
+import { data } from '../Store/localStorage';
 export default class NaviSide extends React.Component {
     constructor(props) {
         super(props)
 
     }
 
-    //needs to be modified with hover effect in CSS.....
-
-
-
-
     render() {
-        console.log(this.props)
+
+        let userProfile = data.get(data.get('currentUser'))
+
         return (
             <div className="NaviSide">
                 <div className='navExposed-outer'>
@@ -29,9 +26,9 @@ export default class NaviSide extends React.Component {
                                 <img src="#" alt="Jerry's profile" />
                             </div>
                             <div class="account-details">
-                                <p class="name__text">Boyu zhang</p>
-                                <p class="name__text">Web Designer | Smart Product Developer</p>
-                                <p class="email__text">zhangboyu@yahoo.com</p>
+                                <p class="name__text">{userProfile.LastName}</p>
+                                <p class="name__text">{userProfile.title}</p>
+                                <p class="email__text">{userProfile.user}</p>
                             </div>
                         </section>
                     </div>
