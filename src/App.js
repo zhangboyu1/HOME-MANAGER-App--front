@@ -8,7 +8,7 @@ import {
 
 import Home from './Component/Home/Home'
 import Footer from './Component/Footer/Footer';
-import NaviSide from './Component/NaviSide/NaviSide';
+
 import CardCenter from './Component/CardCenter/CardCenter'
 import LogIn from './Component/LogIn/LogIn'
 import SignUp from './Component/SignUp/SignUp'
@@ -23,7 +23,7 @@ export default class App extends React.Component {
             <Router>
                 <NavigatorTop />
                 <switch>
-                    <NaviSide />
+
                     <Route exact path="/" component={Home} />
                     <Route exact path="/LogIn" component={LogIn} />
                     <Route exact path="/sign-up" component={SignUp} />
