@@ -1,49 +1,52 @@
 import React from 'react';
-import NaviSide from '../NaviSide/NaviSide';
 import { data } from '../Store/localStorage';
+import { Redirect } from "react-router-dom";
 
 export default class Home extends React.Component {
 
     constructor(props) {
         super()
-
+        this.state = {
+            Login: false
+        }
     }
 
-
-    upDateProfile = (LastName_, firstName_, title_) => {
-        this.LastName = LastName_;
-        this.firstName = firstName_;
-        this.title = title_;
-    }
-
-    componentDidUpdate() {
+    componentWillMount() {
         console.log('will mount')
+        console.log(this.props)
+        if (this.props.history.action != 'POP') {
+            if (this.props.location.state === null) {
+                console.log('不应该执行么？')
+                this.setState({
+                    Login: true
+                })
+                return
+            } if (this.props.location.state.type === "AUTH_SUCCESS") {
+                console.log('第一次login')
+                this.setState({
+                    Login: true
+                })
+            }
+        }
+        return
     }
+
 
     componentDidMount() {
-        console.log('will mount')
+        console.log('did mount')
+        console.log(this.props)
     }
 
-
     render() {
-        data.get('currentUser')
-        // console.log(this.props)
-        // if (this.props.location.state != undefined) {
-        //     console.log('111111111111111111')
-        //     let { LastName, firstName, title } = this.props.location.state.userId
-        //     console.log(this.props.location.state.userId)
-        //     this.upDateProfile(LastName, firstName, title)
-        // }
-
-        // console.log()
-        // console.log(this.LastName, this.firstName, this.title)
-
+        console.log('render')
         return (
-            <div >
-                <h1>This is Home</h1>
-            </div>
-
-
+            <>
+                {
+                    this.state.Login ? <div >
+                        <h1>This is Home</h1>
+                    </div> : <Redirect to="/Login" />
+                }
+            </>
         )
     }
 }
