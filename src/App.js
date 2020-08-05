@@ -62,7 +62,7 @@ export default class App extends React.Component {
                 </myContext.Provider>
                 <switch >
                     <Route exact path="/" render={this.PassToHome} />
-                    <Route exact path="/Login" render={this.PassToLogin} />
+                    <Route exact path="/login" render={this.PassToLogin} />
                     <Route exact path="/sign-up" component={SignUp} />
                     <Route exact path="/sub-sign-up" component={SubSignUp} />
                 </switch>

@@ -54,7 +54,6 @@ export default class CardCenter extends React.Component {
 
     passToWeather = (props) => {
         const { firsLoading, currently, daily, checkLogin, timeZone } = this.state
-        console.log(this.updateWeatherData)
 
         return (
             <WeatherCard

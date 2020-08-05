@@ -20,18 +20,110 @@
 }
 
 .login-form {
-    position: absolute;
-    left    : calc(50% - 86.5px);
     top     : calc(50% - 106px);
+    position: relative;
 }
 
 input {
     margin    : 6px;
     width     : 100px;
     transition: width 1s ease-in-out;
+
 }
 
-input:not(.submit):focus {
-    width       : 200px;
-    border-color: indigo;
+
+.switchToSignup {
+    margin-top: 1rem;
+    border-top: 1px solid rgb(187, 194, 220);
+}
+
+.switchToSignup p {
+    display    : inline-block;
+    padding-top: 14px;
+}
+
+.login-fotpas {
+    position    : relative;
+    width       : 150px;
+    margin      : 10px auto;
+    margin-right: 0;
+}
+
+.login-fotpas {
+    color     : white;
+    text-align: right;
+    cursor    : pointer;
+}
+
+.login-btn {
+    margin-top: 0.7rem;
+}
+
+.SignIn .title-box {
+    min-height : 0px;
+    line-height: 0;
+}
+
+.SignIn .Signup-form-field {
+    padding: 0 0 10px;
+}
+
+.SignIn .login-fotpas {
+    font-size: 10px;
+}
+
+.SignIn .other-signup-field>span {
+    margin: 10px 0;
+}
+
+.SignIn .switchToSignup {
+    padding        : 0;
+    display        : flex;
+    justify-content: space-between;
+}
+
+.SignIn .switchToSignup p,
+.SignIn .switchToSignup a {
+    padding       : 0;
+    vertical-align: middle;
+}
+
+.SignIn .Signup {
+    top: 54%;
+}
+
+.errorMassage {
+    margin   : 0;
+    color    : red;
+    left     : 45px;
+    font-size: 10px;
+}
+
+
+.font--red {
+    margin   : 0;
+    color    : red;
+    position : absolute;
+    top      : 175px;
+    left     : 50px;
+    font-size: 13px;
+}
+
+.font--green {
+    margin   : 0;
+    color    : green;
+    position : absolute;
+    top      : 175px;
+    left     : 45px;
+    font-size: 13px;
+}
+
+
+.color--red {
+    border: 2px solid red;
+}
+
+
+.color-green {
+    border: 3px solid green;
 }

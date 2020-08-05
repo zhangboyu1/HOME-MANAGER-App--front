@@ -54,7 +54,6 @@ export default class SubSignUp extends React.Component {
         //     this.props.history.push("/404");
         // }
     }
-
     onChange = (e) => {
         this.setState({
             [e.target.name]: e.target.value,

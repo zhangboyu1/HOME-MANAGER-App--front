@@ -14,29 +14,16 @@ const authFail = (error) => {
     };
 };
 
-
 export const auth = (user, password, isSignup) => {
-
     const authData = new Object();
     authData.user = user;
     authData.password = password;
     authData.existUser = false;
     authData.id = ''
-
     // -------------------------------------------------Only front - end -----------------------------------------------------------------------
-    // let userId = localStorage.getItem('userId'); // need to check if the local has this 'userId" 
-    //Now we don't have back-end////so for the userId, need to be mannually added....
-    //If use Express, the UserId will be automaticlly generated for each domain......
-
-    // ----===----
-
-    //首先还要遍历这个对象的每一项 Key-pair value
     let loclOb = localStorage;
-    console.log(loclOb)
     //clear local storage// 
-
     for (var key in loclOb) {
-        // console.log(loclOb[key])
         if (key != 'length') {
             if (JSON.parse(loclOb[key]).user === user) {
                 authData.existUser = true
@@ -50,25 +37,32 @@ export const auth = (user, password, isSignup) => {
 
     console.log("whether this user has already existed:", authData.existUser)
     if (isSignup) {  //没有SignUp...或者已经signUp、但是
+        if (authData.existUser) {
+            return authFail()
+        }
         // Then only singup intention could getinto this function....:
-        console.log('This is the signUp-process')
         const date = new Date();
         let userId_FAKE = date.getTime()
         var userid = userId_FAKE
         data.set(userid, authData)
         data.set('currentUser', userid)
-        console.log(localStorage)
         return authSuccess(userId_FAKE)
     }
     else {
+        console.log('current password is:', authData.password)
+        if (authData.password === '') {
+            return authFail('The password is required')
+        }
         console.log('This is the log-in process')
         if (authData.existUser) {
-            console.log('auth OK!!... This user has already signed up')
-            data.set('currentUser', authData.id)
-            return authSuccess(data.get(userid || authData.id))
+            data.set('currentUser', authData.id) //现在user是对的。。。再来看看password是不是对的。
+            if (data.get(authData.id).password.match(authData.password)) {
+                return authSuccess(data.get(userid || authData.id))
+            } else {
+                return authFail('The password is not correct!')
+            }
         } else {
-            console.log('auth fail... System doesnt have this user!')
-            return authFail()
+            return authFail('The user not existed, please check or sign or a new user!')
         }
     }
 }

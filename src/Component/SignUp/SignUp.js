@@ -10,9 +10,6 @@ export default class SignUp extends React.Component {
         super(props);
         this.state = {
             user: {
-                elementConfig: {
-                    placeholder: ""
-                },
                 validation: {
                     required: true,
                     isEmail: true
@@ -50,9 +47,6 @@ export default class SignUp extends React.Component {
             errormsgClass: "no-active",
             showPasswordCheckBox: false,
         }
-        //React:https://reactjs.org/docs/refs-and-the-dom.html
-        //React:https://reactjs.org/docs/forwarding-refs.html(did not use but maybe useful pass ref to child component)
-        // this.Signup = React.createRef("Signup");
         this.isValid = false
     }
     checkValidity(value, rules) {
@@ -166,7 +160,6 @@ export default class SignUp extends React.Component {
         //     history.goBack();
         // }
         const { user, password } = this.state
-        console.log(user.value)
         return (
             <div className="Signup_Background">
                 <div className="Signup__Container">
@@ -174,7 +167,6 @@ export default class SignUp extends React.Component {
                         <div id="title-box" className="title-box">
                             <p>Join us</p>
                         </div>
-
                         <div className="Signup-body">
                             <form className="Signup-form flex flex__column">
                                 <div className="Signup-form-field flex flex__column">
