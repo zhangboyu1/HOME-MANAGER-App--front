@@ -1,37 +1,37 @@
 .login-wrapper {
-    height: 100%;
+    height          : 100%;
     background-color: black;
-    z-index: 4000;
-    width: 100%;
-    opacity: 1;
-    position: fixed;
-    top: 0;
+    z-index         : 4000;
+    width           : 100%;
+    opacity         : 1;
+    position        : fixed;
+    top             : 0;
 }
 
 .login-card {
-    opacity: 1;
-    width: 300px;
-    height: 400px;
+    opacity         : 1;
+    width           : 300px;
+    height          : 400px;
     background-color: rgb(53, 42, 73);
-    z-index: 4010;
-    position: absolute;
-    left: calc(50% - 150px);
-    top: calc(50% - 200px);
+    z-index         : 4010;
+    position        : absolute;
+    left            : calc(50% - 150px);
+    top             : calc(50% - 200px);
 }
 
 .login-form {
     position: absolute;
-    left: calc(50% - 86.5px);
-    top: calc(50% - 106px);
+    left    : calc(50% - 86.5px);
+    top     : calc(50% - 106px);
 }
 
 input {
-    margin: 6px;
-    width: 100px;
+    margin    : 6px;
+    width     : 100px;
     transition: width 1s ease-in-out;
 }
 
 input:not(.submit):focus {
-    width: 200px;
+    width       : 200px;
     border-color: indigo;
 }

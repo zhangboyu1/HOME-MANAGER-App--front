@@ -86,6 +86,7 @@ export default class Login extends React.Component {
         this.setState({ [e.target.name]: updatedFormElement });
     }
 
+
     checkAuth = (user_, password_, isSignup_) => {
         let isAuth = auth(user_, password_, isSignup_);
         console.log(isAuth)
@@ -128,15 +129,13 @@ export default class Login extends React.Component {
                     <div className='login-wrapper'></div>
                     <div className="login-card">
                         <form className="login-form" action='/' onSubmit={this.handleSubmit}>
-                            <fieldset>
-                                <legend>Login-</legend>
-                                <label for="fname">Username:</label>
-                                <input type="text" name="user" value={user.value} onChange={this.onType} />
+                            <legend>Login-</legend>
+                            <label for="fname">Username:</label>
+                            <input type="text" name="user" value={user.value} onChange={this.onType} />
 
-                                <label for="fname">Password:</label>
-                                <input type="password" name="password" value={password.value} onChange={this.onType} />
-                                <input className="submit" type="submit" value="submit" />
-                            </fieldset>
+                            <label for="fname">Password:</label>
+                            <input type="password" name="password" value={password.value} onChange={this.onType} />
+                            <input className="submit" type="submit" value="submit" />
                         </form>
                         <div className="switchToSignup">
                             <p>Don't have an account ?</p>
