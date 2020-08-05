@@ -1,6 +1,7 @@
 import React from 'react';
 import { data } from '../Store/localStorage';
 import { Redirect } from "react-router-dom";
+import NaviSide from '../NaviSide/NaviSide'
 
 export default class Home extends React.Component {
 
@@ -14,6 +15,8 @@ export default class Home extends React.Component {
     componentWillMount() {
         console.log('will mount')
         console.log(this.props)
+        // console.log(this.state.Login)
+        this.props.upDateLocal()
         if (this.props.history.action != 'POP') {
             if (this.props.location.state === null) {
                 console.log('不应该执行么？')
@@ -31,7 +34,6 @@ export default class Home extends React.Component {
         return
     }
 
-
     componentDidMount() {
         console.log('did mount')
         console.log(this.props)
@@ -41,6 +43,7 @@ export default class Home extends React.Component {
         console.log('render')
         return (
             <>
+
                 {
                     this.state.Login ? <div >
                         <h1>This is Home</h1>

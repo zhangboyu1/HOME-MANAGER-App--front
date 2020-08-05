@@ -32,9 +32,7 @@ export const auth = (user, password, isSignup) => {
 
     //首先还要遍历这个对象的每一项 Key-pair value
     let loclOb = localStorage;
-
     console.log(loclOb)
-
     //clear local storage// 
 
     for (var key in loclOb) {

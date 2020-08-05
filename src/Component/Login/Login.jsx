@@ -92,6 +92,7 @@ export default class Login extends React.Component {
         console.log(isAuth)
         if (isAuth.type === 'AUTH_SUCCESS') {
             this.props.history.push('/', isAuth)
+            this.props.upDateLocal()
         }
     }
 
