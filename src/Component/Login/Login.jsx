@@ -3,7 +3,7 @@ import axios from "axios";
 import './LogIn.css';
 import { auth } from '../Store/Auth';
 import { Link } from 'react-router-dom';
-
+import { checkInputValidity } from '../Store/Inputvalidity'
 
 export default class Login extends React.Component {
     constructor(props) {
@@ -12,12 +12,8 @@ export default class Login extends React.Component {
         this.state = {
             user: {
                 validation: {
-                    required: true,
+                    result: true,
                     isEmail: true
-                },
-                errorMessage: {
-                    email: "Not valid Email",
-                    required: 'Email is required',
                 },
                 valid: false,
                 value: '',
@@ -27,122 +23,141 @@ export default class Login extends React.Component {
                 validation: {
                     required: true,
                 },
-                errorMessage: {
-                    required: 'Password is required',
-                },
                 valid: false,
                 value: '',
                 cssClass: '',
             },
+            errorMessage: ''
         }
-    }
-
-
-    checkValidity(value, rules) {
-
-        let isValid = true;
-        if (!rules) {
-            return true;
-        }
-        if (rules.required) {
-            isValid = value.trim() !== '' && isValid;
-        }
-        if (rules.minLength) {
-            isValid = value.length >= rules.minLength && isValid
-        }
-        if (rules.maxLength) {
-            isValid = value.length <= rules.maxLength && isValid
-        }
-        if (rules.isEmail) {
-            const pattern = /^([A-Za-z0-9_\-\.\u4e00-\u9fa5])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,8})$/;
-            isValid = pattern.test(value) && isValid
-            // invaild pattern format cause warning, double check with it
-        }
-        if (rules.isNumeric) {
-            const pattern = /^\d+$/;
-            isValid = pattern.test(value) && isValid
-        }
-
-        return isValid;
-    }
-
-
-    onType = (e) => {
-        // console.log(e.target.value)
-        //通过判断e.target.name来区分input框 ：
-        const updatedFormElement = {
-            ...this.state[e.target.name]
-        };
-        let isValid = this.checkValidity(e.target.value, updatedFormElement.validation);
-        this.isValid = isValid
-        if (!isValid) {
-            updatedFormElement.cssClass = 'color--red';
-            console.log('the email format is not correct!')
-        } else {
-            console.log('the  format is correct!')
-            updatedFormElement.cssClass = '';
-        }
-        updatedFormElement.value = e.target.value;
-        this.setState({ [e.target.name]: updatedFormElement });
     }
 
     checkAuth = (user_, password_, isSignup_) => {
         let isAuth = auth(user_, password_, isSignup_);
         console.log(isAuth)
-        if (isAuth.type === 'AUTH_SUCCESS') {
-            this.props.history.push('/', isAuth)
+        isAuth.type === 'AUTH_SUCCESS'
+            && this.props.history.push('/', isAuth)
+            && this.props.upDateLocal()
+            || isAuth.type === 'AUTH_FAIL' &&
+            (this.setState({
+                errorMessage: isAuth.error
+            }))
+    }
+
+    onType = (e) => {
+        let updatedFormElement = {
+            ...this.state[e.target.name]
+        };
+        let { errorMessage } = this.state
+
+        !errorMessage || errorMessage && this.setState({ errorMessage: '' })
+        updatedFormElement.cssClass = '';
+        let Valid_result = checkInputValidity(e.target.value, updatedFormElement.validation);
+        console.log(Valid_result)
+        this.Valid_result = Valid_result
+        this.Valid_result && (updatedFormElement.cssClass = 'color-green') || !this.Valid_result && (updatedFormElement.cssClass = 'color--red')
+        updatedFormElement.value = e.target.value;
+        this.setState({ [e.target.name]: updatedFormElement });
+    }
+
+    inputOnBlur = (e) => {
+        const updatedFormElement = {
+            ...this.state[e.target.name]
+        };
+        if (updatedFormElement.cssClass === 'color--red') {
+            console.log('this is red warning')
+            updatedFormElement.value = ''
+            updatedFormElement.cssClass = ''
+            this.setState({
+                [e.target.name]: updatedFormElement
+            })
+
         }
     }
 
     handleSubmit = (event) => {
+        var isSignUp
         event.preventDefault()
-        // SHould post user info to the server side to register and checked login
         let { user, password } = this.state
         var isSignUp = false
-        console.log('Check validation:', this.isValid)
-        if (this.isValid) {
-            console.log('Now the user & password is successfully inputed..Now it should be passing to validated by Authorization.')
-            console.log(user, password)
-            //Need an Authorization function.....abbr for onAuth.....
-
-            console.log(this.props.location)
-
-            if (this.props.location.pathname === "/Login") {
-                console.log('123')
-                this.checkAuth(user.value, password.value, isSignUp)
-            } if (this.props.location.pathname === '/sub-sign-up') {
-                if (this.props.location.state.type === `ADD_SUCCESS` || false) {
-                    var isSignUp = true
-                }
-                this.checkAuth(user.value, password.value, isSignUp)
-            }
-        }
+        this.isValid
+            && (this.props.location.pathname === "/login" && this.checkAuth(user.value, password.value, isSignUp)) ||
+            this.props.location.pathname === '/sub-sign-up' && (this.props.location.state.type === `ADD_SUCCESS` || false) && (isSignUp = true) || this.checkAuth(user.value, password.value, isSignUp)
 
     }
-
     render() {
-        const { user, password } = this.state
+        const { user, password, errorMessage } = this.state
         return (
             <>
-                <div className='login-container'>
-                    <div className='login-wrapper'></div>
-                    <div className="login-card">
-                        <form className="login-form" action='/' onSubmit={this.handleSubmit}>
-                            <fieldset>
-                                <legend>Login-</legend>
-                                <label for="fname">Username:</label>
-                                <input type="text" name="user" value={user.value} onChange={this.onType} />
+                <div className="Signup_Background">
+                    <div className="Signup flex flex__column">
+                        <div className="title-box">
+                            <p>Sign In</p>
+                        </div>
 
-                                <label for="fname">Password:</label>
-                                <input type="password" name="password" value={password.value} onChange={this.onType} />
-                                <input className="submit" type="submit" value="submit" />
-                            </fieldset>
+                        <div className="Signup-body">
+                            <form className="Signup-form flex flex__column">
+                                <div className="Signup-form-field flex flex__column">
+                                    <label htmlFor="email">Email: </label>
+                                    <input name="user" placeholder="Email"
+                                        value={user.value}
+                                        onChange={this.onType}
+                                        onBlur={this.inputOnBlur}
+                                        className={this.state.user.cssClass}></input>
+                                </div>
+                                {user.cssClass === "color--red" &&
+                                    <p className="font--red">Not valid format </p>}
+
+                                {user.cssClass === "color-green" &&
+                                    <p className="font--green">Correct email format </p>}
+
+                                <div className="Signup-form-field flex flex__column">
+                                    <label htmlFor="password">Password: </label>
+                                    <input name="password" type="password" placeholder="Password"
+                                        value={password.value}
+                                        onChange={this.onType}></input>
+                                </div>
+                                {errorMessage === '' ||
+                                    <p className='errorMassage'>
+                                        {errorMessage}
+                                    </p>
+                                }
+                                <button className="submit-btn login-btn" onClick={this.handleSubmit}>Login</button>
+                                <div className="other-signup-field">
+                                    <span>or sign up with</span>
+                                </div>
+                            </form>
+                            <div className="switchToSignup">
+                                <p>Don't have an account ?</p>
+                                <Link to='/sign-up' className="switchSignup"><p>Sign Up</p></Link>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    {/* <div className='login-container'>
+                    <div className='login-wrapper'></div>
+                    <div className="Signup-body">
+
+
+
+                    </div>
+                    <div className="login-card">
+                        <form className="login-form" action='/' >
+
+                            <legend>Login-</legend>
+                            <label for="fname">Username:</label>
+                            <input type="text" name="user" value={user.value} onChange={this.onType} />
+
+                            <label for="fname">Password:</label>
+                            <input type="password" name="password" value={password.value} onChange={this.onType} />
+
+                            <button className="submit" onClick={this.handleSubmit} ><span>NEXT</span></button>
                         </form>
                         <div className="switchToSignup">
                             <p>Don't have an account ?</p>
                             <Link to='/sign-up' className="switchSignup"><p>Sign Up</p></Link>
                         </div>
-                    </div>
+                    </div> */}
 
                 </div>
             </>

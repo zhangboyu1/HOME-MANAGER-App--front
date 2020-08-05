@@ -20,48 +20,48 @@ a {
 
 .Signup__Container {
     position: fixed;
-    top: 18px;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
+    top     : 18px;
+    left    : 0px;
+    right   : 0px;
+    bottom  : 0px;
 }
 
 .title-box {
-    display: flex;
+    display          : flex;
     -webkit-box-align: center;
-    align-items: center;
-    flex-shrink: 0;
-    min-height: 60px;
-    position: relative;
-    border-bottom: 1px solid rgb(246, 248, 253);
+    align-items      : center;
+    flex-shrink      : 0;
+    min-height       : 60px;
+    position         : relative;
+    border-bottom    : 1px solid rgb(246, 248, 253);
     /**/
-    flex-grow: 1;
-    color: rgb(41, 43, 50);
-    font-family: museo-regular, "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-    font-size: 18px;
-    line-height: 24px;
-    letter-spacing: 0.15px;
-    text-align: center;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    padding: 15px 40%;
-    overflow: hidden;
+    flex-grow        : 1;
+    color            : rgb(41, 43, 50);
+    font-family      : museo-regular, "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-size        : 18px;
+    line-height      : 24px;
+    letter-spacing   : 0.15px;
+    text-align       : center;
+    white-space      : nowrap;
+    text-overflow    : ellipsis;
+    padding          : 15px 40%;
+    overflow         : hidden;
 }
 
 .suggestions {
-    position: relative;
-    left: 0;
-    width: auto;
-    height: auto;
-    max-height: 200px;
+    position        : relative;
+    left            : 0;
+    width           : auto;
+    height          : auto;
+    max-height      : 200px;
     background-color: white;
-    overflow-y: scroll;
-    z-index: 3;
+    overflow-y      : scroll;
+    z-index         : 3;
 }
 
 .suggestions div {
     padding: 1em;
-    margin: 0;
+    margin : 0;
 }
 
 .suggestions p:hover {
@@ -73,25 +73,25 @@ a {
 }
 
 .subpage-title-box {
-    display: flex;
-    align-items: center;
-    flex-shrink: 0;
-    min-height: 60px;
-    position: relative;
-    padding: 0px 16px;
-    border-bottom: 1px solid rgb(246, 248, 253);
+    display       : flex;
+    align-items   : center;
+    flex-shrink   : 0;
+    min-height    : 60px;
+    position      : relative;
+    padding       : 0px 16px;
+    border-bottom : 1px solid rgb(246, 248, 253);
     /**/
-    flex-grow: 1;
-    color: rgb(41, 43, 50);
-    font-family: museo-regular, "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-    font-size: 16px;
-    line-height: 24px;
+    flex-grow     : 1;
+    color         : rgb(41, 43, 50);
+    font-family   : museo-regular, "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-size     : 16px;
+    line-height   : 24px;
     letter-spacing: 0.15px;
-    text-align: center;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    padding-left: 22%;
-    overflow: hidden;
+    text-align    : center;
+    white-space   : nowrap;
+    text-overflow : ellipsis;
+    padding-left  : 22%;
+    overflow      : hidden;
 }
 
 .subpage-title-box p,
@@ -101,72 +101,72 @@ a {
 
 #title {
     position: relative;
-    left: 10%;
+    left    : 10%;
 }
 
 .close-btn {
     position: absolute;
-    cursor: pointer;
-    right: 16px;
-    width: 24px;
-    height: 24px;
-    fill: rgb(84, 90, 119);
+    cursor  : pointer;
+    right   : 16px;
+    width   : 24px;
+    height  : 24px;
+    fill    : rgb(84, 90, 119);
 }
 
 .Signup-form>p {
-    color: rgb(41, 43, 50);
-    font-weight: 300;
+    /* color: rgb(41, 43, 50); */
+    font-weight   : 300;
     /* font-family: museo-regular, "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; */
-    font-size: 16px;
-    line-height: 20px;
+    font-size     : 16px;
+    line-height   : 20px;
     letter-spacing: 0.15px;
-    width: 100%;
-    /* height: 20px; */
+    width         : 100%;
+    /* height     : 20px; */
 }
 
 form {
     display: block;
-    margin: auto;
-    width: 100%;
+    margin : auto;
+    width  : 100%;
 }
 
 .Signup-form-field {
     flex-shrink: 0;
-    margin: 0;
-    padding: 0 0 16px;
+    margin     : 0;
+    padding    : 0 0 16px;
 }
 
 #profile--content {
-    margin-top: -1px;
+    margin-top    : -1px;
     padding-bottom: 10px;
 }
 
 .Signup-form-field label {
-    display: block;
-    color: white;
+    display       : block;
+    color         : white;
     /* font-family: museo-regular, "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; */
-    font-size: 16px;
-    line-height: 24px;
+    font-size     : 16px;
+    line-height   : 24px;
     letter-spacing: 0.15px;
-    max-width: 100%;
-    padding: 0px 0px 8px;
+    max-width     : 100%;
+    padding       : 0px 0px 8px;
 }
 
 .Signup-form-field>input {
-    box-shadow: none;
-    box-sizing: border-box;
+    box-shadow        : none;
+    box-sizing        : border-box;
     -webkit-appearance: none;
-    width: 100%;
-    color: rgb(41, 43, 50);
-    /* font-family: museo-regular, "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; */
-    font-size: 14px;
-    line-height: 20px;
-    letter-spacing: 0.25px;
-    min-height: 40px;
-    animation: 0s ease 0s 1 normal none running none;
-    outline: none;
-    padding: 12px;
-    border-radius: 4px;
+    width             : 100%;
+    color             : rgb(41, 43, 50);
+    /* font-family    : museo-regular, "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; */
+    font-size         : 14px;
+    line-height       : 20px;
+    letter-spacing    : 0.25px;
+    min-height        : 40px;
+    animation         : 0s ease 0s 1 normal none running none;
+    outline           : none;
+    padding           : 12px;
+    border-radius     : 4px;
 }
 
 .Signup-form-field>input:enabled:hover {
@@ -175,31 +175,31 @@ form {
 }
 
 .Signup-form-alert {
-    display: block;
-    max-width: 100%;
-    color: rgb(231, 82, 69);
+    display       : block;
+    max-width     : 100%;
+    color         : rgb(231, 82, 69);
     /* font-family: museo-bold, "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; */
-    font-size: 14px;
-    line-height: 20px;
+    font-size     : 14px;
+    line-height   : 20px;
     letter-spacing: 0.25px;
-    padding: 8px 0px 0px;
+    padding       : 8px 0px 0px;
 }
 
 .Signup-form>button {
-    width: 100%;
-    box-sizing: border-box;
-    white-space: nowrap;
-    text-align: center;
-    color: #ffffff;
+    width           : 100%;
+    box-sizing      : border-box;
+    white-space     : nowrap;
+    text-align      : center;
+    color           : #ffffff;
     background-color: rgb(125, 179, 67);
-    letter-spacing: 0.25px;
-    cursor: pointer;
-    padding: 8px 16px;
-    font-size: 16px;
-    line-height: 24px;
-    border-radius: 160px;
-    border: 2px solid rgba(0, 0, 0, 0);
-    transition: all .25s ease-out;
+    letter-spacing  : 0.25px;
+    cursor          : pointer;
+    padding         : 8px 16px;
+    font-size       : 16px;
+    line-height     : 24px;
+    border-radius   : 160px;
+    border          : 2px solid rgba(0, 0, 0, 0);
+    transition      : all .25s ease-out;
 }
 
 .Signup-form>button:hover {
@@ -207,30 +207,30 @@ form {
 }
 
 .external-signup-option {
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    -webkit-box-pack: center;
-    justify-content: center;
-    align-content: unset;
+    box-sizing       : border-box;
+    display          : flex;
+    flex-direction   : row;
+    flex-wrap        : nowrap;
+    -webkit-box-pack : center;
+    justify-content  : center;
+    align-content    : unset;
     -webkit-box-align: center;
-    align-items: center;
-    align-self: unset;
-    flex: 0 1 auto;
-    margin: 0px;
-    padding: 0px;
-    border-radius: 0px;
-    border-width: 0px;
-    border-color: rgb(41, 43, 50);
+    align-items      : center;
+    align-self       : unset;
+    flex             : 0 1 auto;
+    margin           : 0px;
+    padding          : 0px;
+    border-radius    : 0px;
+    border-width     : 0px;
+    border-color     : rgb(41, 43, 50);
 }
 
 .other-signup-field>span {
-    position: relative;
-    text-align: center;
+    position   : relative;
+    text-align : center;
     align-items: center;
-    display: block;
-    margin: 16px 0px;
+    display    : block;
+    margin     : 16px 0px;
 }
 
 .other-signup-field>span::before {
@@ -243,35 +243,35 @@ form {
 
 .other-signup-field>span::before,
 .other-signup-field>span::after {
-    position: absolute;
-    content: "";
-    top: 50%;
-    width: 30%;
+    position    : absolute;
+    content     : "";
+    top         : 50%;
+    width       : 30%;
     border-style: initial;
     border-color: initial;
     border-width: 1px 0px 0px;
-    border-top: 1px solid rgb(187, 194, 220);
+    border-top  : 1px solid rgb(187, 194, 220);
 }
 
 .external-signup-option>button {
-    box-sizing: border-box;
-    width: 45%;
-    font-size: 16px;
-    line-height: 24px;
-    white-space: nowrap;
-    flex: 0 1 auto;
-    display: flex;
+    box-sizing       : border-box;
+    width            : 45%;
+    font-size        : 16px;
+    line-height      : 24px;
+    white-space      : nowrap;
+    flex             : 0 1 auto;
+    display          : flex;
     -webkit-box-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    justify-content: center;
+    align-items      : center;
+    -webkit-box-pack : center;
+    justify-content  : center;
 }
 
 #option-Gg {
-    margin-left: 5px;
+    margin-left     : 5px;
     background-color: rgb(255, 255, 255);
-    color: rgb(7, 6, 6);
-    border-color: rgb(231, 235, 251);
+    color           : rgb(7, 6, 6);
+    border-color    : rgb(231, 235, 251);
 }
 
 .switchToLogin {
@@ -287,42 +287,42 @@ form {
 }
 
 .checkbox--active {
-    display: flex;
+    display              : flex;
     /* -webkit-appearance: checkbox; */
-    -webkit-box-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    justify-content: center;
-    background-color: rgb(0, 143, 180);
-    box-shadow: rgba(1, 164, 209, 0.29) 0px 0px 3px 2px;
-    cursor: pointer;
-    width: 14px;
-    height: 14px;
-    margin-right: 8px;
-    flex-shrink: 0;
-    cursor: pointer;
-    border-width: 2px;
-    border-style: solid;
-    border-radius: 3px;
-    transition: box-shadow 0.2s ease 0s;
-    border-color: rgb(0, 143, 180);
+    -webkit-box-align    : center;
+    align-items          : center;
+    -webkit-box-pack     : center;
+    justify-content      : center;
+    background-color     : rgb(0, 143, 180);
+    box-shadow           : rgba(1, 164, 209, 0.29) 0px 0px 3px 2px;
+    cursor               : pointer;
+    width                : 14px;
+    height               : 14px;
+    margin-right         : 8px;
+    flex-shrink          : 0;
+    cursor               : pointer;
+    border-width         : 2px;
+    border-style         : solid;
+    border-radius        : 3px;
+    transition           : box-shadow 0.2s ease 0s;
+    border-color         : rgb(0, 143, 180);
 }
 
 .checkbox--content {
-    display: inline-block;
-    color: rgb(41, 43, 50);
-    font-family: museo-regular, "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-    font-size: 14px;
-    line-height: 20px;
-    letter-spacing: 0.25px;
-    text-align: initial;
-    vertical-align: initial;
-    font-style: initial;
-    white-space: initial;
+    display        : inline-block;
+    color          : rgb(41, 43, 50);
+    font-family    : museo-regular, "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-size      : 14px;
+    line-height    : 20px;
+    letter-spacing : 0.25px;
+    text-align     : initial;
+    vertical-align : initial;
+    font-style     : initial;
+    white-space    : initial;
     text-decoration: initial;
-    max-width: 90%;
-    margin: 0px 0px 0px 5px;
-    padding: 0px;
+    max-width      : 90%;
+    margin         : 0px 0px 0px 5px;
+    padding        : 0px;
 }
 
 

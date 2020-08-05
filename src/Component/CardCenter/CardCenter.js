@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import AnimatedSwitch from '../AnimatedSwitch/AnimatedSwitch'
 import Home from '../Home/Home';
-// import Home from './Component/Home/Home'
+import NaviSide from '../NaviSide/NaviSide'
 
 export default class CardCenter extends React.Component {
     // This is a component that is used to control all the data related to the card section....
@@ -54,7 +54,6 @@ export default class CardCenter extends React.Component {
 
     passToWeather = (props) => {
         const { firsLoading, currently, daily, checkLogin, timeZone } = this.state
-        console.log(this.updateWeatherData)
 
         return (
             <WeatherCard
@@ -84,12 +83,15 @@ export default class CardCenter extends React.Component {
     render() {
         console.log(this.state)
         return (
-            <div className="CardWrapper" >
-                <AnimatedSwitch>
-                    <Route exact path="/calender" render={this.PassToCalender} />
-                    <Route exact path="/weather" render={this.passToWeather} />
-                </AnimatedSwitch>
-            </div>
+            <>
+                <div className="CardWrapper" >
+                    <AnimatedSwitch>
+                        <Route exact path="/calender" render={this.PassToCalender} />
+                        <Route exact path="/weather" render={this.passToWeather} />
+                    </AnimatedSwitch>
+                </div>
+            </>
         );
+
     }
 }

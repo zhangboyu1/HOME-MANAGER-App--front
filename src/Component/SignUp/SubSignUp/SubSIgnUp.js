@@ -1,10 +1,7 @@
 import React from 'react';
-// import axios from 'axios';
 import '../SignUp.css'
 import './SubSignUp.css'
 import { addUser } from '../../Store/AddUser'
-
-
 
 export default class SubSignUp extends React.Component {
     constructor(props) {
@@ -57,7 +54,6 @@ export default class SubSignUp extends React.Component {
         //     this.props.history.push("/404");
         // }
     }
-
     onChange = (e) => {
         this.setState({
             [e.target.name]: e.target.value,
