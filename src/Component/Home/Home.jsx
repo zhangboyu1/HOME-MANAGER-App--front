@@ -2,9 +2,7 @@ import React from 'react';
 import { data } from '../Store/localStorage';
 import { Redirect } from "react-router-dom";
 import { checkStore } from '../Store/localStorage'
-
 import { LoginCheck } from '../Store/LoginCheck/LoginCheck'
-
 const App_OnlyMake = 'boyu_mark';
 export default class Home extends React.Component {
     constructor(props) {
@@ -23,7 +21,7 @@ export default class Home extends React.Component {
         // this.isLogin = isLogin
         console.log(isLogin)
         this.setState({
-            Login: isLogin
+            Login: isLogin.value
         })
     }
 
@@ -33,9 +31,9 @@ export default class Home extends React.Component {
     }
 
     render() {
+        console.log(this.state.login)
         return (
             <>
-
                 {
                     this.state.Login ? <div >
                         <h1>This is Home</h1>

@@ -32,7 +32,7 @@ export const Loginstatus = (AuthState) => {
 
 export const LoginCheck = () => {
     if (Number(data.get('log_status'))) {
-        return Number(data.get('log_status'))
+        return LogInStatus_In()
     } else {
         return LogInStatus_Out('User has already logout....')
     }

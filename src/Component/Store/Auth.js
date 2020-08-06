@@ -41,7 +41,7 @@ export const auth = (user, password, isSignup) => {
 
     console.log("whether this user has already existed:", authData.existUser)
     if (isSignup) {
-        if (!authData.existUser) {
+        if (authData.existUser) {
             return authFail('The user not existed, please check or sign or a new user!')
         }
         // Then only singup intention could getinto this function....:
