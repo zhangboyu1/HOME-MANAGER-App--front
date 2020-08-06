@@ -17,3 +17,30 @@ export const data = {
         return value;
     }
 }
+
+const CheckSuccess = (keyMark) => {
+    return {
+        type: 'CHECK_SUCCESS',
+        mark: keyMark,
+    };
+};
+
+const CheckFail = (error) => {
+    return {
+        type: 'CHECK_FAIL',
+        error: error,
+    };
+};
+
+export const checkStore = (checkMark) => {
+
+    if (localStorage.keyMark) {
+        return CheckSuccess(localStorage.keyMark)
+    } else {
+        for (var prop in localStorage) { if (localStorage.hasOwnProperty(prop)) { delete localStorage[prop]; } } // 先清空这个数组。
+        data.set('keyMark', checkMark)
+        return CheckFail('First time, add a key-mark')
+    }
+}
+
+
