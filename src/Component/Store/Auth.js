@@ -58,9 +58,7 @@ export const auth = (user, password, isSignup) => {
         console.log('This is the log-in process')
         if (authData.existUser) {
             data.set('currentUser', authData.id) //现在user是对的。。。再来看看password是不是对的。
-            console.log()
             if (data.get(authData.id).password === authData.password) {
-
                 //再验证登陆的时候，添加登陆状态： 
                 Loginstatus(authSuccess(data.get(userid || authData.id)))
                 return authSuccess(data.get(userid || authData.id))

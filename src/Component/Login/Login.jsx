@@ -18,6 +18,8 @@ export default class Login extends React.Component {
                 valid: false,
                 value: '',
                 cssClass: '',
+                InputCssClass: '',
+                InputWarning: ''
             },
             password: {
                 validation: {
@@ -26,6 +28,8 @@ export default class Login extends React.Component {
                 valid: false,
                 value: '',
                 cssClass: '',
+                InputCssClass: '',
+                InputWarning: ''
             },
             errorMessage: ''
         }
@@ -44,7 +48,7 @@ export default class Login extends React.Component {
     }
 
     onType = (e) => {
-        let updatedFormElement = {
+        const updatedFormElement = {
             ...this.state[e.target.name]
         };
         let { errorMessage } = this.state
@@ -53,7 +57,8 @@ export default class Login extends React.Component {
         let Valid_result = checkInputValidity(e.target.value, updatedFormElement.validation);
         console.log(Valid_result)
         this.Valid_result = Valid_result
-        this.Valid_result && (updatedFormElement.cssClass = 'color-green') || !this.Valid_result && (updatedFormElement.cssClass = 'color--red')
+        this.Valid_result && (updatedFormElement.cssClass = 'color-green') && (updatedFormElement.InputCssClass = 'font--green') && (updatedFormElement.InputWarning = 'formate is correct!')
+            || !this.Valid_result && (updatedFormElement.cssClass = 'color--red') && (updatedFormElement.InputCssClass = 'font--red') && (updatedFormElement.InputWarning = 'formate is not correct!')
         updatedFormElement.value = e.target.value;
         this.setState({ [e.target.name]: updatedFormElement });
     }
@@ -66,10 +71,30 @@ export default class Login extends React.Component {
             console.log('this is red warning')
             updatedFormElement.value = ''
             updatedFormElement.cssClass = ''
+            updatedFormElement.InputCssClass = ''
+            updatedFormElement.InputWarning = ''
             this.setState({
                 [e.target.name]: updatedFormElement
             })
 
+        }
+    }
+
+    handleInputFocus = (e) => {
+        const updatedFormElement = {
+            ...this.state[e.target.name]
+        };
+        console.log('I am focused')
+        if (updatedFormElement.value === '') {
+            updatedFormElement.cssClass = 'color--red';
+            updatedFormElement.InputWarning = 'Cannot leave it blank';
+            updatedFormElement.InputCssClass = 'font--red'
+            this.setState({
+                [e.target.name]: updatedFormElement,
+                errorMessage: ''
+            })
+        } else {
+            return
         }
     }
 
@@ -101,33 +126,38 @@ export default class Login extends React.Component {
                                         value={user.value}
                                         onChange={this.onType}
                                         onBlur={this.inputOnBlur}
-                                        className={this.state.user.cssClass}></input>
+                                        onFocus={this.handleInputFocus}
+                                        className={user.cssClass}>
+                                    </input>
+                                    <div className={`inputWarning ${user.InputCssClass}`}>{user.InputWarning}</div>
                                 </div>
-                                {user.cssClass === "color--red" &&
-                                    <p className="font--red">Not valid format </p>}
-
-                                {user.cssClass === "color-green" &&
-                                    <p className="font--green">Correct email format </p>}
 
                                 <div className="Signup-form-field flex flex__column">
                                     <label htmlFor="password">Password: </label>
                                     <input name="password" type="password" placeholder="Password"
                                         value={password.value}
-                                        onChange={this.onType}></input>
+                                        onBlur={this.inputOnBlur}
+                                        onChange={this.onType}
+                                        onFocus={this.handleInputFocus}
+                                        className={password.cssClass}>
+                                    </input>
+                                    {
+                                        <div className={`inputWarning ${password.InputCssClass === "font--red" ? password.InputCssClass : ''}`}>
+                                            {password.InputCssClass === "font--red" ? password.InputWarning : ''}
+                                        </div>
+                                    }
+                                </div >
+                                <div className={`warningDiv ${errorMessage ? 'errorMessage' : ''}`}>
+                                    {errorMessage}
                                 </div>
-                                {errorMessage === '' ||
-                                    <p className='errorMassage'>
-                                        {errorMessage}
-                                    </p>
-                                }
                                 <button className="submit-btn login-btn" onClick={this.handleSubmit}>Login</button>
                                 <div className="other-signup-field">
                                     <span>or sign up with</span>
                                 </div>
                             </form>
                             <div className="switchToSignup">
-                                <p>Don't have an account ?</p>
-                                <Link to='/sign-up' className="switchSignup"><p>Sign Up</p></Link>
+                                <p>Don't have an account ? </p>
+                                <Link to='/sign-up' className="switchSignup"><span> Sign Up </span></Link>
                             </div>
                         </div>
                     </div>
@@ -136,8 +166,6 @@ export default class Login extends React.Component {
                     {/* <div className='login-container'>
                     <div className='login-wrapper'></div>
                     <div className="Signup-body">
-
-
 
                     </div>
                     <div className="login-card">
@@ -157,7 +185,6 @@ export default class Login extends React.Component {
                             <Link to='/sign-up' className="switchSignup"><p>Sign Up</p></Link>
                         </div>
                     </div> */}
-
                 </div>
             </>
         )

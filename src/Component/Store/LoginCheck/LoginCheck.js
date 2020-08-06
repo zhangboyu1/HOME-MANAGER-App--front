@@ -10,7 +10,7 @@ const LogInStatus_In = () => {
 
 const LogInStatus_Out = (error) => {
     return {
-        type: 'LOGIN_FAIL',
+        type: 'LOGOUT_SUCCESS',
         error: error,
         value: 0
     };
@@ -21,13 +21,19 @@ export const Loginstatus = (AuthState) => {
     //每一次成功登陆时需要做的事情。。。。
     if (AuthState.type === 'AUTH_SUCCESS') {
         //在local里添加一个loginstatus：
-        data.set('log_status', 1)
-
-        console.log(AuthState.type)
-        console.log(localStorage)
-        return LogInStatus_In
+        data.set('log_status', '1')
+        return LogInStatus_In()
         //Log-out还要继续写。。。。。。
     }
+}
+
+
+export const Logoutstatus = () => {
+    console.log('I am goin to log-out')
+    data.set('log_status', '0')
+    console.log(localStorage)
+    return LogInStatus_Out()
+    //Log-out还要继续写。。。。。。
 }
 
 export const LoginCheck = () => {
