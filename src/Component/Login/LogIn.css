@@ -1,22 +1,9 @@
-.login-wrapper {
-    height          : 100%;
-    background-color: black;
-    z-index         : 4000;
+.Sub-Signup_Background {
     width           : 100%;
-    opacity         : 1;
-    position        : fixed;
-    top             : 0;
-}
-
-.login-card {
-    opacity         : 1;
-    width           : 300px;
-    height          : 400px;
-    background-color: rgb(53, 42, 73);
-    z-index         : 4010;
+    height          : 100%;
     position        : absolute;
-    left            : calc(50% - 150px);
-    top             : calc(50% - 200px);
+    background-color: transparent;
+
 }
 
 .login-form {
@@ -26,15 +13,22 @@
 
 input {
     margin    : 6px;
-    width     : 100px;
+    width     : 90%;
     transition: width 1s ease-in-out;
-
+    outline   : none;
+    background: lightgray;
+    border    : 0px solid white;
 }
 
 
 .switchToSignup {
     margin-top: 1rem;
     border-top: 1px solid rgb(187, 194, 220);
+}
+
+.switchToSignup span {
+    display    : inline-block;
+    margin-left: 85px;
 }
 
 .switchToSignup p {
@@ -64,9 +58,6 @@ input {
     line-height: 0;
 }
 
-.SignIn .Signup-form-field {
-    padding: 0 0 10px;
-}
 
 .SignIn .login-fotpas {
     font-size: 10px;
@@ -92,30 +83,49 @@ input {
     top: 54%;
 }
 
-.errorMassage {
-    margin   : 0;
-    color    : red;
-    left     : 45px;
-    font-size: 10px;
+
+
+.warningDiv {
+    height    : 20px;
+    color     : red;
+    font-size : 11.5px;
+    text-align: justify;
+    opacity   : 0;
+    width     : 50%;
+}
+
+.warningDiv.errorMessage {
+    margin       : 0;
+    color        : red;
+    opacity      : 1;
+    width        : 100%;
+    border-bottom: 2px solid red;
+    transition   : opacity 1s ease-in-out;
+}
+
+.inputWarning {
+    margin     : 0;
+    margin-left: 10px;
+    width      : 55%;
+    font-size  : 13px;
+    height     : 25px;
 }
 
 
-.font--red {
-    margin   : 0;
-    color    : red;
-    position : absolute;
-    top      : 175px;
-    left     : 50px;
-    font-size: 13px;
+.font--red.inputWarning {
+    color        : red;
+    font-size    : 13px;
+    width        : 95%;
+    border-bottom: 1px solid red;
+    transition   : all 1s ease-in-out;
 }
 
-.font--green {
-    margin   : 0;
-    color    : green;
-    position : absolute;
-    top      : 175px;
-    left     : 45px;
-    font-size: 13px;
+.font--green.inputWarning {
+    color        : green;
+    font-size    : 13px;
+    width        : 95%;
+    border-bottom: 1px solid green;
+    transition   : all 1s ease-in-out;
 }
 
 
