@@ -21,14 +21,13 @@ export default function NaviSide() {
 
                         <div class="account-details">
                             <myContext.Consumer>
-                                {(value) => {
-                                    return (
-                                        <>
-                                            <p class="name__text">{value.LastName}</p>
-                                            <p class="name__text">{value.title}</p>
-                                            <p class="email__text">{value.user}</p>
-                                        </>);
-                                }}
+                                {(value) => value &&
+                                    <>
+                                        <p class="name__text">{value.LastName}</p>
+                                        <p class="name__text">{value.title}</p>
+                                        <p class="email__text">{value.user}</p>
+                                    </>
+                                }
                             </myContext.Consumer>
                         </div>
                     </section>

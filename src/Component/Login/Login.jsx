@@ -48,7 +48,6 @@ export default class Login extends React.Component {
             ...this.state[e.target.name]
         };
         let { errorMessage } = this.state
-
         !errorMessage || errorMessage && this.setState({ errorMessage: '' })
         updatedFormElement.cssClass = '';
         let Valid_result = checkInputValidity(e.target.value, updatedFormElement.validation);

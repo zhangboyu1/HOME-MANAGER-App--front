@@ -1,37 +1,28 @@
 import React from 'react';
 import { data } from '../Store/localStorage';
 import { Redirect } from "react-router-dom";
-import NaviSide from '../NaviSide/NaviSide'
-
+import { checkStore } from '../Store/localStorage'
+import { LoginCheck } from '../Store/LoginCheck/LoginCheck'
+const App_OnlyMake = 'boyu_mark';
 export default class Home extends React.Component {
-
     constructor(props) {
         super()
         this.state = {
-            Login: false
+            Login: 0,
         }
     }
 
     componentWillMount() {
-        console.log('will mount')
-        console.log(this.props)
         // console.log(this.state.Login)
         this.props.upDateLocal()
-        if (this.props.history.action != 'POP') {
-            if (this.props.location.state === null) {
-                console.log('不应该执行么？')
-                this.setState({
-                    Login: true
-                })
-                return
-            } if (this.props.location.state.type === "AUTH_SUCCESS") {
-                console.log('第一次login')
-                this.setState({
-                    Login: true
-                })
-            }
-        }
-        return
+        const checkResult = checkStore(App_OnlyMake)
+        this.checkResult = checkResult
+        const isLogin = LoginCheck()
+        // this.isLogin = isLogin
+        console.log(isLogin)
+        this.setState({
+            Login: isLogin.value
+        })
     }
 
     componentDidMount() {
@@ -40,14 +31,13 @@ export default class Home extends React.Component {
     }
 
     render() {
-        console.log('render')
+        console.log(this.state.login)
         return (
             <>
-
                 {
                     this.state.Login ? <div >
                         <h1>This is Home</h1>
-                    </div> : <Redirect to="/Login" />
+                    </div> : <Redirect to="/login" />
                 }
             </>
         )

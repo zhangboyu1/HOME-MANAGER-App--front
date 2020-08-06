@@ -1,5 +1,7 @@
 import { data } from './localStorage';
 
+import { Loginstatus } from './LoginCheck/LoginCheck'
+
 const authSuccess = (userId) => {
     return {
         type: 'AUTH_SUCCESS',
@@ -20,25 +22,27 @@ export const auth = (user, password, isSignup) => {
     authData.password = password;
     authData.existUser = false;
     authData.id = ''
+    const checkStorage = localStorage
+    var re = /^\+?[0-9][0-9]*$/;
     // -------------------------------------------------Only front - end -----------------------------------------------------------------------
-    let loclOb = localStorage;
-    //clear local storage// 
-    for (var key in loclOb) {
-        if (key != 'length') {
-            if (JSON.parse(loclOb[key]).user === user) {
-                authData.existUser = true
-                authData.id = key
-                break
+    //It needs to clear the storage first when everytime switch to this App.....
+    if (checkStorage.currentUser) {
+        for (let key in checkStorage) {
+            if (re.test(Number(key))) {
+                if (JSON.parse(checkStorage[key]).user === authData.user) {
+                    authData.existUser = true;
+                    authData.id = key
+                }
+            } else {
+                continue
             }
-        } if (key === 'length') {
-            break
         }
     }
 
     console.log("whether this user has already existed:", authData.existUser)
-    if (isSignup) {  //没有SignUp...或者已经signUp、但是
+    if (isSignup) {
         if (authData.existUser) {
-            return authFail()
+            return authFail('The user not existed, please check or sign or a new user!')
         }
         // Then only singup intention could getinto this function....:
         const date = new Date();
@@ -49,15 +53,20 @@ export const auth = (user, password, isSignup) => {
         return authSuccess(userId_FAKE)
     }
     else {
+        // This is the login----logic.....
         console.log('current password is:', authData.password)
-        if (authData.password === '') {
-            return authFail('The password is required')
-        }
         console.log('This is the log-in process')
         if (authData.existUser) {
             data.set('currentUser', authData.id) //现在user是对的。。。再来看看password是不是对的。
-            if (data.get(authData.id).password.match(authData.password)) {
+            console.log()
+            if (data.get(authData.id).password === authData.password) {
+
+                //再验证登陆的时候，添加登陆状态： 
+                Loginstatus(authSuccess(data.get(userid || authData.id)))
                 return authSuccess(data.get(userid || authData.id))
+            }
+            if (authData.password === '') {
+                return authFail('The password is required')
             } else {
                 return authFail('The password is not correct!')
             }
@@ -66,7 +75,6 @@ export const auth = (user, password, isSignup) => {
         }
     }
 }
-
 
         // ----------------------------------------------------------If have back-end server--------------------------------------------------------------------------------
 
