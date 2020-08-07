@@ -14,7 +14,6 @@ export default class Home extends React.Component {
 
     componentWillMount() {
         console.log('will mount')
-        console.log(this.props)
         // console.log(this.state.Login)
         this.props.upDateLocal()
         if (this.props.history.action != 'POP') {
