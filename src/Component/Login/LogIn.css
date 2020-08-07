@@ -1,11 +1,3 @@
-.Sub-Signup_Background {
-    width           : 100%;
-    height          : 100%;
-    position        : absolute;
-    background-color: transparent;
-
-}
-
 .login-form {
     top     : calc(50% - 106px);
     position: relative;
