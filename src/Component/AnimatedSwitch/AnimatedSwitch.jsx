@@ -4,11 +4,10 @@ import { Route, Switch } from 'react-router-dom'
 import './AnimatedSwitch.css'
 
 const AnimatedSwitch = props => {
-    // const { children } = props
+    const { children } = props
     return (
         <Route
             render={({ location }) =>
-                // console.log(location)
                 <TransitionGroup>
                     <CSSTransition
                         timeout={3000}

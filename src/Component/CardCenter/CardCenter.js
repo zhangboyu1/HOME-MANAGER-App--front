@@ -21,6 +21,7 @@ export default class CardCenter extends React.Component {
             timeZone: ``,
             weatherErrorMsg: ``,
             checkLogin: 0,
+            photoUrl: ''
         }
         this.keeploading = 1;
         this.oldloading = 0
@@ -28,16 +29,17 @@ export default class CardCenter extends React.Component {
         console.log('firsLoading', this.state.firsLoading)
     }
 
-    updateWeatherData = (firsLoading_upD, currently_upD, timeZone_upD, daily_upD) => {
-        let { firsLoading, currently, daily, checkLogin, timeZone } = this.state
+    updateWeatherData = (firsLoading_upD, currently_upD, timeZone_upD, daily_upD, photoUrl_upD) => {
+        let { firsLoading, currently, daily, checkLogin, timeZone, photoUrl } = this.state
         firsLoading = firsLoading_upD;
         currently = currently_upD;
         daily = daily_upD;
         timeZone = timeZone_upD;
+        photoUrl = photoUrl_upD
         // checkLogin = checkLogin_upD;
         this.setState({
             firsLoading, currently, daily, timeZone,
-            checkLogin
+            checkLogin, photoUrl
         })
     }
 
@@ -53,7 +55,7 @@ export default class CardCenter extends React.Component {
     // How do i do this? 
 
     passToWeather = (props) => {
-        const { firsLoading, currently, daily, checkLogin, timeZone } = this.state
+        const { firsLoading, currently, daily, checkLogin, timeZone, photoUrl } = this.state
 
         return (
             <WeatherCard
@@ -64,6 +66,7 @@ export default class CardCenter extends React.Component {
                 daily={daily}
                 timeZone={timeZone}
                 checkLogin={checkLogin}
+                photoUrl={photoUrl}
                 {...props}
             />
         );
@@ -74,6 +77,7 @@ export default class CardCenter extends React.Component {
         return (
             <CalenderCard
                 toggleSidebarOn={this.toggleSidebarOn}
+                passProps={this.props.passProps}
                 {...props}
             />
         );
