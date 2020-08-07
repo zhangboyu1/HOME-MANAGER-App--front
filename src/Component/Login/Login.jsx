@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from "axios";
-import './LogIn.css';
+import './Login.css';
 import { auth } from '../Store/Auth';
 import { Link } from 'react-router-dom';
 import { checkInputValidity } from '../Store/Inputvalidity'
