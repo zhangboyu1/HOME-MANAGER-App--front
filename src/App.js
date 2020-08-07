@@ -9,7 +9,7 @@ import {
 import Home from './Component/Home/Home'
 import Footer from './Component/Footer/Footer';
 import CardCenter from './Component/CardCenter/CardCenter'
-import LogIn from './Component/LogIn/LogIn'
+import Login from './Component/Login/Login'
 import SignUp from './Component/SignUp/SignUp'
 import SubSignUp from './Component/SignUp/SubSignUp/SubSIgnUp'
 import NaviSide from './Component/NaviSide/NaviSide'
@@ -50,7 +50,7 @@ export default class App extends React.Component {
 
     PassToLogin = (props) => {
         return (
-            <LogIn
+            <Login
                 upDateLocal={this.upDateLocal}
                 {...props}
             />
