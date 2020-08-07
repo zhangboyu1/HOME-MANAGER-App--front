@@ -133,7 +133,7 @@ form {
 .Signup-form-field {
     flex-shrink: 0;
     margin     : 0;
-    padding    : 0 0 16px;
+    padding    : 0 0 5px;
 }
 
 #profile--content {
@@ -141,31 +141,19 @@ form {
     padding-bottom: 10px;
 }
 
-.Signup-form-field label {
-    display       : block;
-    color         : white;
-    /* font-family: museo-regular, "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; */
-    font-size     : 16px;
-    line-height   : 24px;
-    letter-spacing: 0.15px;
-    max-width     : 100%;
-    padding       : 0px 0px 8px;
-}
 
 .Signup-form-field>input {
     box-shadow        : none;
     box-sizing        : border-box;
     -webkit-appearance: none;
-    width             : 100%;
     color             : rgb(41, 43, 50);
-    /* font-family    : museo-regular, "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; */
     font-size         : 14px;
     line-height       : 20px;
     letter-spacing    : 0.25px;
     min-height        : 40px;
     animation         : 0s ease 0s 1 normal none running none;
     outline           : none;
-    padding           : 12px;
+    padding           : 10px;
     border-radius     : 4px;
 }
 
@@ -185,13 +173,12 @@ form {
     padding       : 8px 0px 0px;
 }
 
-.Signup-form>button {
-    width           : 100%;
+/* .Signup-form>button {
     box-sizing      : border-box;
     white-space     : nowrap;
     text-align      : center;
-    color           : #ffffff;
-    background-color: rgb(125, 179, 67);
+    color           : gray;
+    background-color: lightskyblue;
     letter-spacing  : 0.25px;
     cursor          : pointer;
     padding         : 8px 16px;
@@ -200,10 +187,10 @@ form {
     border-radius   : 160px;
     border          : 2px solid rgba(0, 0, 0, 0);
     transition      : all .25s ease-out;
-}
+} */
 
 .Signup-form>button:hover {
-    background-color: rgb(125, 222, 21);
+    background-color: lightgoldenrodyellow;
 }
 
 .external-signup-option {
@@ -226,11 +213,11 @@ form {
 }
 
 .other-signup-field>span {
-    position   : relative;
-    text-align : center;
-    align-items: center;
-    display    : block;
-    margin     : 16px 0px;
+    position      : relative;
+    text-align    : center;
+    align-items   : center;
+    display       : block;
+    /* margin     : 16px 0px; */
 }
 
 .other-signup-field>span::before {
@@ -282,48 +269,7 @@ form {
     display: inline-block;
 }
 
-#checkbox {
-    -webkit-appearance: checkbox;
-}
 
-.checkbox--active {
-    display              : flex;
-    /* -webkit-appearance: checkbox; */
-    -webkit-box-align    : center;
-    align-items          : center;
-    -webkit-box-pack     : center;
-    justify-content      : center;
-    background-color     : rgb(0, 143, 180);
-    box-shadow           : rgba(1, 164, 209, 0.29) 0px 0px 3px 2px;
-    cursor               : pointer;
-    width                : 14px;
-    height               : 14px;
-    margin-right         : 8px;
-    flex-shrink          : 0;
-    cursor               : pointer;
-    border-width         : 2px;
-    border-style         : solid;
-    border-radius        : 3px;
-    transition           : box-shadow 0.2s ease 0s;
-    border-color         : rgb(0, 143, 180);
-}
-
-.checkbox--content {
-    display        : inline-block;
-    color          : rgb(41, 43, 50);
-    font-family    : museo-regular, "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-    font-size      : 14px;
-    line-height    : 20px;
-    letter-spacing : 0.25px;
-    text-align     : initial;
-    vertical-align : initial;
-    font-style     : initial;
-    white-space    : initial;
-    text-decoration: initial;
-    max-width      : 90%;
-    margin         : 0px 0px 0px 5px;
-    padding        : 0px;
-}
 
 
 /* .Signup-form-field input:enabled{

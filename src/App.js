@@ -1,6 +1,5 @@
 import React from 'react';
 import NavigatorTop from './Component/NavigatorTop/NavigatorTop'
-
 import {
     BrowserRouter as Router,
     Route,
@@ -21,13 +20,13 @@ export default class App extends React.Component {
 
     upDateLocal = () => {
         console.log('the app.js is being invoked______________________________')
+        console.log(this.props)
         console.log("Now the current user would be:", data.get('currentUser'))
         this.currentUser = data.get('currentUser')
         this.userProfile = data.get(this.currentUser)
         this.forceUpdate();
         return
     }
-
     componentWillMount() {
         this.upDateLocal()
     }
