@@ -3,7 +3,7 @@ import axios from "axios";
 import './Login.css';
 import { auth } from '../Store/Auth';
 import { Link } from 'react-router-dom';
-import { checkInputValidity } from '../Store/Inputvalidity'
+import { checkInputValidity } from '../Store/Inputvalidity';
 
 export default class Login extends React.Component {
     constructor(props) {
