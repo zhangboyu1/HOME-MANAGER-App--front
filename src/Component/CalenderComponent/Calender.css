@@ -19,7 +19,7 @@
     background-image: url(https://images.pexels.com/photos/956999/milky-way-starry-sky-night-sky-star-956999.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
 }
 
-.card_calender .calendar-header {
+/* .card_calender .calendar-header {
     display: flex;
     justify-content: space-between;
     padding: 60px 20px;
@@ -78,4 +78,4 @@
     border-radius: 50%;
     background-color: silver;
     color: green;
-}
+} */
