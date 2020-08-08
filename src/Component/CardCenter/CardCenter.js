@@ -1,6 +1,6 @@
 import React from 'react';
 import WeatherCard from '../WeatherCard/WeatherCard'
-import CalenderCard from '../CalenderComponent/Calender';
+import CaldenderController from '../CalenderComponent/CalenderController';
 import {
     BrowserRouter as Router,
     Route,
@@ -75,7 +75,7 @@ export default class CardCenter extends React.Component {
     // This function used to pass the props
     PassToCalender = (props) => {
         return (
-            <CalenderCard
+            <CaldenderController
                 toggleSidebarOn={this.toggleSidebarOn}
                 passProps={this.props.passProps}
                 {...props}
