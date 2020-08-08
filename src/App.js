@@ -1,6 +1,5 @@
 import React from 'react';
 import NavigatorTop from './Component/NavigatorTop/NavigatorTop'
-
 import {
     BrowserRouter as Router,
     Route,
@@ -19,6 +18,13 @@ export const myContext = React.createContext("userProfile");
 
 export default class App extends React.Component {
 
+    constructor() {
+        super()
+        this.state = {
+            passProps: 0
+        }
+    }
+
     upDateLocal = () => {
         console.log('the app.js is being invoked______________________________')
         console.log(this.props)
@@ -29,10 +35,13 @@ export default class App extends React.Component {
         return
     }
 
-    // logout = (lala) => {
-    //     lala()
-    // }
-
+    upDateHomeInfo = (DateObject) => {
+        let { passProps } = this.state
+        passProps = DateObject
+        this.setState({
+            passProps
+        })
+    }
 
     componentWillMount() {
         this.upDateLocal()
@@ -42,6 +51,7 @@ export default class App extends React.Component {
         return (
             <Home
                 upDateLocal={this.upDateLocal}
+                upDateHomeInfo={this.upDateHomeInfo}
                 {...props}
             />
         );
@@ -58,6 +68,7 @@ export default class App extends React.Component {
     }
 
     render() {
+        const { passProps } = this.state
         return (
             <Router>
                 <NavigatorTop />
@@ -70,7 +81,7 @@ export default class App extends React.Component {
                     <Route exact path="/sign-up" component={SignUp} />
                     <Route exact path="/sub-sign-up" component={SubSignUp} />
                 </switch>
-                <CardCenter />
+                <CardCenter passProps={passProps} />
                 <Footer />
             </Router>
         );

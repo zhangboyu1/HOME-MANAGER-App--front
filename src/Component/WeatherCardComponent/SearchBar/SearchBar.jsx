@@ -50,7 +50,7 @@ export default class SearchBar extends React.Component {
         }).then((response) => {
             console.log('Now the city photo-URL can be retrived:')
             console.log(Object.values(response.headers)[14])
-            const photoUrl = Object.values(response.headers)[14]
+            let photoUrl = Object.values(response.headers)[14]
             this.props.getPhotoUrl(photoUrl)
         })
     }
@@ -75,7 +75,6 @@ export default class SearchBar extends React.Component {
                 this.props.searchWeather(lat, lng, ifSearching)
                 //Then we try another Api GET caLL Here: 
             },
-
             error => {
                 console.error(error);
             }

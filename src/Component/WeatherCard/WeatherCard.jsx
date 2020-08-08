@@ -57,16 +57,13 @@ export default class Card extends React.Component {
                     const { timezone } = response.data //
                     const daily = response.data.daily.data
                     this.keeploading = 1;
-                    updateWeatherData(firsLoading, [currently], timezone, daily)
+                    updateWeatherData(firsLoading, [currently], timezone, daily, this.state.photoUrl)
                     this.ifSearching = false
                 })
             }
             searchWeather()
         }
     }
-
-
-
     // searchTweets = () => {
     //     // Request 得重新找一个API。。。。才行。。。。
     //     const proxy = 'https://cors-anywhere.herokuapp.com/';
@@ -101,11 +98,12 @@ export default class Card extends React.Component {
 
 
     render() {
-        const { firsLoading, weatherErrorMsg, currently, daily, checkLogin, timeZone } = this.props
-        console.log('daily is:', daily)
-        const { photoUrl } = this.state
-        console.log(this.props)
-        console.log(timeZone)
+        const { firsLoading, weatherErrorMsg, currently, daily, checkLogin, timeZone, photoUrl } = this.props
+        // console.log('daily is:', daily)
+        // const { photoUrl } = this.state
+        // console.log(this.props)
+        // console.log(timeZone)
+        console.log(photoUrl)
 
         // if (!checkLogin) {
         //     return (

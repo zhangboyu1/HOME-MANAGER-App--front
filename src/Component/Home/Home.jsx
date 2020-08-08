@@ -9,10 +9,16 @@ export default class Home extends React.Component {
         super()
         this.state = {
             Login: 0,
+            ScheduleDate: '04/02/2020',
+            inputinfo: ''
+
         }
     }
 
     componentWillMount() {
+
+        console.log('will mount')
+        console.log(this.props)
         // console.log(this.state.Login)
         this.props.upDateLocal()
         const checkResult = checkStore(App_OnlyMake)
@@ -28,16 +34,53 @@ export default class Home extends React.Component {
     componentDidMount() {
         console.log('did mount')
         console.log(this.props)
+        this.props.upDateHomeInfo(this.state.ScheduleDate)
+    }
+
+
+
+
+    onType = (e) => {
+
+        let { inputinfo } = this.state
+        inputinfo = e.target.value;
+        this.setState({
+            inputinfo
+        })
+    }
+
+    handleSubmit = (event) => {
+        event.preventDefault()
+        //我要读值了。。。。。、
+        const { inputinfo } = this.state;
+        this.props.upDateHomeInfo(inputinfo)
     }
 
     render() {
         console.log(this.state.login)
+        const { inputinfo } = this.state
+
         return (
             <>
                 {
-                    this.state.Login ? <div >
-                        <h1>This is Home</h1>
-                    </div> : <Redirect to="/login" />
+                    this.state.Login ?
+                        <div >
+                            <div className="">
+                                <form className="">
+                                    <div className="">
+                                        <label htmlFor="email">Email: </label>
+                                        <input name="user" placeholder="Email"
+                                            value={inputinfo}
+                                            onChange={this.onType}
+                                        >
+                                        </input>
+                                    </div>
+
+                                    <button className="submit-btn login-btn" onClick={this.handleSubmit}>Login</button>
+                                </form>
+
+                            </div>
+                        </div> : <Redirect to="/login" />
                 }
             </>
         )

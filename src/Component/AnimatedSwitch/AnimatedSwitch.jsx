@@ -8,7 +8,6 @@ const AnimatedSwitch = props => {
     return (
         <Route
             render={({ location }) =>
-                // console.log(location)
                 <TransitionGroup>
                     <CSSTransition
                         timeout={3000}

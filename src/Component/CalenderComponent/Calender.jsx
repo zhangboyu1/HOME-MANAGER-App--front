@@ -160,7 +160,8 @@ export default class CalenderCard extends Component {
 
 
     render() {
-        console.log(this.props)
+        // console.log(this.props)
+        console.log('Passed pops from APP can be retreived', this.props.passProps)
         return (
             <div className="cardFrame">
                 <div className="card_calender">
