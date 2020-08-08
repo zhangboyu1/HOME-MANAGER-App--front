@@ -57,7 +57,6 @@ export default class App extends React.Component {
         );
     }
 
-
     PassToLogin = (props) => {
         return (
             <Login
