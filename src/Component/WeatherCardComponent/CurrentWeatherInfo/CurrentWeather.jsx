@@ -14,7 +14,6 @@ function CurrentWeather(props) {
         let flag = false
         let str = ``
         for (let i = 0; i < cityArry.length; i++) {
-
             if (cityArry[i] == `/`) {
                 flag = true
                 i++
