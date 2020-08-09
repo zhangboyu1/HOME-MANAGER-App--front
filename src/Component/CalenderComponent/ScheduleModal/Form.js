@@ -7,7 +7,7 @@ export default class ScheduleModal extends React.Component {
         super()
         this.state = {
             msg: '',
-            date: '8-9-2010'
+            date: '8-9-2020'
         }
     }
 
