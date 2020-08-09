@@ -1,6 +1,6 @@
 .BodyBoder {
     background-color: royalblue;
-    margin-top: 10%;
+    margin-top      : 10%;
 }
 
 
@@ -12,10 +12,10 @@
 
 
 .BodyBoder .weekday ul {
-    list-style: none;
-    padding: 0px;
-    display: flex;
-    flex-direction: row;
+    list-style     : none;
+    padding        : 0px;
+    display        : flex;
+    flex-direction : row;
     justify-content: space-around;
 }
 
@@ -23,10 +23,10 @@
 
 .BodyBoder .CalendarDay ul {
 
-    flex-wrap: wrap;
-    list-style: none;
-    padding: 0;
-    display: flex;
+    flex-wrap     : wrap;
+    list-style    : none;
+    padding       : 0;
+    display       : flex;
     flex-direction: row;
 }
 
@@ -34,6 +34,11 @@
 
 .BodyBoder .CalendarDay ul li {
 
-    flex-basis: 114px;
+    flex-basis    : 114px;
     padding-bottom: 60px;
+}
+
+
+.scheduleMarked {
+    background-color: greenyellow;
 }

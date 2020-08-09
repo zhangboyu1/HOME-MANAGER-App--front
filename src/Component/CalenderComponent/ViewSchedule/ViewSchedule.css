@@ -1,0 +1,6 @@
+.view-card {
+    position  : absolute;
+    background: gray;
+    width     : 600px;
+    height    : 300px;
+}
