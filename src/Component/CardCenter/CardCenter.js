@@ -6,6 +6,8 @@ import {
     Route,
 } from "react-router-dom";
 import AnimatedSwitch from '../AnimatedSwitch/AnimatedSwitch'
+
+import viewSchedule from '../CalenderComponent/ViewSchedule/ViewSchedule'
 import Home from '../Home/Home';
 import NaviSide from '../NaviSide/NaviSide'
 
@@ -83,9 +85,7 @@ export default class CardCenter extends React.Component {
         );
     }
 
-
     render() {
-        console.log(this.state)
         return (
             <>
                 <div className="CardWrapper" >

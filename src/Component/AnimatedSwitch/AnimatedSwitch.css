@@ -23,3 +23,15 @@ html {
     transform: translateZ(0px) translateX(0px) rotateY(0deg);
     transition: all 1000ms ease-in 1s;
 }
+
+
+
+
+
+.ll-exit {
+    opacity: 1;
+}
+
+.ll-exit.ll-exit-active {
+    opacity: 1;
+}
