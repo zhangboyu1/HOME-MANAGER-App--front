@@ -14,7 +14,6 @@ export default class CalenderHeader extends Component {
         const year = new Intl.DateTimeFormat('en-US', { year: "numeric" }).format(newDate)
         const month = new Intl.DateTimeFormat('en-US', { month: "numeric" }).format(newDate)
         const day = new Intl.DateTimeFormat('en-US', { day: "numeric" }).format(newDate)
-        console.log(year, month)
         this.props.initCalendar(year, month, day)
         //This value need to pass the father to store 
     }

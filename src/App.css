@@ -5,10 +5,8 @@
 
 
 .CardWrapper {
-    height             : 750px;
-    width              : 100%;
-    background-color   : transparent;
+    height: 750px;
+    width: 100%;
+    background-color: transparent;
     /* background-image: url("https://cdn.pixabay.com/photo/2016/11/29/05/45/astronomy-1867616__340.jpg"); */
 }
-
-#root {}

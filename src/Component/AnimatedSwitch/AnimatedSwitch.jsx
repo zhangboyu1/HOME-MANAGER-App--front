@@ -5,6 +5,8 @@ import './AnimatedSwitch.css'
 
 const AnimatedSwitch = props => {
     const { children } = props
+    console.log(children)
+
     return (
         <Route
             render={({ location }) =>
@@ -12,7 +14,9 @@ const AnimatedSwitch = props => {
                     <CSSTransition
                         timeout={3000}
                         classNames={'fade'}
-                        key={location.key}>
+                        key={location.key}
+                    >
+
                         <Switch staticContext={props} location={location}>{children}</Switch>
                     </CSSTransition>
                 </TransitionGroup>
