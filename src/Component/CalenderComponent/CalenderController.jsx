@@ -10,6 +10,7 @@ import {
 import React, { Component } from 'react';
 import CalenderBody from './CalenderBody/CalenderBody';
 import CalenderHeader from './CalenderHeader/CalenderHeader';
+import { CheckMarkedDay } from '../Store/ModalOperation'
 import './Calender.css'
 
 export default class CaldenderController extends Component {
@@ -67,11 +68,24 @@ export default class CaldenderController extends Component {
         })
     }
 
+    //Controller is used to interacte with the localStorage....
+    markDayRetrieve = () => {
+
+        const markDayArr = CheckMarkedDay()
+        console.log(markDayArr)
+        let newDayAr = []
+        markDayArr.map(item => {
+            newDayAr.push(Number(item.split('-')[0]))
+        })
+        return newDayAr
+    }
+
 
     render() {
         const monthDays = this.getMonthDays();
         const weekDays = this.getFirstDayWeek()
         const { month, year, currentDay } = this.state
+        const retrieveDayArr = this.markDayRetrieve()
         return (
             <div className="cardFrame">
                 <div className="card_calender">
@@ -87,6 +101,7 @@ export default class CaldenderController extends Component {
                         day={currentDay}
                         monthDays={monthDays}
                         weekDays={weekDays}
+                        retrieveDayArr={retrieveDayArr}
                     />
                 </div>
             </div>

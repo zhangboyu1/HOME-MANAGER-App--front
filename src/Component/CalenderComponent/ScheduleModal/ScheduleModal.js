@@ -4,7 +4,6 @@ import Form from './Form'
 import { StoreSchedule } from '../../Store/ModalOperation'
 
 import './ScheduleModal.css'
-
 export default class ScheduleModal extends React.Component {
     constructor(props) {
         super()
@@ -14,7 +13,6 @@ export default class ScheduleModal extends React.Component {
             isStore: false
         }
     }
-
 
     addList1 = (m, d) => {
         const { msgArr, infoPackage } = this.state;
@@ -29,13 +27,16 @@ export default class ScheduleModal extends React.Component {
         }
     }
 
+
+    SetSchedule = () => {
+        this.props.closeSchdule(false)
+    }
+
     render() {
         const { msgArr, infoPackage } = this.state;
-
-        console.log(infoPackage)
         return (
-            // <div className="cardFrame">
             <div className="sub-card">
+                <button className="close-btn" onClick={this.SetSchedule}> x</button>
                 <div className="schedule-content">
                     <Form addList={this.addList1} />
                     <ul>
@@ -44,7 +45,6 @@ export default class ScheduleModal extends React.Component {
                     </ul>
                 </div>
             </div>
-            // </div>
         );
     }
 }

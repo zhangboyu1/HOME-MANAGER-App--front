@@ -26,12 +26,13 @@ export const OpenModal = (_date) => {
     //Now we can search the Schelue list via the giving data.....
     //根据currentUser来检索对应的数据
     console.log('now the Open modal start to retrieve schedule list')
-    console.log(_date)
     //get the cuurent User
     //then retrieve the object from reletive 'userId
-
     const ScheduleList = data.get(userid).ScheduleList
-    if (ScheduleList[_date]) {
+
+    console.log(ScheduleList)
+    console.log(_date)
+    if (ScheduleList.hasOwnProperty(_date)) {
         console.log(ScheduleList[_date])
         return SuccessHint(ScheduleList[_date])
     } else {
@@ -58,6 +59,16 @@ export const StoreSchedule = (_scheduleItem, _date, _infoPack) => {
         }
     }
     data.set(userid, ScheduleObject_handel)
-    console.log('Judge if the list hasnt been inserted into local storage', data.get(userid))
     return SuccessHint(data.get(userid).ScheduleList)
+}
+
+export const CheckMarkedDay = () => {
+    //Now we can search the Schelue list via the giving data.....
+    //根据currentUser来检索对应的数据
+    //get the cuurent User
+    //then retrieve the object from reletive 'userId
+    let ScheduleObject_handel = data.get(userid)
+    let oldScedule_Obj = ScheduleObject_handel.ScheduleList
+    return Object.keys(oldScedule_Obj)
+
 }

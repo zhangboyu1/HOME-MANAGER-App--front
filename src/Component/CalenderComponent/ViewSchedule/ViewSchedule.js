@@ -2,8 +2,9 @@ import React from 'react';
 import './ViewSchedule.css'
 export default function viewSchedule(props) {
 
-    console.log(props)
     // how to get the TimeZone for Clock component..!!!!
+
+    console.log(props.ScheduleList.scheduleList)
     return (
         <>
             <div className="view-card">
