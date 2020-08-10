@@ -1,6 +1,10 @@
 .view-card {
-    position  : absolute;
     background: gray;
-    width     : 600px;
-    height    : 300px;
+    width: 600px;
+    height: 400px;
+    z-index: 4000;
+    position: absolute;
+    left: calc(50% - 300px);
+    top: calc(50% - 200px);
+    opacity: 0.6;
 }
