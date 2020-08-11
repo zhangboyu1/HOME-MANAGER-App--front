@@ -1,5 +1,7 @@
 import React from 'react';
-
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { data } from '../../Store/localStorage';
 
 export default class ScheduleModal extends React.Component {
 
@@ -7,7 +9,8 @@ export default class ScheduleModal extends React.Component {
         super()
         this.state = {
             msg: '',
-            date: '29-9-2020'
+            startDate: new Date(),
+            transformedDate: ''
         }
     }
 
@@ -20,12 +23,36 @@ export default class ScheduleModal extends React.Component {
 
     handleSubmit = event => {
         event.preventDefault()
-        const { msg, date } = this.state;
-        this.props.addList(msg, date);
+        const { msg, transformedDate } = this.state;
+        this.props.addList(msg, transformedDate);
         this.setState(
-            { msg: '' }
+            {
+                msg: '',
+                transformedDate: ''
+            }
         )
     }
+
+    setStartDate = date => {
+        //把date处理了。。。。
+        let { startDate, transformedDate } = this.state
+        if (date) {
+            var year = date.getFullYear();
+            var month = date.getMonth() + 1;
+            var day = date.getDate();
+            let transformedDate = [day, month, year].join('-')
+            this.setState({
+                transformedDate
+            })
+        }
+        startDate = date
+        this.setState({
+            startDate
+        }, () => {
+            console.log(this.state.transformedDate)
+        });
+
+    };
 
     render() {
         return (
@@ -34,6 +61,13 @@ export default class ScheduleModal extends React.Component {
                 <div className="InputSection">
                     <form action='/' onSubmit={this.handleSubmit}>
                         <input type="text" value={this.state.msg} onChange={this.typeIn} />
+                        <DatePicker
+                            dateFormat="d-MM-yyyy"
+                            selected={this.state.startDate}
+                            onChange={this.setStartDate}
+                            isClearable
+                            placeholderText="I am clean.."
+                        />
                         <input type="submit" value="submit" />
                     </form>
                 </div>
