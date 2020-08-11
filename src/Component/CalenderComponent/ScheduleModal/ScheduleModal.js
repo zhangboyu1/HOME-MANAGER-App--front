@@ -29,7 +29,7 @@ export default class ScheduleModal extends React.Component {
 
 
     SetSchedule = () => {
-        this.props.closeSchdule(false)
+        this.props.closeSetSchdule(false)
     }
 
     render() {

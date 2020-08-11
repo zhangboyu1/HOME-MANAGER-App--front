@@ -14,19 +14,25 @@ export default class CalenderBody extends Component {
             OpenModalResult: {},
             date: '',
             markeday: 0,
-            isSetSchedule: false
+            isSetSchedule: false,
+            isViewSchedule: false
         }
     }
 
     checkSchedule = (e) => {
         let { OpenModalResult } = this.state
         //此时a就应该打开modal了。。。。
-        const isOpenModal = OpenModal(e.target.value) // 在OpenModal 里应该进行数据检索。。。并返回是否应该打开Modal。。
+        console.log(e)
+        const passedDate = e.target !== undefined ? e.target.value : e
+        const isOpenModal = OpenModal(passedDate)// 在OpenModal 里应该进行数据检索。。。并返回是否应该打开Modal。。
         console.log(isOpenModal)
         OpenModalResult = isOpenModal
         this.setState({
-            OpenModalResult
+            OpenModalResult,
+            isViewSchedule: true
         })
+        //还要更新MarkDay、、
+        this.props.markDayRetrieve()
     }
 
     setSchedule = (_date) => {
@@ -36,34 +42,45 @@ export default class CalenderBody extends Component {
         console.log(markeday)
         ////每一次添加日期时。。。calender都会添加相应的日期。
         this.setState({
-            date, markeday
+            date, markeday,
         }, () => {
         })
     }
 
 
-
     isSetSchedule = () => {
-
         this.setState({
             isSetSchedule: true
         })
     }
 
-    closeSchdule = (_claseAction) => {
-        let { isSetSchedule } = this.state
+    closeSetSchdule = (_claseAction) => {
+        let { isSetSchedule, markeday } = this.state
         isSetSchedule = _claseAction
+        markeday = 0
         this.setState({
-            isSetSchedule
+            isSetSchedule, markeday
         })
     }
+
+    closeViewSchdule = (_claseAction) => {
+        let { isViewSchedule } = this.state
+        isViewSchedule = _claseAction
+        this.setState({
+            isViewSchedule
+        })
+    }
+
+
 
 
     render() {
         let arry1 = [], arry2 = [];
         let { month, year, monthDays, weekDays, day, retrieveDayArr } = this.props
-        const { OpenModalResult, date, markeday, isSetSchedule } = this.state
+        let { OpenModalResult, date, markeday, isSetSchedule, isViewSchedule } = this.state
+        console.log('markeday', markeday)
         markeday && retrieveDayArr.push(markeday)
+        console.log(retrieveDayArr)
         for (var i = 0; i < weekDays; i++) {
             arry1[i] = i;
         }
@@ -100,8 +117,12 @@ export default class CalenderBody extends Component {
         return (
             <div className="BodyBoder">
                 <button className="Schedule-btn" onClick={this.isSetSchedule} >SetSchedule</button>
-                {isSetSchedule && <ScheduleModal setSchedule={this.setSchedule} closeSchdule={this.closeSchdule} />}
-                {OpenModalResult.value && <ViewScheduleModal ScheduleList={OpenModalResult} />}
+                {isSetSchedule && <ScheduleModal setSchedule={this.setSchedule} closeSetSchdule={this.closeSetSchdule} />}
+                {isViewSchedule && OpenModalResult.value && <ViewScheduleModal
+                    ScheduleList={OpenModalResult}
+                    checkSchedule={this.checkSchedule}
+                    closeViewSchdule={this.closeViewSchdule}
+                />}
                 <div className="weekday">
                     <ul>
                         <li>SUN</li>
