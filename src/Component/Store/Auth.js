@@ -1,11 +1,12 @@
 import { data } from './localStorage';
+import { Loginstatus } from './LoginCheck/LoginCheck';
+import axios from 'axios';
 
-import { Loginstatus } from './LoginCheck/LoginCheck'
-
-const authSuccess = (userId) => {
+const authSuccess = (userId, content) => {
     return {
         type: 'AUTH_SUCCESS',
         userId: userId,
+        content: content
     };
 };
 
@@ -16,20 +17,22 @@ const authFail = (error) => {
     };
 };
 
+
 export const auth = (user, password, isSignup) => {
     const authData = new Object();
-    authData.user = user;
+    authData.userName = user;
     authData.password = password;
     authData.existUser = false;
-    authData.id = ''
     const checkStorage = localStorage
-    var re = /^\+?[0-9][0-9]*$/;
+    var reg = /^\+?[0-9][0-9]*$/;
     // -------------------------------------------------Only front - end -----------------------------------------------------------------------
     //It needs to clear the storage first when everytime switch to this App.....
+    // 这种方法仅适用于。。当userId获取到cookie以后。。在同一个域名下。。会存储多个user。。。
+    // 这个之后再做。
     if (checkStorage.currentUser) {
         for (let key in checkStorage) {
-            if (re.test(Number(key))) {
-                if (JSON.parse(checkStorage[key]).user === authData.user) {
+            if (reg.test(Number(key))) {
+                if (JSON.parse(checkStorage[key]).user === authData.userName) {
                     authData.existUser = true;
                     authData.id = key
                 }
@@ -40,61 +43,54 @@ export const auth = (user, password, isSignup) => {
     }
 
     console.log("whether this user has already existed:", authData.existUser)
+    //没事，，错了就要改正，否则永远都是错的。。糊弄自己就等于糊弄自己的人生、。、、、、
     if (isSignup) {
-        if (authData.existUser) {
-            return authFail('The user not existed, please check or sign or a new user!')
-        }
-        // Then only singup intention could getinto this function....:
-        const date = new Date();
-        let userId_FAKE = date.getTime()
-        var userid = userId_FAKE
-        data.set(userid, authData)
-        data.set('currentUser', userid)
-        return authSuccess(userId_FAKE)
+        const url_signup = 'http://localhost:8080/api/user/signup';
+
+        console.log('开始向后端发起signup请求了')
+        return axios.post(url_signup, JSON.stringify(authData)).then(response => {
+            console.log(response.data)
+            if (response.data.errno === 1) {
+                return authSuccess('xxx', response.data.message)
+            }
+            return authFail(response.data.message)
+        }).catch(err => {
+            authFail(err)
+        });
     }
     else {
-        // This is the login----logic.....
-        console.log('current password is:', authData.password)
-        console.log('This is the log-in process')
-        if (authData.existUser) {
-            data.set('currentUser', authData.id) //现在user是对的。。。再来看看password是不是对的。
-            if (data.get(authData.id).password === authData.password) {
-                //再验证登陆的时候，添加登陆状态： 
-                Loginstatus(authSuccess(data.get(userid || authData.id)))
-                return authSuccess(data.get(userid || authData.id))
-            }
-            if (authData.password === '') {
-                return authFail('The password is required')
-            } else {
-                return authFail('The password is not correct!')
-            }
-        } else {
-            return authFail('The user not existed, please check or sign or a new user!')
+        if (authData.password === '') {
+            return authFail('The password is required')
+        } if (authData.userName == '') {
+            return authFail('The username is required')
         }
+        const url_login = 'http://localhost:8080/api/user/login';
+        return axios.post(url_login, JSON.stringify(authData)).then(response => {
+            console.log(response.data)
+            if (response.data.errno) {
+                //    那前端就自己造一个cookie
+                const userId = `${Date.now()}_${Math.random()}`
+                data.set('currentUser', userId) //现在user是对的。。。再来看看password是不是对的。
+                // 还是要给localStorage 存储一对键值对。。。
+                //对于数据的操作。。。
+                data.set(userId, { user: authData.userName })
+                Loginstatus(authSuccess(userId, response.data.data))
+                return authSuccess(userId, response.data.data)
+            }
+            return authFail(response.data.message)
+        }).catch(err => {
+            authFail(err)
+        });
     }
 }
 
-        // ----------------------------------------------------------If have back-end server--------------------------------------------------------------------------------
+// ----------------------------------------------------------If have back-end server--------------------------------------------------------------------------------
 
-        //     let url = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCA09BIX4hedS0NTjmoC2oaQ_CmD8KWIA4';
-        //     if (!isSignup) {
-        //         // url = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCA09BIX4hedS0NTjmoC2oaQ_CmD8KWIA4';
-        //         url = configuration.api.backend_api + "/api/v1/users/signIn";
-        //     }
-        //     axios.post(url, authData).then(response => {
-        //         const { exp } = decode(response.data.token);
-        //         var expirationDate = new Date();
-        //         var t_s = new Date().getTime();
-        //         expirationDate.setTime(t_s + exp / 10);
-        //         localStorage.setItem('token', response.data.token);
-        //         localStorage.setItem('expirationDate', expirationDate);
-        //         localStorage.setItem('userId', response.data.user._id);
-        //         localStorage.setItem("userName", response.data.user.name.firstName + " " + response.data.user.name.lastName);
-        //         localStorage.setItem("userImage", response.data.user.images);
-        //         dispatch(authSuccess(response.data.token, response.data.user._id,
-        //             response.data.user.name.firstName + " " + response.data.user.name.lastName));
-        //         //dispatch(checkAuthTimeout(response.data.expiresIn));
-        //     }).catch(err => {
-        //         dispatch(authFail(err));
-        //     });
+//     let url = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCA09BIX4hedS0NTjmoC2oaQ_CmD8KWIA4';
+//     if (!isSignup) {
+//         // url = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCA09BIX4hedS0NTjmoC2oaQ_CmD8KWIA4';
+//         url = configuration.api.backend_api + "/api/v1/users/signIn";
+//     }
+
+
 

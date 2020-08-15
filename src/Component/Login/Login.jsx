@@ -35,14 +35,13 @@ export default class Login extends React.Component {
         }
     }
 
-    checkAuth = (user_, password_, isSignup_) => {
-        let isAuth = auth(user_, password_, isSignup_);
-        console.log(isAuth)
+    async checkAuth(_user, _password, _isSignup) {
+        let isAuth = await auth(_user, _password, _isSignup);
         isAuth.type === 'AUTH_SUCCESS'
             && this.props.history.push('/', isAuth)
-            && this.props.upDateLocal()
-            || isAuth.type === 'AUTH_FAIL' &&
-            (this.setState({
+        this.props.upDateLocal(isAuth)
+            || isAuth.type === 'AUTH_FAIL'
+            && (this.setState({
                 errorMessage: isAuth.error
             }))
     }
@@ -102,7 +101,7 @@ export default class Login extends React.Component {
         var isSignUp
         event.preventDefault()
         let { user, password } = this.state
-        var isSignUp = false
+        isSignUp = false
         this.isValid
             && (this.props.location.pathname === "/login" && this.checkAuth(user.value, password.value, isSignUp)) ||
             this.props.location.pathname === '/sub-sign-up' && (this.props.location.state.type === `ADD_SUCCESS` || false) && (isSignUp = true) || this.checkAuth(user.value, password.value, isSignUp)

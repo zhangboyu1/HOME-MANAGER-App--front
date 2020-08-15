@@ -14,11 +14,26 @@ export default class ScheduleModal extends React.Component {
         }
     }
 
+    async NewSchedule(_m, _d, _infoPackage) {
+
+        const isNew = await StoreSchedule(_m, _d, _infoPackage)
+        console.log(isNew)
+
+
+
+
+    }
+
+
+
+
+
     addList1 = (m, d) => {
         const { msgArr, infoPackage } = this.state;
         msgArr.push(m)
         infoPackage[d] = msgArr
         const isStore = StoreSchedule(m, d, infoPackage)
+        //此处应该有Ajax请求。。。。。
 
         // It should have a judgement ......
         this.props.setSchedule(d)
