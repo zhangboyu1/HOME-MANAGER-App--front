@@ -27,9 +27,9 @@ export default function NaviSide(props) {
                                 <myContext.Consumer>
                                     {(value) => value &&
                                         <>
-                                            <p class="name__text">{value.LastName}</p>
-                                            <p class="name__text">{value.title}</p>
-                                            <p class="email__text">{value.user}</p>
+                                            <p class="name__text">{value.users_LASTNAME}</p>
+                                            <p class="name__text">{value.users_TITLE}</p>
+                                            <p class="email__text">{value.users_EMAIL}</p>
                                         </>
                                     }
                                 </myContext.Consumer>

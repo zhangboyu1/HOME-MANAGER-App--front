@@ -12,7 +12,6 @@ import Login from './Component/Login/Login'
 import SignUp from './Component/SignUp/SignUp'
 import SubSignUp from './Component/SignUp/SubSignUp/SubSIgnUp'
 import NaviSide from './Component/NaviSide/NaviSide'
-import { data } from './Component/Store/localStorage'
 import './App.css'
 export const myContext = React.createContext("userProfile");
 
@@ -25,12 +24,12 @@ export default class App extends React.Component {
         }
     }
 
-    upDateLocal = () => {
-        console.log('the app.js is being invoked______________________________')
-        console.log(this.props)
-        console.log("Now the current user would be:", data.get('currentUser'))
-        this.currentUser = data.get('currentUser')
-        this.userProfile = data.get(this.currentUser)
+    upDateLocal = (_upDateProfileData) => {
+        console.log(_upDateProfileData)
+        if (_upDateProfileData != undefined) {
+            this.userProfile = { ..._upDateProfileData.content }
+            console.log('updatedProfile is, ', this.userProfile)
+        }
         this.forceUpdate();
         return
     }

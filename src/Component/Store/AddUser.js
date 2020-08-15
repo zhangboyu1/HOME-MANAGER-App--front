@@ -1,11 +1,12 @@
 import { data } from './localStorage';
+import axios from 'axios';
 
 
-
-const addSuccess = (userId) => {
+const addSuccess = (userId, content) => {
     return {
         type: 'ADD_SUCCESS',
         userId: userId,
+        content: content
     };
 };
 
@@ -16,22 +17,26 @@ const addFail = (error) => {
     };
 };
 
-export const addUser = (firstName, LastName, title, userid) => {
-    const addData = new Object();
-    addData.firstName = firstName;
-    addData.LastName = LastName;
-    addData.title = title;
 
-    if (localStorage.hasOwnProperty(userid)) {
-        console.log("start to add profile to the storage....")
-        let login_Value = data.get(userid)
-        let newValue = {
-            ...login_Value,
-            ...addData
-        };
-        data.set(userid, newValue)
-        return addSuccess(userid)
-    } else {
-        return addFail('error')
-    }
+export const addUser = (_profileContent) => {
+    const addData = new Object();
+    addData.firstName = _profileContent.firstName;
+    addData.lastName = _profileContent.lastName;
+    addData.title = _profileContent.title;
+    addData.userName = _profileContent.userName;
+    addData.password = _profileContent.userName;
+
+    const url = 'http://localhost:8080/api/user/profile';
+    return axios.post(url, JSON.stringify(addData)).then(response => {
+
+        if (response.data.errno === 1) {
+            return addSuccess('xxx', response.data.message)
+        }
+
+        return addFail(response.data.message)
+
+    }).catch(err => {
+        addFail(err)
+    });
+
 }

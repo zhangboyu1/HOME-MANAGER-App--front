@@ -2,6 +2,7 @@ import React from 'react';
 import '../SignUp.css'
 import './SubSignUp.css'
 import { addUser } from '../../Store/AddUser'
+// import axios from 'axios';
 
 export default class SubSignUp extends React.Component {
     constructor(props) {
@@ -15,45 +16,34 @@ export default class SubSignUp extends React.Component {
         this.handleClick = this.handleClick.bind(this);
     }
 
-
-    async handleClick(e) {
-        e.preventDefault();
-        const { firstName, lastName, title } = this.state;
-        console.log(firstName, lastName, title)
-        const userid = this.props.location.state.userId
-
-        console.log(userid)
-        let addResult = addUser(firstName, lastName, title, userid)
+    async AddUser(_profileContent) {
+        console.log(_profileContent)
+        let addResult = await addUser(_profileContent)
         console.log(addResult)
-        //Only works on the front- end....
-        if (addResult.type === "ADD_SUCCESS") {
-            this.props.history.push('/Login', addResult)
 
+        if (addResult.type === 'ADD_SUCCESS') {
+            console.log('transfer to the next page~~!')
+            alert(addResult.content)
+            this.props.history.push('/login', _profileContent)
+        } else {
+            alert("Something is wrong....~~~~")
         }
-        // const user = await axios.get(configuration.api.backend_api + `/api/v1/users/me${userId}/${token}`);
-        // if (user.status === 200) {
-        //     const users = {
-        //         ...user.data,
-        //         address: {
-        //             suburb: addressList[0],
-        //             state: addressList[1],
-        //             country: "Australia",
-        //         },
-        //         name: {
-        //             firstName, lastName
-        //         },
-        //         token,
-        //         _id: userId,
-        //     }
-        //     axios.put(configuration.api.backend_api + `/api/v1/users/updateOne`, users).then(res => {
-        //         _this.setState({ isLoading: false });
-        //         localStorage.setItem("userName", firstName + " " + lastName);
-        //         _this.props.history.push("/user");
-        //     })
-        // } else {
-        //     this.props.history.push("/404");
-        // }
     }
+
+    handleClick = (e) => {
+        e.preventDefault();
+        // console.log(firstName, lastName, title)
+        const profileContent = {
+            ...this.props.location.state,
+            ...this.state
+        }
+
+        console.log(profileContent)
+        this.AddUser(profileContent)
+        console.log(this.props)
+    }
+
+
     onChange = (e) => {
         this.setState({
             [e.target.name]: e.target.value,
