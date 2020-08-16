@@ -25,8 +25,6 @@ export default class CaldenderController extends Component {
             retrieveDayArr: []
 
         }
-        console.log('Find out when the location can be loaded;', this.props)
-        console.log(this.props.location.pathname.indexOf('/calender'))
     }
 
 
@@ -68,20 +66,21 @@ export default class CaldenderController extends Component {
             year,
             currentDay
         })
+
         this.markDayRetrieve()
+        console.log('initiate calender！')
+        // 我们就在这里发送Ajax请求。。。然后再往下走。
+
     }
 
     //Controller is used to interacte with the localStorage....
-    markDayRetrieve = () => {
+    async markDayRetrieve() {
         console.log('Now reCheck the marked day 了')
-        const markDayArr = CheckMarkedDay()
-
-        let newDayAr = []
-        markDayArr.length !== 0 && markDayArr.map(item => {
-            newDayAr.push(Number(item.split('-')[0]))
-        })
+        let { retrieveDayArr } = this.state;
+        const markDayArr = await CheckMarkedDay()
+        retrieveDayArr = markDayArr.scheduleList
         this.setState({
-            retrieveDayArr: newDayAr
+            retrieveDayArr
         })
     }
 
@@ -90,7 +89,7 @@ export default class CaldenderController extends Component {
         const monthDays = this.getMonthDays();
         const weekDays = this.getFirstDayWeek()
         const { month, year, currentDay, retrieveDayArr } = this.state
-        console.log(retrieveDayArr)
+        console.log("retrieved mark day would be : ", retrieveDayArr)
         return (
             <div className="cardFrame">
                 <div className="card_calender">
@@ -106,8 +105,9 @@ export default class CaldenderController extends Component {
                         day={currentDay}
                         monthDays={monthDays}
                         weekDays={weekDays}
-                        markDayRetrieve={this.markDayRetrieve}
                         retrieveDayArr={retrieveDayArr}
+                    // markDayRetrieve={this.markDayRetrieve}
+
                     />
                 </div>
             </div>

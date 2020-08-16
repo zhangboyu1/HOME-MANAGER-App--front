@@ -2,15 +2,15 @@ import React from 'react';
 import './ViewSchedule.css'
 import ButtonDelete from './DeleteButton'
 
-
 export default class viewSchedule extends React.Component {
     constructor(props) {
         super()
 
     }
     // how to get the TimeZone for Clock component..!!!!
-    freshViewShcedule = () => {
-        this.props.checkSchedule(this.props.ScheduleList.selectedDate)
+    freshViewShcedule = (_deletePackage) => {
+        const { schedules_DATE } = _deletePackage
+        this.props.checkSchedule(schedules_DATE)
         this.forceUpdate()
 
     }
@@ -19,7 +19,6 @@ export default class viewSchedule extends React.Component {
         this.props.closeViewSchdule(false)
     }
 
-    // It semms like we need a little bit more......with date that schedule is generated from.
     render() {
 
         console.log(this.props.ScheduleList)
@@ -35,7 +34,6 @@ export default class viewSchedule extends React.Component {
                                     {item.schedules_CONTENT}
                                     <ButtonDelete freshViewShcedule={this.freshViewShcedule} deleteItem={item} deleteDate={this.props.ScheduleList.selectedDate} />
                                 </li>)
-
                             )}
                         </ul>
                     </div>

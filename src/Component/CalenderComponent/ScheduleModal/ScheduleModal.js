@@ -10,38 +10,26 @@ export default class ScheduleModal extends React.Component {
         this.state = {
             msgArr: [],
             infoPackage: {},
-            isStore: false
         }
     }
 
     async NewSchedule(_m, _d, _infoPackage) {
 
         const isNew = await StoreSchedule(_m, _d, _infoPackage)
-        console.log(isNew)
 
-
-
-
+        let msgArr = _infoPackage[_d]
+        if (isNew !== undefined && isNew.value) {
+            this.setState({ msgArr, _infoPackage })
+            this.props.setSchedule(_d)
+        }
     }
-
-
-
-
 
     addList1 = (m, d) => {
         const { msgArr, infoPackage } = this.state;
         msgArr.push(m)
         infoPackage[d] = msgArr
-        const isStore = StoreSchedule(m, d, infoPackage)
-        //此处应该有Ajax请求。。。。。
-
-        // It should have a judgement ......
-        this.props.setSchedule(d)
-        if (isStore.type === 'OPEN_SUCCESS') {
-            this.setState({ msgArr, infoPackage, isStore })
-        }
+        this.NewSchedule(m, d, infoPackage)
     }
-
 
     SetSchedule = () => {
         this.props.closeSetSchdule(false)

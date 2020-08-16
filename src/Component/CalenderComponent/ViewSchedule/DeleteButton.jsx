@@ -4,19 +4,16 @@ import { DeleteSchedule } from '../../Store/ModalOperation'
 export default function ButtonDelete(props) {
 
 
-    async function DeleteSch(_deleteItem, _deleteDate) {
+    async function DeleteSch(_deletePackage) {
 
-        const isDelete = DeleteSchedule(props.deleteItem, props.deleteDate)
-        console.log(isDelete)
+        console.log('deleteitem is ', _deletePackage)
+        const isDelete = await DeleteSchedule(_deletePackage)
+        if (isDelete.value) {
 
-        // if (isOpenModal.value) {
-        //     OpenModalResult = isOpenModal.scheduleList
-        //     console.log(OpenModalResult)
-        //     this.setState({
-        //         OpenModalResult,
-        //         isViewSchedule: true
-        //     })
-        // }
+            console.log('now the deleted one need to fresh the  page')
+            props.freshViewShcedule(_deletePackage)
+        }
+
     }
 
 
@@ -24,7 +21,6 @@ export default function ButtonDelete(props) {
     const deleteButton = () => {
         //Now we can directly malnipulate the localstorage.....
         DeleteSch(props.deleteItem, props.deleteDate)
-        props.freshViewShcedule()
     }
 
 
