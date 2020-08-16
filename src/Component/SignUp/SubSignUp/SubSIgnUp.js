@@ -20,7 +20,6 @@ export default class SubSignUp extends React.Component {
         console.log(_profileContent)
         let addResult = await addUser(_profileContent)
         console.log(addResult)
-
         if (addResult.type === 'ADD_SUCCESS') {
             console.log('transfer to the next page~~!')
             alert(addResult.content)

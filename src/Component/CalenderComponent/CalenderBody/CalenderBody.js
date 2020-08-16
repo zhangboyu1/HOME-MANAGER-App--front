@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import './CalenderBody.css';
 //最后一步了，引入navLink让页面动起来。。。。
-import { OpenModal } from '../../Store/ModalOperation';
+import { OpenModal, CheckMarkedDay } from '../../Store/ModalOperation';
 import ScheduleModal from '../ScheduleModal/ScheduleModal';
 import ViewScheduleModal from '../ViewSchedule/ViewSchedule';
 
@@ -22,34 +22,35 @@ export default class CalenderBody extends Component {
     async ViewSchdule(_passedDate) {
         let { OpenModalResult } = this.state
         const isOpenModal = await OpenModal(_passedDate)
-
-        console.log(isOpenModal)
         if (isOpenModal.value) {
             OpenModalResult = isOpenModal.scheduleList
-            console.log(OpenModalResult)
             this.setState({
                 OpenModalResult,
                 isViewSchedule: true
+            })
+        } else {
+            this.setState({
+                isViewSchedule: false
             })
         }
     }
 
     checkSchedule = (e) => {
-        //此时a就应该打开modal了。。。。
         const passedDate = e.target !== undefined ? e.target.value : e
         this.ViewSchdule(passedDate)
-        this.props.markDayRetrieve()
+        //改正吧。。。感觉不能通过从本地获取了。。。。太他妈的麻烦了。。。。
+        // 但是做的时候还是回去做。
+        // this.CheckMarkedDay()
+
     }
 
+
     setSchedule = (_date) => {
-        let { date, markeday } = this.state
-        date = _date
-        markeday = Number(date.split('-')[0])
-        console.log(markeday)
-        ////每一次添加日期时。。。calender都会添加相应的日期。
+        // 这个是获得了本次的MARKDATE......
+        let { markeday } = this.state
+        markeday = _date
         this.setState({
-            date, markeday,
-        }, () => {
+            markeday
         })
     }
 
@@ -59,6 +60,7 @@ export default class CalenderBody extends Component {
             isSetSchedule: true
         })
     }
+
 
     closeSetSchdule = (_claseAction) => {
         let { isSetSchedule, markeday } = this.state
@@ -82,8 +84,6 @@ export default class CalenderBody extends Component {
         let arry1 = [], arry2 = [];
         let { month, year, monthDays, weekDays, day, retrieveDayArr } = this.props
         let { OpenModalResult, date, markeday, isSetSchedule, isViewSchedule } = this.state
-
-        console.log(OpenModalResult)
         markeday && retrieveDayArr.push(markeday)
         for (var i = 0; i < weekDays; i++) {
             arry1[i] = i;
@@ -91,16 +91,15 @@ export default class CalenderBody extends Component {
         for (var j = 0; j < monthDays; j++) {
             // 在这个数组中添加参数。。。。
             arry2.push({
-                value: j,
+                value: j + 1,
+                date: `${j}-${month}-${year}`,
                 mark: 'unmarked'
             })
 
             for (const item of retrieveDayArr) {
-                if (j === item) {
-                    console.log(item)
-                    arry2[j].mark = 'marked'
+                if (`${j}-${month}-${year}` === item) {
+                    arry2[j - 1].mark = 'marked'
                 }
-                continue
             }
         }
         var node1 = arry1.map(function (item) { return <li></li> })
