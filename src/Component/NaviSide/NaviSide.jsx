@@ -2,13 +2,25 @@ import React from 'react';
 import './NaviSide.css';
 import { myContext } from '../../App'
 import { Logoutstatus } from '../Store/LoginCheck/LoginCheck'
+import { LogoutSetting } from '../Store/LogOut'
 import { NavLink } from "react-router-dom";
 
 export default function NaviSide(props) {
-    var isLogout = 1
-    const handleLogout = () => {
-        isLogout = Logoutstatus().value
+
+    async function Logout() {
+        const isLogout = await LogoutSetting()
+        if (isLogout.value) {
+            return Logoutstatus().value
+        } else {
+            alert('')
+        }
     }
+
+
+    const handleLogout = () => {
+        Logout()
+    }
+
 
     return (
         <div className="NaviSide">
@@ -34,7 +46,7 @@ export default function NaviSide(props) {
                                     }
                                 </myContext.Consumer>
                             </div>
-                            <NavLink exact to={isLogout && '/login'} activeClassName='active'>
+                            <NavLink exact to={'/login'} activeClassName='active'>
                                 <button className="logout-btn" onClick={() => { handleLogout() }}> Log-out</button>
                             </NavLink>
                         </section>

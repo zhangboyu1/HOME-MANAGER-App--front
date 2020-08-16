@@ -1,6 +1,7 @@
 import { data } from './localStorage'
 import axios from 'axios';
 const userid = data.get('currentUser')
+const checkStorage = localStorage
 
 const SuccessHint = (scheduleList, selectedDate) => {
     // the schedeuleList should be a complete array.....
@@ -21,20 +22,16 @@ const FailHint = (error) => {
     };
 };
 
-
 export const OpenModal = (_date) => {
-    console.log(_date)
     let targetUser = data.get(userid).user
     const url_viewList = `http://localhost:8080/api/schedule/list?date=${_date}&&user=${targetUser}`
     return axios.get(url_viewList).then(response => {
         if (response.data.errno) {
-            console.log(response.data)
             const scheduleList = response.data.data
             return SuccessHint(scheduleList, _date)
         }
         return FailHint(response.data.message)
     }).catch(err => {
-        // authFail(err)
     });
 }
 
@@ -73,7 +70,6 @@ const checkInStore = (_userid, _infoPack, _date, _scheduleItem) => {
 export const StoreSchedule = (_scheduleItem, _date, _infoPack) => {
     const url_newlist = 'http://localhost:8080/api/schedule/new'
     const currentUser = data.get(data.get(`currentUser`))
-    console.log(currentUser)
     const data_NewShceudel = {
         date: _date,
         content: _scheduleItem,
@@ -81,11 +77,7 @@ export const StoreSchedule = (_scheduleItem, _date, _infoPack) => {
     }
     return axios.post(url_newlist, JSON.stringify(data_NewShceudel)).then(response => {
         if (response.data.errno) {
-            // return SuccessHint(_scheduleItem, _date)
-            // 需要链式调用。。。。
-            // 还是要把mark的日期存在localStorage中这样方便查找。。。。
             const isCheck = checkInStore(data.get(`currentUser`), _infoPack, _date, _scheduleItem);
-            console.log(isCheck)
             if (isCheck.value) {
                 return SuccessHint(_scheduleItem, _date)
             }
@@ -102,7 +94,6 @@ export const DeleteSchedule = _deletePackage => {
     let ScheduleObject_handel = data.get(userid)
     let oldScedule_Obj = ScheduleObject_handel.ScheduleList
     const { schedules_DATE, schedules_CONTENT } = _deletePackage
-
     const delete_Schdule = {
         date: schedules_DATE,
         content: schedules_CONTENT,
@@ -112,8 +103,6 @@ export const DeleteSchedule = _deletePackage => {
     const url_deleteSch = 'http://localhost:8080/api/schedule/delete'
     return axios.post(url_deleteSch, JSON.stringify(delete_Schdule)).then(response => {
         if (response.data.errno) {
-            console.log(response.data)
-            // 在本地localStorage中把它在删了
             const checkedArry = oldScedule_Obj[schedules_DATE]
             checkedArry.splice(checkedArry.findIndex(item => item === schedules_CONTENT), 1)
             if (checkedArry.length === 0) {
@@ -121,7 +110,6 @@ export const DeleteSchedule = _deletePackage => {
             }
             data.set(userid, ScheduleObject_handel)
         }
-        // 这是返回到数据库中了。。。
         return SuccessHint(_deletePackage.schedules_DATE, _deletePackage.schedules_CONTENT)
     })
 }
@@ -129,32 +117,30 @@ export const DeleteSchedule = _deletePackage => {
 
 
 export const CheckMarkedDay = () => {
-
-    console.log("")
-    let { user } = data.get(userid)
-    const url_checkScheDate = `http://localhost:8080/api/schedule/all?user=${user}`
-    return axios.get(url_checkScheDate).then(response => {
-
-        console.log(response.data)
-        if (response.data.errno) {
-            console.log(response.data)
-            const newArr = [];
-            response.data.data.map((obj, index) => {
-                newArr.push(obj.schedules_DATE)
+    let ScheduleObject_handel = data.get(userid)
+    let oldScedule_Obj = ScheduleObject_handel.ScheduleList
+    if (oldScedule_Obj !== undefined) {
+        if (!Object.keys(oldScedule_Obj).length) {
+            // Now the localStorage doesn't have any schedule....
+            console.log('Now the localStorage doesnt have any schedul')
+            let { user } = data.get(userid)
+            const url_checkScheDate = `http://localhost:8080/api/schedule/all?user=${user}`
+            return axios.get(url_checkScheDate).then(response => {
+                if (response.data.errno) {
+                    const markDayArr = [];
+                    response.data.data.map((obj, index) => {
+                        markDayArr.push(obj.schedules_DATE)
+                    })
+                    return SuccessHint(markDayArr)
+                }
+                return FailHint(response.data.message)
             })
-            console.log(newArr)//然后我们现在把这个Arr交给
-            return SuccessHint(newArr)
+        } else {
+            //localStoarge中已经存在这个Schedule list了。。。直接从本地缓存中拿取数据。。。
+            console.log('Now we can get the date from the localStoage....')
+            const markDayArr = Object.keys(oldScedule_Obj)
+            return SuccessHint(markDayArr)
         }
-        return FailHint(response.data.message)
-    })
-
-    // console.log(ScheduleObject_handel)
-    // if (ScheduleObject_handel.hasOwnProperty('ScheduleList')) {
-    //     let oldScedule_Obj = ScheduleObject_handel.ScheduleList
-    //     console.log(Object.keys(oldScedule_Obj))
-    //     return Object.keys(oldScedule_Obj)
-    // }
-    // return []
-
-
+    }
+    return SuccessHint([])
 }

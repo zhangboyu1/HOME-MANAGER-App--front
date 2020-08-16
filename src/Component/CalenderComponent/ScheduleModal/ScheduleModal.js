@@ -14,9 +14,7 @@ export default class ScheduleModal extends React.Component {
     }
 
     async NewSchedule(_m, _d, _infoPackage) {
-
         const isNew = await StoreSchedule(_m, _d, _infoPackage)
-
         let msgArr = _infoPackage[_d]
         if (isNew !== undefined && isNew.value) {
             this.setState({ msgArr, _infoPackage })

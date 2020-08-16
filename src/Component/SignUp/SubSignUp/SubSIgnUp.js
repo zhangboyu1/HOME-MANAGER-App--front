@@ -31,7 +31,6 @@ export default class SubSignUp extends React.Component {
 
     handleClick = (e) => {
         e.preventDefault();
-        // console.log(firstName, lastName, title)
         const profileContent = {
             ...this.props.location.state,
             ...this.state

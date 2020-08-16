@@ -8,8 +8,8 @@ export default function ButtonDelete(props) {
 
         console.log('deleteitem is ', _deletePackage)
         const isDelete = await DeleteSchedule(_deletePackage)
-        if (isDelete.value) {
 
+        if (isDelete.value) {
             console.log('now the deleted one need to fresh the  page')
             props.freshViewShcedule(_deletePackage)
         }
