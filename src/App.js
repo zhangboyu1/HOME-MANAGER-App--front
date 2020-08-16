@@ -70,10 +70,10 @@ export default class App extends React.Component {
         return (
             <Router>
                 <NavigatorTop />
-                <myContext.Provider value={this.userProfile}>
-                    <NaviSide />
-                </myContext.Provider>
                 <switch >
+                    <myContext.Provider value={this.userProfile}>
+                        <NaviSide />
+                    </myContext.Provider>
                     <Route exact path="/" render={this.PassToHome} />
                     <Route exact path="/login" render={this.PassToLogin} />
                     <Route exact path="/sign-up" component={SignUp} />

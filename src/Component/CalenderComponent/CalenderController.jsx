@@ -66,24 +66,25 @@ export default class CaldenderController extends Component {
             year,
             currentDay
         })
-
         this.markDayRetrieve()
         console.log('initiate calender！')
-        // 我们就在这里发送Ajax请求。。。然后再往下走。
-
     }
-
     //Controller is used to interacte with the localStorage....
     async markDayRetrieve() {
         console.log('Now reCheck the marked day 了')
         let { retrieveDayArr } = this.state;
         const markDayArr = await CheckMarkedDay()
-        retrieveDayArr = markDayArr.scheduleList
+        if (markDayArr.value) {
+            if (markDayArr.scheduleList.length) {
+                retrieveDayArr = markDayArr.scheduleList
+            }
+        } else {
+            retrieveDayArr = []
+        }
         this.setState({
             retrieveDayArr
         })
     }
-
 
     render() {
         const monthDays = this.getMonthDays();
@@ -106,8 +107,7 @@ export default class CaldenderController extends Component {
                         monthDays={monthDays}
                         weekDays={weekDays}
                         retrieveDayArr={retrieveDayArr}
-                    // markDayRetrieve={this.markDayRetrieve}
-
+                        initCalendar={this.initCalendar}
                     />
                 </div>
             </div>

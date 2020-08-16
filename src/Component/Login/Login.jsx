@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from "axios";
 import './Login.css';
 import { auth } from '../Store/Auth';
 import { Link } from 'react-router-dom';
@@ -161,30 +160,6 @@ export default class Login extends React.Component {
                             </div>
                         </div>
                     </div>
-
-
-                    {/* <div className='login-container'>
-                    <div className='login-wrapper'></div>
-                    <div className="Signup-body">
-
-                    </div>
-                    <div className="login-card">
-                        <form className="login-form" action='/' >
-
-                            <legend>Login-</legend>
-                            <label for="fname">Username:</label>
-                            <input type="text" name="user" value={user.value} onChange={this.onType} />
-
-                            <label for="fname">Password:</label>
-                            <input type="password" name="password" value={password.value} onChange={this.onType} />
-
-                            <button className="submit" onClick={this.handleSubmit} ><span>NEXT</span></button>
-                        </form>
-                        <div className="switchToSignup">
-                            <p>Don't have an account ?</p>
-                            <Link to='/sign-up' className="switchSignup"><p>Sign Up</p></Link>
-                        </div>
-                    </div> */}
                 </div>
             </>
         )

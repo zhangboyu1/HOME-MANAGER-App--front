@@ -15,7 +15,7 @@ export default class CalenderBody extends Component {
             date: '',
             markeday: 0,
             isSetSchedule: false,
-            isViewSchedule: false
+            isViewSchedule: false,
         }
     }
 
@@ -30,7 +30,7 @@ export default class CalenderBody extends Component {
             })
         } else {
             this.setState({
-                isViewSchedule: false
+                isViewSchedule: false,
             })
         }
     }
@@ -38,12 +38,9 @@ export default class CalenderBody extends Component {
     checkSchedule = (e) => {
         const passedDate = e.target !== undefined ? e.target.value : e
         this.ViewSchdule(passedDate)
-        //改正吧。。。感觉不能通过从本地获取了。。。。太他妈的麻烦了。。。。
-        // 但是做的时候还是回去做。
-        // this.CheckMarkedDay()
-
+        let { month, year, day } = this.props
+        this.props.initCalendar(year, month, day)
     }
-
 
     setSchedule = (_date) => {
         // 这个是获得了本次的MARKDATE......
@@ -54,13 +51,11 @@ export default class CalenderBody extends Component {
         })
     }
 
-
     isSetSchedule = () => {
         this.setState({
             isSetSchedule: true
         })
     }
-
 
     closeSetSchdule = (_claseAction) => {
         let { isSetSchedule, markeday } = this.state
@@ -79,12 +74,13 @@ export default class CalenderBody extends Component {
         })
     }
 
-
     render() {
         let arry1 = [], arry2 = [];
         let { month, year, monthDays, weekDays, day, retrieveDayArr } = this.props
         let { OpenModalResult, date, markeday, isSetSchedule, isViewSchedule } = this.state
+        console.log(retrieveDayArr)
         markeday && retrieveDayArr.push(markeday)
+        console.log(retrieveDayArr)
         for (var i = 0; i < weekDays; i++) {
             arry1[i] = i;
         }
@@ -95,7 +91,6 @@ export default class CalenderBody extends Component {
                 date: `${j}-${month}-${year}`,
                 mark: 'unmarked'
             })
-
             for (const item of retrieveDayArr) {
                 if (`${j}-${month}-${year}` === item) {
                     arry2[j - 1].mark = 'marked'
