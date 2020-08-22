@@ -7,7 +7,6 @@ import { checkInputValidity } from '../Store/Inputvalidity';
 export default class Login extends React.Component {
     constructor(props) {
         super(props)
-
         this.state = {
             user: {
                 validation: {
@@ -54,7 +53,6 @@ export default class Login extends React.Component {
         !errorMessage || errorMessage && this.setState({ errorMessage: '' })
         updatedFormElement.cssClass = '';
         let Valid_result = checkInputValidity(e.target.value, updatedFormElement.validation);
-        console.log(Valid_result)
         this.Valid_result = Valid_result
         this.Valid_result && (updatedFormElement.cssClass = 'color-green') && (updatedFormElement.InputCssClass = 'font--green') && (updatedFormElement.InputWarning = 'formate is correct!')
             || !this.Valid_result && (updatedFormElement.cssClass = 'color--red') && (updatedFormElement.InputCssClass = 'font--red') && (updatedFormElement.InputWarning = 'formate is not correct!')
@@ -83,7 +81,6 @@ export default class Login extends React.Component {
         const updatedFormElement = {
             ...this.state[e.target.name]
         };
-        console.log('I am focused')
         if (updatedFormElement.value === '') {
             updatedFormElement.cssClass = 'color--red';
             updatedFormElement.InputWarning = 'Cannot leave it blank';
@@ -102,11 +99,10 @@ export default class Login extends React.Component {
         event.preventDefault()
         let { user, password } = this.state
         isSignUp = false
-        this.isValid
-            && (this.props.location.pathname === "/login" && this.checkAuth(user.value, password.value, false)) ||
+        this.isValid && (this.props.location.pathname === "/login" && this.checkAuth(user.value, password.value, false)) ||
             this.props.location.pathname === '/sub-sign-up' && (this.props.location.state.type === `ADD_SUCCESS` || false) && (isSignUp = true) || this.checkAuth(user.value, password.value, false)
-
     }
+
     render() {
         const { user, password, errorMessage } = this.state
         return (

@@ -17,11 +17,8 @@ export default class SubSignUp extends React.Component {
     }
 
     async AddUser(_profileContent) {
-        console.log(_profileContent)
         let addResult = await addUser(_profileContent)
-        console.log(addResult)
         if (addResult.type === 'ADD_SUCCESS') {
-            console.log('transfer to the next page~~!')
             alert(addResult.content)
             this.props.history.push('/login', _profileContent)
         } else {
@@ -35,10 +32,7 @@ export default class SubSignUp extends React.Component {
             ...this.props.location.state,
             ...this.state
         }
-
-        console.log(profileContent)
         this.AddUser(profileContent)
-        console.log(this.props)
     }
 
 
@@ -49,8 +43,6 @@ export default class SubSignUp extends React.Component {
     }
 
     render() {
-        console.log(this.props)
-        // const { suggestions, onSpecialChange, onClear } = this.props;
         return (
             <div className="Signup_Background">
                 <div className="Signup__Container">

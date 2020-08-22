@@ -4,8 +4,7 @@ const userid = data.get('currentUser')
 const checkStorage = localStorage
 
 const SuccessHint = (scheduleList, selectedDate) => {
-    // the schedeuleList should be a complete array.....
-    //Pass this array to the modal componeent and then display it ......
+
     return {
         type: 'OPEN_SUCCESS',
         scheduleList: scheduleList,
@@ -31,11 +30,8 @@ export const OpenModal = (_date) => {
             return SuccessHint(scheduleList, _date)
         }
         return FailHint(response.data.message)
-    }).catch(err => {
-    });
+    }).catch(err => { console.log(err) });
 }
-
-
 
 
 const checkInStore = (_userid, _infoPack, _date, _scheduleItem) => {
@@ -44,11 +40,9 @@ const checkInStore = (_userid, _infoPack, _date, _scheduleItem) => {
 
     if (oldScedule_Obj === undefined) {
         ScheduleObject_handel.ScheduleList = _infoPack
-        console.log('first time')
         data.set(userid, ScheduleObject_handel)
         return SuccessHint()
     } else {
-        console.log('not the first time')
         if (Object.keys(oldScedule_Obj).indexOf(_date) !== -1) {
             oldScedule_Obj[_date].push(_scheduleItem)
             data.set(userid, ScheduleObject_handel)

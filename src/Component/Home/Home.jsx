@@ -9,57 +9,20 @@ export default class Home extends React.Component {
         super()
         this.state = {
             Login: 0,
-            ScheduleDate: '04/02/2020',
-            inputinfo: ''
-
         }
     }
 
     componentWillMount() {
-
-        console.log('will mount')
-        console.log(this.props)
-        // console.log(this.state.Login)
-        this.props.upDateLocal()
         const checkResult = checkStore(App_OnlyMake)
         this.checkResult = checkResult
         const isLogin = LoginCheck()
-        // this.isLogin = isLogin
-        console.log(isLogin)
         this.setState({
             Login: isLogin.value
         })
     }
 
-    componentDidMount() {
-        console.log('did mount')
-        console.log(this.props)
-        this.props.upDateHomeInfo(this.state.ScheduleDate)
-    }
-
-
-
-
-    onType = (e) => {
-
-        let { inputinfo } = this.state
-        inputinfo = e.target.value;
-        this.setState({
-            inputinfo
-        })
-    }
-
-    handleSubmit = (event) => {
-        event.preventDefault()
-        //我要读值了。。。。。、
-        const { inputinfo } = this.state;
-        this.props.upDateHomeInfo(inputinfo)
-    }
-
     render() {
-        console.log(this.state.login)
         const { inputinfo } = this.state
-
         return (
             <>
                 {
