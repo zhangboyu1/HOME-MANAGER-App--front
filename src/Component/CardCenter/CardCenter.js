@@ -21,7 +21,7 @@ export default class CardCenter extends React.Component {
             timeZone: ``,
             weatherErrorMsg: ``,
             checkLogin: 0,
-            photoUrl: ''
+            photoUrl: undefined
         }
         this.keeploading = 1;
         this.oldloading = 0
