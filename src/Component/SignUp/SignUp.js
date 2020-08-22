@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './SignUp.css'
 import { auth } from '../Store/Auth';
-// import PasswordStrengthChecker from '../../components/PasswordStrengthChecker/PasswordStrengthChecker'
 
 export default class SignUp extends React.Component {
     constructor(props) {
@@ -69,7 +68,6 @@ export default class SignUp extends React.Component {
         if (rules.isEmail) {
             const pattern = /^([A-Za-z0-9_\-\.\u4e00-\u9fa5])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,8})$/;
             isValid = pattern.test(value) && isValid
-            // invaild pattern format cause warning, double check with it
         }
         if (rules.isNumeric) {
             const pattern = /^\d+$/;
@@ -88,9 +86,7 @@ export default class SignUp extends React.Component {
         this.isValid = isValid
         if (!isValid) {
             updatedFormElement.cssClass = 'color--red';
-            console.log('the email format is not correct!')
         } else {
-            console.log('the format is correct!')
             updatedFormElement.cssClass = '';
         }
         updatedFormElement.value = e.target.value;
@@ -100,9 +96,7 @@ export default class SignUp extends React.Component {
     async AUTHUSER(_user, _password) {
 
         let isAuth = await auth(_user, _password, true);
-        console.log(isAuth)
         if (isAuth.type === 'AUTH_SUCCESS') {
-            console.log('transfer to the next page~~!')
             this.props.history.push('/sub-sign-up', { userName: _user, password: _password })
         } else {
             alert(isAuth.error)
@@ -112,49 +106,19 @@ export default class SignUp extends React.Component {
     handleSubmit = (e) => {
         e.preventDefault();
         const { user, password } = this.state;
-        console.log('Inputemail is:', user)
-        console.log('Inputpassword is:', password)
-        console.log(this.isValid)
         // Only for the front-end....NO back-end server..So only check with localStorage
         if (this.isValid) {
             this.AUTHUSER(user.value, password.value)
-            // auth 应该是一个异步函数。。之后的语句需要等到这个结果执行完了以后才执行。。
-            //在跳转到下一个填写profile的页面之前就要对已填写的用户名，密码做验证。。。
-            // 现在其实是没有用户名和密码的。。。。。
         }
-
-
-
-        // axios.post(configuration.api.backend_api + `/api/v1/users/signUp`, { email: email.value, password: password.value }).then(res => {
-        //     if (res.status === 201) {
-        //         this.setState({ errorClass: "no-active" });
-        //         this.setState({ errormsg: false });
-        //         this.props.onAuth(this.state.email.value, this.state.password.value);
-        //         _this.props.history.push("/sub-sign-up");
-        //     }
-        // }).catch(err => {
-        //     if (email.value && password.value) {
-        //         this.setState({ errormsg: false });
-        //         this.setState({ errorClass: "errorClass" });
-        //     } else if (email.value === "" || password.value === "") {
-        //         this.setState({ errormsg: true });
-        //         this.setState({ errormsgClass: "errorClass" });
-        //     }
-        // })
-
     }
-
 
 
     changeCheckboxStatus = (e) => {
         this.state.checked === true ? this.setState({ checked: false, }) : this.setState({ checked: true, })
-    };
+    }
+
 
     render() {
-        // const { history } = this.props;
-        // if (this.props.isAuth) {
-        //     history.goBack();
-        // }
         const { user, password } = this.state
         return (
             <div className="Signup_Background">

@@ -6,7 +6,6 @@ import {
     Route,
 } from "react-router-dom";
 import AnimatedSwitch from '../AnimatedSwitch/AnimatedSwitch'
-
 import viewSchedule from '../CalenderComponent/ViewSchedule/ViewSchedule'
 import Home from '../Home/Home';
 import NaviSide from '../NaviSide/NaviSide'
@@ -16,8 +15,7 @@ export default class CardCenter extends React.Component {
     constructor(props) {
         super()
         this.state = {
-            firsLoading: false,
-            keepLoading: false,
+            firsLoading: true,
             currently: [],
             daily: [],
             timeZone: ``,
@@ -27,21 +25,25 @@ export default class CardCenter extends React.Component {
         }
         this.keeploading = 1;
         this.oldloading = 0
-        console.log('New start....................')
-        console.log('firsLoading', this.state.firsLoading)
     }
 
-    updateWeatherData = (firsLoading_upD, currently_upD, timeZone_upD, daily_upD, photoUrl_upD) => {
-        let { firsLoading, currently, daily, checkLogin, timeZone, photoUrl } = this.state
-        firsLoading = firsLoading_upD;
-        currently = currently_upD;
-        daily = daily_upD;
-        timeZone = timeZone_upD;
-        photoUrl = photoUrl_upD
-        // checkLogin = checkLogin_upD;
+    updateWeatherData = (_firsLoading, _currently, _timeZone, _daily) => {
+        let { firsLoading, currently, daily, checkLogin, timeZone } = this.state
+        firsLoading = _firsLoading;
+        currently = _currently;
+        daily = _daily;
+        timeZone = _timeZone;
         this.setState({
             firsLoading, currently, daily, timeZone,
-            checkLogin, photoUrl
+            checkLogin
+        })
+    }
+
+    getPhotoUrl = (_photoUrl) => {
+        let { photoUrl } = this.state
+        photoUrl = _photoUrl
+        this.setState({
+            photoUrl
         })
     }
 
@@ -52,9 +54,6 @@ export default class CardCenter extends React.Component {
             checkLogin
         })
     }
-
-    // I just want to pass the props to the CalenderCard component.....
-    // How do i do this? 
 
     passToWeather = (props) => {
         const { firsLoading, currently, daily, checkLogin, timeZone, photoUrl } = this.state
@@ -68,6 +67,7 @@ export default class CardCenter extends React.Component {
                 daily={daily}
                 timeZone={timeZone}
                 checkLogin={checkLogin}
+                getPhotoUrl={this.getPhotoUrl}
                 photoUrl={photoUrl}
                 {...props}
             />

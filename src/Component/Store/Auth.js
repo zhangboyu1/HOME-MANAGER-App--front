@@ -2,6 +2,10 @@ import { data } from './localStorage';
 import { Loginstatus } from './LoginCheck/LoginCheck';
 import axios from 'axios';
 const checkStorage = localStorage
+const url_signup = 'http://localhost:8080/api/user/signup';
+const url_login = 'http://localhost:8080/api/user/login';
+const reg = /^\+?[0-9][0-9]*$/;
+const userId = `${Date.now()}_${Math.random()}`
 
 const authSuccess = (userId, content) => {
     return {
@@ -18,13 +22,15 @@ const authFail = (error) => {
     };
 };
 
+
+
 export const auth = (user, password, isSignup) => {
     const authData = new Object();
     authData.userName = user;
     authData.password = password;
     authData.existUser = false;
     authData.id = ''
-    const reg = /^\+?[0-9][0-9]*$/;
+
     for (let key in checkStorage) {
         if (reg.test(Number(key.split('_')[0]))) {
             if (data.get(key).user === authData.userName) {
@@ -33,12 +39,8 @@ export const auth = (user, password, isSignup) => {
             }
         }
     }
-    console.log("whether this user has already existed:", authData.existUser)
-    //没事，，错了就要改正，否则永远都是错的。。糊弄自己就等于糊弄自己的人生、。、、、、
     if (isSignup) {
-        const url_signup = 'http://localhost:8080/api/user/signup';
         return axios.post(url_signup, JSON.stringify(authData)).then(response => {
-            console.log(response.data)
             if (response.data.errno === 1) {
                 return authSuccess('xxx', response.data.message)
             }
@@ -48,27 +50,25 @@ export const auth = (user, password, isSignup) => {
         });
     }
     else {
-        if (authData.password === '') {
+        if (!authData.password) {
             return authFail('The password is required')
-        } if (authData.userName === '') {
+        } if (!authData.userName) {
             return authFail('The username is required')
         }
-        const url_login = 'http://localhost:8080/api/user/login';
+
         return axios.post(url_login, JSON.stringify(authData)).then(response => {
+            const { Resdata } = response.data
             if (response.data.errno) {
                 if (!authData.existUser) {
-                    console.log('The user dont have history of loggin in this app!!~!')
-                    const userId = `${Date.now()}_${Math.random()}`
                     data.set('currentUser', userId)
                     data.set(userId, { user: authData.userName })
-                    Loginstatus(authSuccess(userId, response.data.data))
-                    return authSuccess(userId, response.data.data)
+                    Loginstatus(authSuccess(userId, Resdata))
+                    return authSuccess(userId, Resdata)
                 }
 
-                console.log('The user has the history of loggin in this app!')
                 data.set('currentUser', authData.id)
-                Loginstatus(authSuccess(authData.id, response.data.data))
-                return authSuccess(authData.id, response.data.data)
+                Loginstatus(authSuccess(authData.id, Resdata))
+                return authSuccess(authData.id, Resdata)
             }
             return authFail(response.data.message)
         }).catch(err => {
@@ -77,13 +77,6 @@ export const auth = (user, password, isSignup) => {
     }
 }
 
-// ----------------------------------------------------------If have back-end server--------------------------------------------------------------------------------
-
-//     let url = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCA09BIX4hedS0NTjmoC2oaQ_CmD8KWIA4';
-//     if (!isSignup) {
-//         // url = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCA09BIX4hedS0NTjmoC2oaQ_CmD8KWIA4';
-//         url = configuration.api.backend_api + "/api/v1/users/signIn";
-//     }
 
 
 

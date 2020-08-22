@@ -16,7 +16,6 @@ export default function NaviSide(props) {
         }
     }
 
-
     const handleLogout = () => {
         Logout()
     }
