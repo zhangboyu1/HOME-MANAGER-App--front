@@ -6,9 +6,6 @@ import {
     Route,
 } from "react-router-dom";
 import AnimatedSwitch from '../AnimatedSwitch/AnimatedSwitch'
-import viewSchedule from '../CalenderComponent/ViewSchedule/ViewSchedule'
-import Home from '../Home/Home';
-import NaviSide from '../NaviSide/NaviSide'
 
 export default class CardCenter extends React.Component {
     // This is a component that is used to control all the data related to the card section....

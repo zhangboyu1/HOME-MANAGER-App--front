@@ -3,8 +3,6 @@ import './searchBar.css';
 import PropTypes from 'prop-types'
 import { searchPlaceDetails, SearchPhotoReference, SearchCityPhot } from '../../Store/GoogleService'
 
-
-
 export default class SearchBar extends React.Component {
     constructor(props) {
         super(props)

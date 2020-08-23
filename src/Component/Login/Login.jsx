@@ -3,8 +3,9 @@ import './Login.css';
 import { auth } from '../Store/Auth';
 import { Link } from 'react-router-dom';
 import { checkInputValidity } from '../Store/Inputvalidity';
-
-export default class Login extends React.Component {
+import { connect } from 'react-redux'
+import { changeProfileAction } from '../Store/REDUX/actionCreators'
+class Login extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -37,7 +38,8 @@ export default class Login extends React.Component {
         let isAuth = await auth(_user, _password, _isSignup);
         if (isAuth.type === 'AUTH_SUCCESS') {
             this.props.history.push('/', isAuth)
-            this.props.upDateLocal(isAuth)
+            this.props.upDateLocal(isAuth.content.data)
+            //这个值应该变一次，当login完毕后，然后再将这个userprofile传递给App...
             return
         }
         this.setState({
@@ -161,3 +163,18 @@ export default class Login extends React.Component {
         )
     }
 }
+
+const mapDispatchToProps = (dispatch) => {
+    // 这个是用来修改store中的state。。。。
+    // 把dispatch方法挂载到props上。。。。。
+    return {
+        upDateLocal(_userProfile) {
+            const action = changeProfileAction(_userProfile)
+            dispatch(action)
+        }
+    }
+}
+
+// connect is the second core API....
+// Let this component connect with store....
+export default connect(null, mapDispatchToProps)(Login)

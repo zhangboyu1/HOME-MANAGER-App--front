@@ -20,7 +20,6 @@ export default function NaviSide(props) {
         Logout()
     }
 
-
     return (
         <div className="NaviSide">
             <div className='navExposed-outer'>
