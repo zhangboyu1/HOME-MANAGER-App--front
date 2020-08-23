@@ -4,7 +4,6 @@ import {
     BrowserRouter as Router,
     Route,
 } from "react-router-dom";
-
 import Home from './Component/Home/Home'
 import Footer from './Component/Footer/Footer';
 import CardCenter from './Component/CardCenter/CardCenter'
@@ -13,31 +12,17 @@ import SignUp from './Component/SignUp/SignUp'
 import SubSignUp from './Component/SignUp/SubSignUp/SubSIgnUp'
 import NaviSide from './Component/NaviSide/NaviSide'
 import './App.css'
+import { getProfile } from './Component/Store/REDUX/actionCreators'
+import { connect } from 'react-redux'
 export const myContext = React.createContext("userProfile");
 
-export default class App extends React.Component {
 
-    constructor() {
-        super()
-        this.state = {
-            userProfile: {}
-        }
+class App extends React.Component {
+    constructor(props) {
+        super(props)
     }
 
     // App组件最好不要设置setSTATE 或者forceUpdate， 因为这样会使全部的子组件发生re-render()...用redux。。。
-    upDateLocal = (_upDateProfileData) => {
-        console.log(_upDateProfileData)
-        let userProfile = this.state
-        if (_upDateProfileData) {
-            userProfile = { ..._upDateProfileData.content }
-            this.setState({
-                userProfile
-            }, () => {
-                console.log('updatedProfile is, ', this.state.userProfile)   //Profile 问题无法解决。。。。。。需要引入第三方数据管理层。。才能解决。。
-            })
-        }
-    }
-
     PassToLogin = (props) => {
         return (
             <Login
@@ -47,8 +32,13 @@ export default class App extends React.Component {
         );
     }
 
+    componentDidMount() {
+        this.props.inUserProfile() //this should be an ascyn function..
+    }
+
     render() {
-        const { userProfile } = this.state
+        const { userProfile } = this.props
+        // Now we can access userProfile in the store...
         return (
             <Router>
                 <NavigatorTop />
@@ -67,3 +57,23 @@ export default class App extends React.Component {
         );
     }
 }
+
+const mapStateToprops = (state) => {
+    return {
+        userProfile: state.userProfile
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    // 这个是用来修改store中的state。。。。
+    // 把dispatch方法挂载到props上。。。。。
+    return {
+        inUserProfile() {
+            dispatch(getProfile()) // This is an asyc operation..
+        }
+    }
+}
+
+// Let this component connect with store....
+export default connect(mapStateToprops, mapDispatchToProps)(App)
+

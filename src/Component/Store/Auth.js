@@ -57,7 +57,7 @@ export const auth = (user, password, isSignup) => {
         }
 
         return axios.post(url_login, JSON.stringify(authData)).then(response => {
-            const { Resdata } = response.data
+            const Resdata = response.data
             if (response.data.errno) {
                 if (!authData.existUser) {
                     data.set('currentUser', userId)

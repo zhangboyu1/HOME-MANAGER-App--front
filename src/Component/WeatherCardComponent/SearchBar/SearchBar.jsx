@@ -1,8 +1,7 @@
 import React from 'react';
 import './searchBar.css';
+import PropTypes from 'prop-types'
 import { searchPlaceDetails, SearchPhotoReference, SearchCityPhot } from '../../Store/GoogleService'
-
-
 
 export default class SearchBar extends React.Component {
     constructor(props) {
@@ -32,12 +31,11 @@ export default class SearchBar extends React.Component {
     }
 
     handleSubmit = (event) => {
+        let { tyCountry } = this.state
         event.preventDefault()
         this.props.ifSearch('photo')
-        let { tyCountry } = this.state
         this.searchPhoto(tyCountry)
     }
-
 
     render() {
         return (
@@ -51,4 +49,10 @@ export default class SearchBar extends React.Component {
             </>
         )
     }
+}
+
+SearchBar.defaultProps = {
+    getPhotoUrl: PropTypes.func.isRequired,
+    searchWeather: PropTypes.func.isRequired,
+    ifSearch: PropTypes.func.isRequired
 }

@@ -13,9 +13,10 @@ import React from 'react';
 import CurrentWeather from '../WeatherCardComponent/CurrentWeatherInfo/CurrentWeather';
 import Details from '../WeatherCardComponent/Details/Details';
 import SearchBar from '../WeatherCardComponent/SearchBar/SearchBar'
-import Clock from '../Clock/Clock'
+import PropTypes from 'prop-types'
 import './WeatherCard.css'
 import { searchWeather } from '../Store/DarkSkyService'
+const defaultUrl = 'http://hdwpro.com/wp-content/uploads/2018/07/Cool-Paris-Wallpaper.jpg'
 
 export default class WeatherCard extends React.Component {
 
@@ -65,7 +66,7 @@ export default class WeatherCard extends React.Component {
     }
 
     render() {
-        const { firsLoading, currently, daily, timeZone, photoUrl } = this.props
+        const { firsLoading, currently, daily, timeZone, photoUrl = defaultUrl } = this.props
         const { ifSearching } = this.state
         return (
             <>
@@ -88,3 +89,14 @@ export default class WeatherCard extends React.Component {
     }
 }
 
+WeatherCard.defaultProps = {
+    firsLoading: PropTypes.string.isRequired,
+    currently: PropTypes.array.isRequired,
+    daily: PropTypes.string.isRequired,
+    timeZone: PropTypes.string.isRequired,
+    photoUrl: PropTypes.string.isRequired,
+}
+
+WeatherCard.defaultProps = {
+    photoUrl: defaultUrl,
+};
